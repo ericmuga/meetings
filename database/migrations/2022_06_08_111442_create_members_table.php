@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('member_no')->unique();
-            $table->foreignIdFor(Club::class)->nullable();
+            // $table->foreignIdFor(Club::class)->nullable();
             $table->string('nationality')->nullable();
             $table->enum('gender',['m','f'])->nullable();
             $table->string('field')->nullable();

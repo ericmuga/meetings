@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('log_setups', function (Blueprint $table) {
             $table->id();
-            $table->string('model');
+            $table->string('model')->index();
             $table->string('field');
-            $table->enum('event',['insertion','deletion','modification']);
+            $table->enum('event',['insertion','deletion','modification'])->index();
             $table->timestamps();
         });
     }

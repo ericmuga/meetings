@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Guest extends Model
 {
     use HasFactory;
+
+public function user()
+{
+    return $this->morphOne(User::class,'authenticatable');
+}
+
 }

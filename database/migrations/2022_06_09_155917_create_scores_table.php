@@ -1,9 +1,10 @@
 <?php
 
+use App\Models\Meeting;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Club;
+
 return new class extends Migration
 {
     /**
@@ -13,14 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('guests', function (Blueprint $table) {
+        Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            // $table->foreignIdFor(Club::class)->nullable();
-            $table->string('nationality')->nullable();
-            $table->enum('gender',['m','f'])->nullable();
-            $table->string('field')->nullable();
-            $table->timestamps();
+            $table->foreignIdFor(Meeting::class);
+            $table->morphs('attendable');
+            $table->boolean('present');
+            $table->float('time_score');
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guests');
+        Schema::dropIfExists('scores');
     }
 };

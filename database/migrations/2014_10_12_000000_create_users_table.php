@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignIdFor(UserType::class);
             $table->rememberToken();
             $table->morphs('authenticatable');
+            $table->string('image_url');
             $table->timestamps();
         });
     }

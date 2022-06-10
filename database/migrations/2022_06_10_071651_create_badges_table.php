@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Score;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Club;
+
 return new class extends Migration
 {
     /**
@@ -13,13 +15,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('guests', function (Blueprint $table) {
+        Schema::create('badges', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            // $table->foreignIdFor(Club::class)->nullable();
-            $table->string('nationality')->nullable();
-            $table->enum('gender',['m','f'])->nullable();
-            $table->string('field')->nullable();
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Score::class);
+            $table->dateTimeTz('issued_at');
+            $table->string('url');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guests');
+        Schema::dropIfExists('badges');
     }
 };
