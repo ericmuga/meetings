@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
                         [
                             UserTypeSeeder::class,
                             ClubSeeder::class,
+                            UserSeeder::class,
                         ],
 
                    );

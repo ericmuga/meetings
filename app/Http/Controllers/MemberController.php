@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use Illuminate\Http\Request;
+use App\MyPaginator;
+use App\Http\Resources\MemberResource;
 
 class MemberController extends Controller
 {
@@ -13,9 +16,40 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+      public function list(Request $request )
+      {
+
+
+        return [
+                'search'=>$request->input('search')?:null,
+                'model'=>'member',
+                'burl'=>base_path(),
+
+                'members'=>MyPaginator::paginate(MemberResource::collection(Member::query()
+                                                                                  ->when($request->input('search'),
+                                                                                          fn($query,$search)=>($query->where('name','like','%'.$search.'%')
+                                                                                                                ->orWhere('phone','like',$search.'%')
+                                                                                                                ->orWhere('email','like',$search.'%')
+                                                                                                          )
+                                                                                         )
+                                                                                        ->orderBy('name')
+                                                                                        ->get()
+                                                                                ),$request->input('perPage')?:16,null,['path'=>url()->full()]
+                                                                                )->withQueryString()
+
+
+                ];
+
+
+
+      }
+
+     public function index(Request $request)
     {
-        //
+        //list all members
+
+
+        return inertia('Member/Index',$this->list($request));
     }
 
     /**
@@ -25,7 +59,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        //show the create form
+        return inertia('Member/Create');
     }
 
     /**
@@ -36,7 +71,7 @@ class MemberController extends Controller
      */
     public function store(StoreMemberRequest $request)
     {
-        //
+    dd($request->all());
     }
 
     /**

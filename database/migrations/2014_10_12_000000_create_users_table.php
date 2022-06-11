@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('uuid')->unique()->nullable();
             $table->string('phone')->unique()->nullable();
-            $table->foreignIdFor(UserType::class);
+            $table->foreignIdFor(UserType::class)->default(1);
             $table->rememberToken();
             $table->morphs('authenticatable');
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }

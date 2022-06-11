@@ -16,7 +16,7 @@
 
     public function contacts()
     {
-        return $this->morphMany(Concat::class,'contactable');
+        return $this->morphMany(Contact::class,'contactable');
     }
   }
 
