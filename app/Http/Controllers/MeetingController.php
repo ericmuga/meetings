@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Meeting;
 use App\Http\Requests\StoreMeetingRequest;
 use App\Http\Requests\UpdateMeetingRequest;
-
+use App\MyPaginator;
+use Illuminate\Http\Request;
+use App\Http\Resources\MeetingResource;
 class MeetingController extends Controller
 {
     /**
@@ -13,9 +15,31 @@ class MeetingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list(Request $request )
     {
-        //
+
+
+      return [
+              'search'=>$request->input('search')?:null,
+              'members'=>MyPaginator::paginate(MeetingResource::collection(Meeting::query()
+
+                                                                                      ->orderBy('date')
+                                                                                      ->get()
+                                                                              ),$request->input('perPage')?:16,null,['path'=>url()->full()]
+                                                                              )->withQueryString()
+
+
+              ];
+
+
+
+    }
+
+     public function index(Request $request)
+    {
+        //list all the meetings
+           dd('meetings will come here');
+
     }
 
     /**

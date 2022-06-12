@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Models\{Member,Contact,User,Score};
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use Illuminate\Http\Request;
 use App\MyPaginator;
 use App\Http\Resources\MemberResource;
+
+use PhpParser\Node\Expr\AssignOp\Concat;
 
 class MemberController extends Controller
 {
@@ -71,7 +73,42 @@ class MemberController extends Controller
      */
     public function store(StoreMemberRequest $request)
     {
-    dd($request->all());
+    //   dd($request->all());
+        $member=Member::create($request->only(['name','gender','field','member_no','nationality']));
+      //attach contacts
+
+       Contact::create([
+                          'contact'=>$request->email,
+                          'contact_type'=>'email',
+                          'contactable_type'=>'App\Models\Member',
+                          'contactable_id'=>$member->id,
+                          'default'=>true
+
+                 ]);
+       if ($request->has('phone'))
+       {
+           Contact::create([
+                          'contact'=>$request->phone,
+                          'contact_type'=>'phone',
+                          'contactable_type'=>'App\Models\Member',
+                          'contactable_id'=>$member->id,
+                          'default'=>true
+
+                         ]);
+       }
+
+       User::create([
+                            'name'=>$request->name,
+                            'email'=>$request->email,
+                             'password'=>bcrypt('Rotary'.$request->member_no),
+                            'user_type_id'=>2,
+                            'authenticatable_type'=>'App\Models\Member',
+                            'authenticatable_id'=>$member->id,
+                            'phone'=>$request->phone?:''
+                        ]);
+
+
+      return redirect()->route('member.index');
     }
 
     /**
@@ -80,9 +117,20 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
+
+    public function stats($member)
+    {
+        # code...
+        //meetings attended by the member
+        return [
+                 'meetings'=>$member->scores()->with(['meetings'=>fn($q)=>$q->orderBy('date','desc')])->get(),
+               ];
+    }
     public function show(Member $member)
     {
-        //
+        //show the member profile
+
+        return inertia('Member/Show',array_merge(['member'=>MemberResource::make($member)],$this->stats($member)));
     }
 
     /**
@@ -93,7 +141,8 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        //show the form to edit a member
+        return inertia('Member/Edit', ['member'=>MemberResource::make($member)]);
     }
 
     /**

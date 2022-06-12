@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
        DB::table('contacts')->insert([
            'contact_type'=>'email',
-           'contactable_type'=>'App\Models\User',
+           'contactable_type'=>'App\Models\Member',
            'contactable_id'=>$user->id,
            'contact'=>'eric.muga@gmail.com',
            'default'=>true,
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
 
          DB::table('contacts')->insert([
            'contact_type'=>'phone',
-           'contactable_type'=>'App\Models\User',
+           'contactable_type'=>'App\Models\Member',
            'contactable_id'=>$user->id,
            'contact'=>'0720816931',
            'default'=>false

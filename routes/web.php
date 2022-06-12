@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\{MemberController};
+use App\Http\Controllers\{MemberController,MeetingController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +33,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
+    Route::resource('meeting', MeetingController::class);
 });
 
 require __DIR__.'/auth.php';

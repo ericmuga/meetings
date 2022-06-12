@@ -12,7 +12,12 @@
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{member.field}}</span>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{member.member_no}}</span>
                 <div class="flex mt-4 space-x-3 lg:mt-6">
-                         <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
+                       <Link
+                          :href="route('member.show',member.id)"
+                       >
+                            <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
+                       </Link>
+
                          <Button icon="pi pi-times" class="p-button-rounded p-button-danger" />
             </div>
             </div>
