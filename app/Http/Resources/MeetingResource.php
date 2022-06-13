@@ -33,6 +33,17 @@ class MeetingResource extends JsonResource
      */
     public function toArray($request)
     {
+        switch ($this->type) {
+            case 'physical':$icon='physicalmeeting'; break;
+            case 'zoom':$icon='zoom'; break;
+            case 'makeup':$icon='makeup'; break;
+            case 'guest_makeup':$icon='makeup'; break;
+
+            default:
+                # code...
+                break;
+        }
+
         return [
                   'id'=>$this->id,
                   'type'=>$this->type,
@@ -42,10 +53,14 @@ class MeetingResource extends JsonResource
                   'host'=>$this->host,
                   'meeting_no'=>$this->meeting_no,
                   'grading_rule'=>$this->grading_rule,
-                  'club'=>$this->club()->name,
+                  'club'=>$this->club()->first()->name,
                   'official_start_time'=>$this->official_start_time,
                   'official_start_end'=>$this->official_start_end,
-                  ''
+                  'guests'=>$this->attended('guest'),
+                  'members'=>$this->attended('member'),
+                  'icon'=>$icon,
+
+
 
 
         ];

@@ -8,6 +8,12 @@ use App\Http\Requests\UpdateMeetingRequest;
 use App\MyPaginator;
 use Illuminate\Http\Request;
 use App\Http\Resources\MeetingResource;
+use App\Models\Club;
+use App\Models\GradingRule;
+use App\Models\Member;
+use Illuminate\Support\Str;
+
+// $slug = Str::of('Laravel Framework')->slug('-');
 class MeetingController extends Controller
 {
     /**
@@ -21,9 +27,9 @@ class MeetingController extends Controller
 
       return [
               'search'=>$request->input('search')?:null,
-              'members'=>MyPaginator::paginate(MeetingResource::collection(Meeting::query()
+              'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::query()
 
-                                                                                      ->orderBy('date')
+                                                                                      ->orderBy('date','desc')
                                                                                       ->get()
                                                                               ),$request->input('perPage')?:16,null,['path'=>url()->full()]
                                                                               )->withQueryString()
@@ -38,7 +44,7 @@ class MeetingController extends Controller
      public function index(Request $request)
     {
         //list all the meetings
-           dd('meetings will come here');
+          return inertia('Meeting/Index',$this->list($request));
 
     }
 
@@ -49,7 +55,7 @@ class MeetingController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Meeting/Create',['clubs'=>Club::all('id','name'),'grading_rules'=>GradingRule::all('id','name')]);
     }
 
     /**
@@ -60,7 +66,9 @@ class MeetingController extends Controller
      */
     public function store(StoreMeetingRequest $request)
     {
-        //
+
+        Meeting::create($request->all());
+        return redirect(route('meeting.index'));
     }
 
     /**
@@ -68,10 +76,30 @@ class MeetingController extends Controller
      *
      * @param  \App\Models\Meeting  $meeting
      * @return \Illuminate\Http\Response
+     *
+     *
+     *
      */
+
+    public function stats($meeting)
+    {
+        # code...
+        //meetings attended by the member
+        return [
+                 'members'=>$meeting->scores()->where('scores.attendable_type','App\Models\Member')->get(),
+                 'guests'=>$meeting->scores()->where('scores.attendable_type','App\Models\Guest')->get(),
+                 'attended'=>$meeting->scores()->where('scores.present',true)->get(),
+                 'MemberList'=>Member::all('id','name','member_no'),
+                 'GuestList'=>Member::all('id','name')
+               ];
+    }
+
+
     public function show(Meeting $meeting)
     {
-        //
+        // dd($this->stats($meeting));
+
+        return inertia('Meeting/Show',array_merge(['meeting'=>MeetingResource::make($meeting)],$this->stats($meeting)));
     }
 
     /**

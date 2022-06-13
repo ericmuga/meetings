@@ -11,25 +11,27 @@
     >
   </div>
   <div>
-    <h3 class="text-3xl font-semibold text-gray-800">{{meeting.meeting_date}}</h3>
-    <p class="">{{meeting.meeting_date_humans}}</p>
+    <h3 class="text-3xl font-semibold text-gray-800">{{meeting.date}}</h3>
+    <!-- <p class="">{{meeting.meeting_date_humans}}</p> -->
     <p class="mt-2 text-gray-600">
 
     </p>
   </div>
   <div class="flex flex-col mt-4 text-center">
-   <p>Members {{meeting.attendees.members}}</p>
-   <p>Guests {{meeting.attendees.guests}}</p>
-   <p>Total {{meeting.attendees.guests+meeting.attendees.members}}</p>
-   <!-- <a href="#" class="text-xl font-medium text-indigo-500">
+   <p>Members {{meeting.members}}</p>
+   <p>Guests {{meeting.guest}}</p>
+   <p>Total {{meeting.guests+meeting.members}}</p>
+   <div class="flex flex-row justify-center space-x-2">
+       <Link
+         :href="route('meeting.show',meeting.id)"
+       >
+        <Button icon="pi pi-bookmark" class="p-button-rounded p-button-primary p-button-outlined" />
 
+       </Link>
+        <Button icon="pi pi-pencil" class="p-button-rounded p-button-primary p-button-outlined" />
+        <Button icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" />
+   </div>
 
-        <Button
-         class="pi pi-secondary"
-        >
-        Explore
-        </Button>
-    </a> -->
   </div>
 </div>
 

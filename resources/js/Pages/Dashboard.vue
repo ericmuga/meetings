@@ -47,7 +47,7 @@ import { Head } from '@inertiajs/inertia-vue3';
                                 </div>
                              </template>
                             <template #footer>
-                                <Link href="#"
+                                <Link :href="route('meeting.index')"
                                   class="text-blue-400"
                                  >
                                  Details

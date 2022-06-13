@@ -12,7 +12,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import MemberCard from '@/components/MemberCard'
-import Timeline from 'primevue/timeline';
+// import Timeline from 'primevue/timeline';
 // import ScrollPanel from 'primevue/scrollpanel';
 // const props = defineProps({
 //   members: Object
@@ -44,53 +44,8 @@ import Timeline from 'primevue/timeline';
             })
         }
 
- const events1 = ref([
-            {status: 'Ordered', date: '15/10/2020 10:30', icon: 'pi pi-shopping-cart', color: '#9C27B0', image: 'game-controller.jpg'},
-            {status: 'Processing', date: '15/10/2020 14:00', icon: 'pi pi-cog', color: '#673AB7'},
-            {status: 'Shipped', date: '15/10/2020 16:15', icon: 'pi pi-shopping-cart', color: '#FF9800'},
-            {status: 'Delivered', date: '16/10/2020 10:00', icon: 'pi pi-check', color: '#607D8B'}
-        ]);
-        const events2 = ref([
-            "2020", "2021", "2022", "2023"
-        ]);
+
 </script>
-<style lang="scss" scoped>
-.custom-marker {
-    display: flex;
-    width: 2rem;
-    height: 2rem;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-::v-deep(.p-timeline-event-content)
-::v-deep(.p-timeline-event-opposite) {
-    line-height: 1;
-}
-
-@media screen and (max-width: 960px) {
-    ::v-deep(.customized-timeline) {
-            .p-timeline-event:nth-child(even) {
-                flex-direction: row !important;
-
-                .p-timeline-event-content {
-                    text-align: left !important;
-                }
-            }
-
-            .p-timeline-event-opposite {
-                flex: 0;
-            }
-
-            .p-card {
-                margin-top: 1rem;
-            }
-        }
-}
-</style>
 
 <template>
     <Head title="Members" />
@@ -163,17 +118,7 @@ import Timeline from 'primevue/timeline';
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
                                     </AccordionTab>
                                     <AccordionTab header="History">
-                                       <div class="card">
-                                            <h5>Opposite Content</h5>
-                                            <Timeline :value="events1">
-                                                <template #opposite="slotProps">
-                                                    <small class="p-text-secondary">{{slotProps.item.date}}</small>
-                                                </template>
-                                                <template #content="slotProps">
-                                                    {{slotProps.item.status}}
-                                                </template>
-                                            </Timeline>
-                                        </div>
+
                                     </AccordionTab>
                                 </Accordion>
                           </div>
