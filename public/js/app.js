@@ -24564,7 +24564,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }); // VueApp.config.globalProperties.$date = dayjs;
 
-    VueApp.use(plugin).Component("Link", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link).use(primevue_config__WEBPACK_IMPORTED_MODULE_3__["default"]) // .use(InertiaProgress)
+    VueApp.use(plugin).component("Link", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link).use(primevue_config__WEBPACK_IMPORTED_MODULE_3__["default"]) // .use(InertiaProgress)
     // .use(ToastService)
     .use(gsap__WEBPACK_IMPORTED_MODULE_22__["default"]).Component('InputText', primevue_inputtext__WEBPACK_IMPORTED_MODULE_4__["default"]).Component('Button', primevue_button__WEBPACK_IMPORTED_MODULE_5__["default"]).Component('Dropdown', primevue_dropdown__WEBPACK_IMPORTED_MODULE_10__["default"]).Component('Pagination', _Components_Pagination_vue__WEBPACK_IMPORTED_MODULE_16__["default"]).Component('SpacedRule', _Components_SpacedRule_vue__WEBPACK_IMPORTED_MODULE_17__["default"]) // .Component('Breadcrumb',Breadcrumb)
     .Component('Checkbox', primevue_checkbox__WEBPACK_IMPORTED_MODULE_11__["default"]).Component('MultiSelect', primevue_multiselect__WEBPACK_IMPORTED_MODULE_18__["default"]) // .Component('Toast',Toast)

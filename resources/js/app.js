@@ -45,7 +45,7 @@ createInertiaApp({
         // VueApp.config.globalProperties.$date = dayjs;
 
         VueApp.use(plugin)
-             .Component("Link",Link)
+             .component("Link",Link)
             .use(PrimeVue)
             // .use(InertiaProgress)
             // .use(ToastService)
