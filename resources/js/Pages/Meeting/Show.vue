@@ -1,6 +1,5 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import meetingCard from '@/components/meetingCard'
 import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
@@ -11,7 +10,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
  import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
-import MeetingCard from '@/components/MeetingCard'
+import MeetingCard from '@/Components/MeetingCard.vue'
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel'
 // import Timeline from 'primevue/timeline';

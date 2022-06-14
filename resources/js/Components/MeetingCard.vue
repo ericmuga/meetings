@@ -1,9 +1,5 @@
 <template>
     <div >
-
-
-
-
 <div class="max-w-md px-8 py-4 my-8 bg-white rounded-lg shadow-lg">
   <div class="flex justify-center -mt-16 md:justify-end">
     <img class="object-cover w-10 h-10 border-2 border-indigo-500 rounded-full"

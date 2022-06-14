@@ -11,7 +11,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
  import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
-import MemberCard from '@/components/MemberCard'
+import MemberCard from '@/Components/MemberCard.vue'
 // import Timeline from 'primevue/timeline';
 // import ScrollPanel from 'primevue/scrollpanel';
 // const props = defineProps({
