@@ -684,11 +684,11 @@ select {
 .m-10 {
   margin: 2.5rem;
 }
-.m-6 {
-  margin: 1.5rem;
-}
 .m-3 {
   margin: 0.75rem;
+}
+.m-6 {
+  margin: 1.5rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -780,9 +780,6 @@ select {
 }
 .mt-1 {
   margin-top: 0.25rem;
-}
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 .mb-10 {
   margin-bottom: 2.5rem;
@@ -947,9 +944,6 @@ select {
 .items-center {
   align-items: center;
 }
-.justify-start {
-  justify-content: flex-start;
-}
 .justify-end {
   justify-content: flex-end;
 }
@@ -965,6 +959,11 @@ select {
 .gap-2 {
   gap: 0.5rem;
 }
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -979,11 +978,6 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
-}
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1333,10 +1327,6 @@ select {
 .text-gray-800 {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-.text-indigo-500 {
-  --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
 }
 .text-black {
   --tw-text-opacity: 1;

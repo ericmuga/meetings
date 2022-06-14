@@ -23,6 +23,7 @@ const props=defineProps({ meetings:Object,
                              search:String,
 
 
+
                             })
 
  const beforeEnter=(el)=>{
@@ -96,7 +97,7 @@ const props=defineProps({ meetings:Object,
                                          @before-enter="beforeEnter"
                                         @enter="enter"
                                     >
-                                                                               <meeting-card :meeting=meeting />
+                                                                               <MeetingCard :meeting=meeting />
                                 </transition>
                             </div>
                    </div>

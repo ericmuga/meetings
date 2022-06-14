@@ -101,7 +101,7 @@ const props=defineProps({ members:Object,
                                          @before-enter="beforeEnter"
                                         @enter="enter"
                                     >
-                                        <member-card :member=member />
+                                        <MemberCard :member=member />
                                 </transition>
                             </div>
 </div>
