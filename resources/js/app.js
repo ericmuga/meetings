@@ -18,10 +18,10 @@ import { InertiaProgress } from '@inertiajs/progress'
  import Card from 'primevue/card';
 //  import DataView from 'primevue/dataview';
 //  import Breadcrumb from 'primevue/breadcrumb';\
-import Breadcrumbs from '@/components/Breadcrumbs.vue'
+import Breadcrumbs from '@/Components/Breadcrumbs.vue'
 import FileUpload from 'primevue/fileupload';
-import Pagination from '@/components/Pagination.vue'
-import SpacedRule from '@/components/SpacedRule.vue'
+import Pagination from '@/Components/Pagination.vue'
+import SpacedRule from '@/Components/SpacedRule.vue'
 import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
 // import Checkbox from 'primevue/checkbox';
@@ -45,27 +45,27 @@ createInertiaApp({
         // VueApp.config.globalProperties.$date = dayjs;
 
         VueApp.use(plugin)
-             .component("Link",Link)
+             .Component("Link",Link)
             .use(PrimeVue)
             // .use(InertiaProgress)
             // .use(ToastService)
             .use(gsap)
-            .component('InputText',InputText)
-            .component('Button',Button)
-            .component('Dropdown',Dropdown)
-            .component('Pagination',Pagination)
-            .component('SpacedRule',SpacedRule)
+            .Component('InputText',InputText)
+            .Component('Button',Button)
+            .Component('Dropdown',Dropdown)
+            .Component('Pagination',Pagination)
+            .Component('SpacedRule',SpacedRule)
 
-            // .component('Breadcrumb',Breadcrumb)
-            .component('Checkbox',Checkbox)
-            .component('MultiSelect',MultiSelect)
-            // .component('Toast',Toast)
-            .component('Breadcrumbs',Breadcrumbs)
-            .component('FileUpload',FileUpload)
-            .component('Textarea',Textarea)
-            .component('InputNumber',InputNumber)
-            .component('Card',Card)
-            // .component('DataView',DataView)
+            // .Component('Breadcrumb',Breadcrumb)
+            .Component('Checkbox',Checkbox)
+            .Component('MultiSelect',MultiSelect)
+            // .Component('Toast',Toast)
+            .Component('Breadcrumbs',Breadcrumbs)
+            .Component('FileUpload',FileUpload)
+            .Component('Textarea',Textarea)
+            .Component('InputNumber',InputNumber)
+            .Component('Card',Card)
+            // .Component('DataView',DataView)
 
             .mixin({ methods: { route } })
             .mount(el);
