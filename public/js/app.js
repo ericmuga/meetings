@@ -24681,7 +24681,7 @@ var _hoisted_3 = {
   "class": "flex justify-center px-6 py-4"
 };
 var _hoisted_4 = {
-  "class": "mb-2 text-xl font-bold"
+  "class": "mb-2 text-xl font-bold capitalize"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
