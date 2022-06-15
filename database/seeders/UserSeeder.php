@@ -59,5 +59,46 @@ class UserSeeder extends Seeder
 
 
 
+           //ngina
+
+            Member::forceCreate([
+                           'name'=>'Eric Muga',
+                           'member_no'=>'123456',
+                           'nationality'=>'Kenyan',
+                           'gender'=>'m',
+                           'field'=>'IT'
+
+                          ]);
+
+        $user=User::create([
+
+                            'name'=>'Ngina Kabicho',
+                            'email'=>'kabichongina@gmail.com',
+                            'password'=>bcrypt('Rotary2022$'),
+                            'user_type_id'=>1,
+                            'authenticatable_type'=>'App\Models\Member',
+                            'authenticatable_id'=>1,
+                            'phone'=>'0723655133'
+                          ]);
+
+       DB::table('contacts')->insert([
+           'contact_type'=>'email',
+           'contactable_type'=>'App\Models\Member',
+           'contactable_id'=>$user->id,
+           'contact'=>'kabichongina@gmail.com',
+           'default'=>true,
+           ]);
+
+         DB::table('contacts')->insert([
+           'contact_type'=>'phone',
+           'contactable_type'=>'App\Models\Member',
+           'contactable_id'=>$user->id,
+           'contact'=>'0723655133',
+           'default'=>false
+           ]);
+
+
+
+
     }
 }
