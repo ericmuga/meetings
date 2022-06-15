@@ -31,13 +31,7 @@ const beforeEnter=(el)=>{
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
-        <!-- <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Dashboard
-            </h2>
-        </template> -->
-
-        <div class="py-12">
+          <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <!-- <div class="p-4 bg-red-200"> -->
@@ -101,7 +95,7 @@ const beforeEnter=(el)=>{
                                             </div>
 
                                             <div class="px-6 pt-4 pb-2 text-center">
-                                                <Link :href="route('meeting.index')">
+                                                <Link :href="route('report.index')">
                                                     <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
                                                 </Link>
                                             </div>

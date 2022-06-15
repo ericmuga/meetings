@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\{DashboardController, MemberController,MeetingController};
+use App\Http\Controllers\{DashboardController, MemberController,MeetingController,ReportController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,22 +16,12 @@ use App\Http\Controllers\{DashboardController, MemberController,MeetingControlle
 */
 
 Route::get('/',fn()=>redirect(route('login')));
-
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
-
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
     Route::resource('meeting', MeetingController::class);
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/reports',[ReportController::class,'index'])->name('report.index');
+    Route::get('/report/{id}',[ReportController::class,'show'])->name('report.show');
 });
 
 require __DIR__.'/auth.php';
