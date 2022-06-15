@@ -1,166 +1,117 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+
+import gsap from 'gsap';
+const props= defineProps({
+                            members:Object,
+                            guests:Object,
+                            meetings:Object,
+
+                         })
+
+const beforeEnter=(el)=>{
+            //    console.log('set the initial state')
+             el.style.opacity=0;
+             el.style.transform='translateX(-40px)'
+        }
+
+        const enter =(el)=>{
+            // console.log('starting to enter into the dom')
+                gsap.to(el,{
+                    opacity:1,
+                    x:0,
+                    duration:0.8,
+                            // onComplete:done
+            })
+        }
 </script>
 
 <template>
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
-        <template #header>
+        <!-- <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Dashboard
             </h2>
-        </template>
+        </template> -->
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    <div class="grid p-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4 place-items-center">
                         <!-- <div class="p-4 bg-red-200"> -->
 
+                            <transition
+                                        appear
+                                         @before-enter="beforeEnter"
+                                        @enter="enter"
+                                    >
+                                    <div class="grid gap-4 p-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4 place-items-center">
+                                         <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg">
+                                            <img class="w-full max-h-48" src="/images/member.jpg" alt="Member Gravatar" >
+                                            <div class="flex justify-center px-6 py-4">
+                                                <div class="mb-2 text-xl font-bold ">Members</div>
+                                            </div>
+                                              <p class="text-base text-center text-gray-700">
+                                                    {{members}}
+                                                </p>
+                                            <div class="px-6 pt-4 pb-2 text-center">
+                                                <Link :href="route('member.index')">
+                                                    <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
+                                                </Link>
+                                            </div>
+                                         </div>
 
-                       <Card class="bg-teal-300">
-                            <template #header>
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase rounded ">
-                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 297 297" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 297 297"
-                             class="w-10 h-10 text-center">
-                                <g>
-                                    <path d="M148.5,116.187c32.029,0,58.086-26.057,58.086-58.086S180.529,0.014,148.5,0.014S90.414,26.072,90.414,58.101   S116.471,116.187,148.5,116.187z M120.402,51.894c3.429-3.427,8.985-3.427,12.414,0l8.387,8.388L164.184,37.3   c3.429-3.427,8.985-3.427,12.414,0c3.428,3.428,3.428,8.986,0,12.414L147.41,78.902c-1.714,1.713-3.96,2.571-6.207,2.571   c-2.247,0-4.493-0.857-6.207-2.571l-14.594-14.594C116.974,60.88,116.974,55.321,120.402,51.894z"/>
-                                    <path d="M34.165,84.869c18.839,0,34.166-15.327,34.166-34.166S53.004,16.537,34.165,16.537S0,31.864,0,50.703   S15.326,84.869,34.165,84.869z"/>
-                                    <path d="m3.367,133.777v70.955c0,16.297 13.211,29.508 29.508,29.508h38.457v52.407c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-75.595c0-13.757-11.152-24.908-24.908-24.908h-29.995v-52.367c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m262.835,84.869c18.839,0 34.165-15.327 34.165-34.166s-15.326-34.166-34.165-34.166-34.166,15.327-34.166,34.166 15.327,34.166 34.166,34.166z"/>
-                                    <path d="m232.036,133.777v52.367h-29.994c-13.757,0-24.909,11.152-24.909,24.908v75.595c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-52.407h38.457c16.297,0 29.508-13.211 29.508-29.508v-70.955c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m199.616,151.813c4.848,0 8.777-3.93 8.777-8.777 0-4.848-3.93-8.777-8.777-8.777h-102.232c-4.848,0-8.777,3.93-8.777,8.777 0,4.848 3.93,8.777 8.777,8.777h42.338v136.395c0,4.848 3.93,8.777 8.777,8.777s8.777-3.93 8.777-8.777v-136.395h42.34z"/>
-                                </g>
-                                </svg>
-                                </div>
-                            </template>
-                            <template #title>
-                               Meetings
-                            </template>
-                            <template #content >
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase">
 
-                                    2,355
-                                </div>
-                             </template>
-                            <template #footer>
-                                <Link :href="route('meeting.index')"
-                                  class="text-blue-400"
-                                 >
-                                 Details
-                                </Link>
-                            </template>
-                        </Card>
-                        <!-- </div> -->
-                          <Card>
-                            <template #header>
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase rounded ">
-                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 297 297" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 297 297"
-                             class="w-10 h-10 text-center">
-                                <g>
-                                    <path d="M148.5,116.187c32.029,0,58.086-26.057,58.086-58.086S180.529,0.014,148.5,0.014S90.414,26.072,90.414,58.101   S116.471,116.187,148.5,116.187z M120.402,51.894c3.429-3.427,8.985-3.427,12.414,0l8.387,8.388L164.184,37.3   c3.429-3.427,8.985-3.427,12.414,0c3.428,3.428,3.428,8.986,0,12.414L147.41,78.902c-1.714,1.713-3.96,2.571-6.207,2.571   c-2.247,0-4.493-0.857-6.207-2.571l-14.594-14.594C116.974,60.88,116.974,55.321,120.402,51.894z"/>
-                                    <path d="M34.165,84.869c18.839,0,34.166-15.327,34.166-34.166S53.004,16.537,34.165,16.537S0,31.864,0,50.703   S15.326,84.869,34.165,84.869z"/>
-                                    <path d="m3.367,133.777v70.955c0,16.297 13.211,29.508 29.508,29.508h38.457v52.407c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-75.595c0-13.757-11.152-24.908-24.908-24.908h-29.995v-52.367c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m262.835,84.869c18.839,0 34.165-15.327 34.165-34.166s-15.326-34.166-34.165-34.166-34.166,15.327-34.166,34.166 15.327,34.166 34.166,34.166z"/>
-                                    <path d="m232.036,133.777v52.367h-29.994c-13.757,0-24.909,11.152-24.909,24.908v75.595c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-52.407h38.457c16.297,0 29.508-13.211 29.508-29.508v-70.955c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m199.616,151.813c4.848,0 8.777-3.93 8.777-8.777 0-4.848-3.93-8.777-8.777-8.777h-102.232c-4.848,0-8.777,3.93-8.777,8.777 0,4.848 3.93,8.777 8.777,8.777h42.338v136.395c0,4.848 3.93,8.777 8.777,8.777s8.777-3.93 8.777-8.777v-136.395h42.34z"/>
-                                </g>
-                                </svg>
-                                </div>
-                            </template>
-                            <template #title>
-                               Makeups
-                            </template>
-                            <template #content >
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase">
+                                        <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
+                                            <img class="w-full max-h-48" src="/images/guest.png" alt="Member Gravatar" >
+                                            <div class="flex justify-center px-6 py-4">
+                                                <div class="mb-2 text-xl font-bold ">Guests</div>
+                                            </div>
+                                              <p class="text-base text-center text-gray-700">
+                                                    {{guests}}
+                                                </p>
+                                            <div class="px-6 pt-4 pb-2 text-center">
+                                                <Link :href="route('member.index')">
+                                                    <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
+                                                </Link>
+                                            </div>
+                                         </div>
 
-                                    2,355
-                                </div>
-                             </template>
-                            <template #footer>
-                                <Link href="#"
-                                  class="text-blue-400"
-                                 >
-                                 Details
-                                </Link>
-                            </template>
-                        </Card>
-                        <Card>
-                            <template #header>
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase rounded ">
-                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 297 297" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 297 297"
-                             class="w-10 h-10 text-center">
-                                <g>
-                                    <path d="M148.5,116.187c32.029,0,58.086-26.057,58.086-58.086S180.529,0.014,148.5,0.014S90.414,26.072,90.414,58.101   S116.471,116.187,148.5,116.187z M120.402,51.894c3.429-3.427,8.985-3.427,12.414,0l8.387,8.388L164.184,37.3   c3.429-3.427,8.985-3.427,12.414,0c3.428,3.428,3.428,8.986,0,12.414L147.41,78.902c-1.714,1.713-3.96,2.571-6.207,2.571   c-2.247,0-4.493-0.857-6.207-2.571l-14.594-14.594C116.974,60.88,116.974,55.321,120.402,51.894z"/>
-                                    <path d="M34.165,84.869c18.839,0,34.166-15.327,34.166-34.166S53.004,16.537,34.165,16.537S0,31.864,0,50.703   S15.326,84.869,34.165,84.869z"/>
-                                    <path d="m3.367,133.777v70.955c0,16.297 13.211,29.508 29.508,29.508h38.457v52.407c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-75.595c0-13.757-11.152-24.908-24.908-24.908h-29.995v-52.367c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m262.835,84.869c18.839,0 34.165-15.327 34.165-34.166s-15.326-34.166-34.165-34.166-34.166,15.327-34.166,34.166 15.327,34.166 34.166,34.166z"/>
-                                    <path d="m232.036,133.777v52.367h-29.994c-13.757,0-24.909,11.152-24.909,24.908v75.595c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-52.407h38.457c16.297,0 29.508-13.211 29.508-29.508v-70.955c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m199.616,151.813c4.848,0 8.777-3.93 8.777-8.777 0-4.848-3.93-8.777-8.777-8.777h-102.232c-4.848,0-8.777,3.93-8.777,8.777 0,4.848 3.93,8.777 8.777,8.777h42.338v136.395c0,4.848 3.93,8.777 8.777,8.777s8.777-3.93 8.777-8.777v-136.395h42.34z"/>
-                                </g>
-                                </svg>
-                                </div>
-                            </template>
-                            <template #title>
-                               Members
-                            </template>
-                            <template #content >
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase">
+                                         <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
+                                            <img class="w-full max-h-48" src="/images/meeting.png" alt="Member Gravatar" >
+                                            <div class="flex justify-center px-6 py-4">
+                                                <div class="mb-2 text-xl font-bold ">Meetings</div>
+                                            </div>
+                                              <p class="text-base text-center text-gray-700">
+                                                    {{meetings}}
+                                                </p>
+                                            <div class="px-6 pt-4 pb-2 text-center">
+                                                <Link :href="route('meeting.index')">
+                                                    <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
+                                                </Link>
+                                            </div>
+                                         </div>
 
-                                    205
-                                </div>
-                             </template>
-                            <template #footer>
-                                <Link :href="route('member.index')"
-                                  class="text-blue-400"
-                                 >
-                                 Details
-                                </Link>
-                            </template>
-                        </Card>
-                        <Card>
-                            <template #header>
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase rounded ">
-                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 297 297" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 297 297"
-                             class="w-10 h-10 text-center">
-                                <g>
-                                    <path d="M148.5,116.187c32.029,0,58.086-26.057,58.086-58.086S180.529,0.014,148.5,0.014S90.414,26.072,90.414,58.101   S116.471,116.187,148.5,116.187z M120.402,51.894c3.429-3.427,8.985-3.427,12.414,0l8.387,8.388L164.184,37.3   c3.429-3.427,8.985-3.427,12.414,0c3.428,3.428,3.428,8.986,0,12.414L147.41,78.902c-1.714,1.713-3.96,2.571-6.207,2.571   c-2.247,0-4.493-0.857-6.207-2.571l-14.594-14.594C116.974,60.88,116.974,55.321,120.402,51.894z"/>
-                                    <path d="M34.165,84.869c18.839,0,34.166-15.327,34.166-34.166S53.004,16.537,34.165,16.537S0,31.864,0,50.703   S15.326,84.869,34.165,84.869z"/>
-                                    <path d="m3.367,133.777v70.955c0,16.297 13.211,29.508 29.508,29.508h38.457v52.407c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-75.595c0-13.757-11.152-24.908-24.908-24.908h-29.995v-52.367c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m262.835,84.869c18.839,0 34.165-15.327 34.165-34.166s-15.326-34.166-34.165-34.166-34.166,15.327-34.166,34.166 15.327,34.166 34.166,34.166z"/>
-                                    <path d="m232.036,133.777v52.367h-29.994c-13.757,0-24.909,11.152-24.909,24.908v75.595c0,3.992 3.236,7.229 7.229,7.229h34.077c3.992,0 7.229-3.236 7.229-7.229v-52.407h38.457c16.297,0 29.508-13.211 29.508-29.508v-70.955c0-17.009-13.789-30.798-30.798-30.798-17.01-0.001-30.799,13.788-30.799,30.798z"/>
-                                    <path d="m199.616,151.813c4.848,0 8.777-3.93 8.777-8.777 0-4.848-3.93-8.777-8.777-8.777h-102.232c-4.848,0-8.777,3.93-8.777,8.777 0,4.848 3.93,8.777 8.777,8.777h42.338v136.395c0,4.848 3.93,8.777 8.777,8.777s8.777-3.93 8.777-8.777v-136.395h42.34z"/>
-                                </g>
-                                </svg>
-                                </div>
-                            </template>
-                            <template #title>
-                               Reports
-                            </template>
-                            <template #content >
-                                <div class="w-full font-extrabold tracking-wide text-center uppercase">
+                                         <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
+                                            <img class="w-full max-h-48" src="/images/reports.jpg" alt="Member Gravatar" >
+                                            <div class="flex justify-center px-6 py-4">
+                                                <div class="mb-2 text-xl font-bold ">Reports</div>
+                                            </div>
 
-                                    2,355
-                                </div>
-                             </template>
-                            <template #footer>
-                                <Link href="#"
-                                  class="text-blue-400"
-                                 >
-                                 Details
-                                </Link>
-                            </template>
-                        </Card>
+                                            <div class="px-6 pt-4 pb-2 text-center">
+                                                <Link :href="route('meeting.index')">
+                                                    <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
+                                                </Link>
+                                            </div>
+                                         </div>
+
+                                    </div>
+                             </transition>
 
 
 
-                    </div>
                 </div>
             </div>
         </div>

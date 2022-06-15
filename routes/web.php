@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\{MemberController,MeetingController};
+use App\Http\Controllers\{DashboardController, MemberController,MeetingController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,14 +26,12 @@ Route::get('/',fn()=>redirect(route('login')));
 //     ]);
 // });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
     Route::resource('meeting', MeetingController::class);
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
