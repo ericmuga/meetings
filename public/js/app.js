@@ -20709,14 +20709,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import ScrollPanel from 'primevue/scrollpanel';
-// const props = defineProps({
-//   meetings: Object
-// })
-//    import 'flowbite';
-//    const uploadmeetings=()=>{
-//         form.post(route('meetings.upload'))
-//    }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'Index',
@@ -20732,7 +20724,7 @@ __webpack_require__.r(__webpack_exports__);
     var beforeEnter = function beforeEnter(el) {
       //    console.log('set the initial state')
       el.style.opacity = 0;
-      el.style.transform = 'translateY(-40px)';
+      el.style.transform = 'translateX(-40px)';
     };
 
     var enter = function enter(el) {
@@ -23607,7 +23599,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Meetings"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeAuthenticatedLayout"], null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <template #header>\n            <h2 class=\"text-xl font-semibold leading-tight text-gray-800\">\n                meetings\n\n            </h2>\n        </template> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Toolbar"], null, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Toolbar"], null, {
         start: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
             href: _ctx.route('meeting.create')

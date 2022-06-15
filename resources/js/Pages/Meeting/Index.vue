@@ -6,18 +6,7 @@ import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 
  import gsap from 'gsap';
-// import ScrollPanel from 'primevue/scrollpanel';
-// const props = defineProps({
-//   meetings: Object
-// })
 
-
-//    import 'flowbite';
-
-
-//    const uploadmeetings=()=>{
-//         form.post(route('meetings.upload'))
-//    }
 
 const props=defineProps({ meetings:Object,
                              search:String,
@@ -29,7 +18,7 @@ const props=defineProps({ meetings:Object,
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
              el.style.opacity=0;
-             el.style.transform='translateY(-40px)'
+             el.style.transform='translateX(-40px)'
         }
 
         const enter =(el)=>{
@@ -48,12 +37,6 @@ const props=defineProps({ meetings:Object,
     <Head title="Meetings" />
 
     <BreezeAuthenticatedLayout>
-        <!-- <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                meetings
-
-            </h2>
-        </template> -->
          <div class="py-6">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
