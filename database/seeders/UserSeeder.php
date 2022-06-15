@@ -62,11 +62,11 @@ class UserSeeder extends Seeder
            //ngina
 
             Member::forceCreate([
-                           'name'=>'Eric Muga',
-                           'member_no'=>'123456',
+                           'name'=>'Ngina Kabicho',
+                           'member_no'=>'10859891',
                            'nationality'=>'Kenyan',
-                           'gender'=>'m',
-                           'field'=>'IT'
+                           'gender'=>'f',
+                           'field'=>'Finance'
 
                           ]);
 
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
                             'password'=>bcrypt('Rotary2022$'),
                             'user_type_id'=>1,
                             'authenticatable_type'=>'App\Models\Member',
-                            'authenticatable_id'=>1,
+                            'authenticatable_id'=>2,
                             'phone'=>'0723655133'
                           ]);
 
