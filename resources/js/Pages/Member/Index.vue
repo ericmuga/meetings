@@ -6,6 +6,8 @@ import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Swal from 'sweetalert2'
  import gsap from 'gsap';
+
+ import SearchBox from '@/Components/SearchBox.vue'
   const form = useForm({
                             member_list: null,
                             })
@@ -73,28 +75,29 @@ const props=defineProps({ members:Object,
 
                                 />
                           <!-- <Button   icon="pi pi-upload" class="mx-2 p-button-rounded p-button-secondary"/> -->
-
-                         <a :href="route('members.download')">
-                          <Button label="Download" icon="pi pi-download" class="mr-2" />
-                        </a>
-
                         <Button v-if="form.member_list"
                                :disabled=form.progress
                                type="submit"
                                label="Upload" icon="pi pi-upload" class="p-button-primary" />
                         <!-- <i class="mr-2 pi pi-bars p-toolbar-separator" /> -->
                         <!-- <SplitButton label="Save" icon="pi pi-check" :model="items" class="p-button-warning"></SplitButton> -->
-                    </Form>
+                            </Form>
+                         <a :href="route('members.download')">
+                          <Button label="Download" icon="pi pi-download" class="mr-2 p-button-secondary" />
+                        </a>
+
+
                 </template>
 
                     <template #end>
                         <span class="p-input-icon-left">
                             <i class="pi pi-search" />
-                            <InputText type="text" v-model="value3" placeholder="Search" />
+                             <SearchBox :model="`member.index`" />
+
                         </span>
                         <!-- <Button icon="pi pi-search" class="mr-2" /> -->
-                        <Button icon="pi pi-calendar" class="mr-2 p-button-success" />
-                        <Button icon="pi pi-times" class="p-button-danger" />
+                        <!-- <Button icon="pi pi-calendar" class="mr-2 p-button-success" /> -->
+                        <!-- <Button icon="pi pi-times" class="p-button-danger" /> -->
                     </template>
                 </Toolbar>
 
@@ -123,8 +126,7 @@ const props=defineProps({ members:Object,
 
                         <div class="w-full text-center">
                             <div v-if="members.data.length===0">
-                                No members were found
-                            </div>
+                                                         </div>
                             <div v-else>
                                 <Pagination :links=members.links :prefix=model />
                             </div>
