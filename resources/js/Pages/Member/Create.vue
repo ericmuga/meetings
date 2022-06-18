@@ -1,21 +1,15 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-// import MemberCard from '@/Components/MemberCard'
 import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Card from 'primevue/card';
 import { ref, reactive } from 'vue';
-   import{countries} from '@/assets/countries.js'
+import{countries} from '@/assets/countries.js'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
-// import ScrollPanel from 'primevue/scrollpanel';
-// const props = defineProps({
-//   members: Object
-// })
+import swal from 'sweetalert2'
 
-
-//    import 'flowbite';
  const country= ref(countries)
     const form = useForm({
                             name:'',
@@ -32,7 +26,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 //    const uploadMembers=()=>{
 //         form.post(route('members.upload'))
 //    }
-
+const showSuccess=()=>{swal('Success',message,'success')};
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
@@ -53,7 +47,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  const createMember=()=>{
              form.post(route('member.store'), {
                         preserveScroll: true,
-                        onSuccess: () => form.reset(),
+                        onSuccess: () =>showSuccess('member created'),
                         })
          }
 </script>

@@ -22,6 +22,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('/reports',[ReportController::class,'index'])->name('report.index');
     Route::get('/report/{id}',[ReportController::class,'show'])->name('report.show');
+    Route::post('members/import',[MemberController::class,'upload'])->name('members.import');
+    Route::get('members/download',[MemberController::class,'download'])->name('members.download');
 });
 
 require __DIR__.'/auth.php';

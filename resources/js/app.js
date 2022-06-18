@@ -2,6 +2,7 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 // import dayjs from 'dayjs'
+import Swal from 'sweetalert2'
 
     import gsap from 'gsap';
  import PrimeVue from 'primevue/config'

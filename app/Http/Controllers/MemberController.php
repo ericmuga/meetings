@@ -8,6 +8,9 @@ use App\Http\Requests\UpdateMemberRequest;
 use Illuminate\Http\Request;
 use App\MyPaginator;
 use App\Http\Resources\MemberResource;
+use App\Imports\MembersImport;
+use App\Exports\MembersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 use PhpParser\Node\Expr\AssignOp\Concat;
 
@@ -17,7 +20,21 @@ class MemberController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     *
      */
+
+    public function upload(Request $request)
+    {    $request->validate([ 'member_list' => 'required|mimes:csv,xlsx,xls|max:4096']);
+            Excel::import(new MembersImport, request()->file('member_list'));
+            return back()->with('message','File has been uploaded.');
+
+       }
+
+       public function download()
+            {
+                return Excel::download(new MembersExport, 'members.xlsx');
+            }
       public function list(Request $request )
       {
 

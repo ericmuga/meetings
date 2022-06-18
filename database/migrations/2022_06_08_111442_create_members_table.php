@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('member_no')->unique();
             $table->string('nationality')->nullable();
-            $table->enum('gender',['m','f'])->nullable();
+            $table->string('gender')->nullable();
             $table->string('field')->nullable();
             $table->timestamps();
         });

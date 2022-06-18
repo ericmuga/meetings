@@ -4,23 +4,15 @@ import MemberCard from '@/Components/MemberCard.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
-
+import Swal from 'sweetalert2'
  import gsap from 'gsap';
-// import ScrollPanel from 'primevue/scrollpanel';
-// const props = defineProps({
-//   members: Object
-// })
-
-
-//    import 'flowbite';
-
-    const form = useForm({
+  const form = useForm({
                             member_list: null,
                             })
 
-//    const uploadMembers=()=>{
-//         form.post(route('members.upload'))
-//    }
+   const uploadMembers=()=>{
+        form.post(route('members.import'))
+   }
 
 const props=defineProps({ members:Object,
                              model:String,
@@ -46,6 +38,7 @@ const props=defineProps({ members:Object,
             })
         }
 
+
 </script>
 
 <template>
@@ -67,10 +60,32 @@ const props=defineProps({ members:Object,
                           <Button label="New" icon="pi pi-plus" class="mr-2" />
                         </Link>
 
-                        <Button label="Upload" icon="pi pi-upload" class="p-button-success" />
-                        <i class="mr-2 pi pi-bars p-toolbar-separator" />
-                        <SplitButton label="Save" icon="pi pi-check" :model="items" class="p-button-warning"></SplitButton>
-                    </template>
+
+                        <Form @submit.prevent="uploadMembers" class="flex flex-row ">
+                        <FileUpload mode="basic"
+                                name="demo[]"
+                                url="./upload.php"
+                                :maxFileSize="1000000"
+                                chooseLabel="Upload Members"
+                                @input="form.member_list = $event.target.files[0]"
+                                data-tooltip-target="tooltip-default"
+                                class="mr-2 p-button-success "
+
+                                />
+                          <!-- <Button   icon="pi pi-upload" class="mx-2 p-button-rounded p-button-secondary"/> -->
+
+                         <a :href="route('members.download')">
+                          <Button label="Download" icon="pi pi-download" class="mr-2" />
+                        </a>
+
+                        <Button v-if="form.member_list"
+                               :disabled=form.progress
+                               type="submit"
+                               label="Upload" icon="pi pi-upload" class="p-button-primary" />
+                        <!-- <i class="mr-2 pi pi-bars p-toolbar-separator" /> -->
+                        <!-- <SplitButton label="Save" icon="pi pi-check" :model="items" class="p-button-warning"></SplitButton> -->
+                    </Form>
+                </template>
 
                     <template #end>
                         <span class="p-input-icon-left">

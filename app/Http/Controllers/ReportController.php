@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Schema\Builder;
+use Illuminate\Support\Facades\DB;
 class ReportController extends Controller
 {
     //
@@ -19,9 +20,7 @@ class ReportController extends Controller
                                     ['name'=>'member attendance', 'id'=>6],
                                     ['name'=>'guest attendance', 'id'=>7],
                                     ['name'=>'qr codes', 'id'=>8],
-
-
-                              ];
+                             ];
 
                   if (!$id) return $reportList;
                   else
@@ -38,25 +37,31 @@ class ReportController extends Controller
     public function getFilters($id)
     {
         switch ($id) {
-            case 1:return [
-                            ['name'=>'Filter 1','id'=>1,'type'=>'text'],
-                            ['name'=>'Filter 2','id'=>2,'type'=>'text'],
-                            ['name'=>'Filter 3','id'=>3,'type'=>'DropDown'],
-                            ['name'=>'Filter 4','id'=>3,'type'=>'date'],
-
-                          ];
-                # code...
+            case 1: //get column names and type except ID
+                        $columnlist=[];
+                        $columns= DB::getSchemaBuilder()->getColumnListing('members');
+                        foreach ($columns as $column)
+                        {
+                            // if (!$column=='gender')
+                           $columnlist[$column]=DB::getSchemaBuilder()->getColumnType('members',$column);
+                        }
+                        dd($columnlist);
                 break;
 
             default:
                 # code...
                 break;
         }
+
+
     }
 
     public function show(Request $request, $id)
     {
-
-        return inertia('Report/RequestPage',['filters'=>$this->getFilters($id),'name'=>$this->list($id)['name']]);
+        return inertia('Report/RequestPage',[
+                                               'filters'=>$this->getFilters($id),
+                                               'name'=>$this->list($id)['name']
+                                            ]
+                      );
     }
 }
