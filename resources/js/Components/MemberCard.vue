@@ -18,7 +18,12 @@
                             <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
                        </Link>
 
-                         <Button icon="pi pi-times" class="p-button-rounded p-button-danger" />
+                            <!-- <Button icon="pi pi-times" class="justify-end p-button-rounded p-button-danger"
+                                    @click="dropMember(member.id)"
+                            /> -->
+                        <Drop :dropRoute="route('member.destroy',member.id)" />
+
+
             </div>
             </div>
             </div>
@@ -28,8 +33,16 @@
 </template>
 
 <script setup>
+import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-vue3'
+import Drop from '@/Components/Drop.vue'
+
+import Swal from 'sweetalert2'
 const props= defineProps({
    member:Object,
 
 });
+
+
+
 </script>

@@ -10,6 +10,7 @@ use App\MyPaginator;
 use App\Http\Resources\MemberResource;
 use App\Imports\MembersImport;
 use App\Exports\MembersExport;
+use Illuminate\Support\Facades\Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 
 use PhpParser\Node\Expr\AssignOp\Concat;
@@ -47,7 +48,7 @@ class MemberController extends Controller
                 'members'=>MyPaginator::paginate(MemberResource::collection(Member::query()
                                                                                   ->when($request->input('search'),
                                                                                           fn($query,$search)=>($query->where('name','like','%'.$search.'%')
-                                                                                                                ->orWhereHas('contacts',fn($q)=>$q->whereContact('like','%',$search.'%'))
+                                                                                                                ->orWhereHasMorph('contactable',fn($q)=>$q->whereContact('like','%',$search.'%'))
                                                                                                                 // ->orWhere('email','like',$search.'%')
                                                                                                           )
                                                                                          )
@@ -182,6 +183,11 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $member->contacts()->delete();
+        $member->scores()->delete();
+
+        $member->delete();
+
+        return back();
     }
 }
