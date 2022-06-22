@@ -19,7 +19,8 @@ class MembersImport implements ToModel, WithHeadingRow
     {
 
 
-
+      if(!Member::where('member_no',$row['member_no'])->exists())
+      {
        Member::create([
                              'name'=>$row['name'],
                              'member_no'=>$row['member_no'],
@@ -45,4 +46,5 @@ class MembersImport implements ToModel, WithHeadingRow
                           ]);
 
     }
+}
 }
