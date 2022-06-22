@@ -48,9 +48,11 @@ class MemberController extends Controller
                 'members'=>MyPaginator::paginate(MemberResource::collection(Member::query()
                                                                                   ->when($request->input('search'),
                                                                                           fn($query,$search)=>($query->where('name','like','%'.$search.'%')
-                                                                                                                ->orWhereHasMorph('contactable',fn($q)=>$q->whereContact('like','%',$search.'%'))
-                                                                                                                // ->orWhere('email','like',$search.'%')
-                                                                                                          )
+                                                                                                                     ->orWhere('member_no','like','%'.$search.'%')
+                                                                                                                     ->orWhere('field','like','%'.$search.'%')
+                                                                                                                     ->orWhereHas('contacts',fn($q)=>$q->where('contact','like','%'.$search.'%'))
+
+                                                                                                              )
                                                                                          )
                                                                                         ->orderBy('name')
                                                                                         ->get()
