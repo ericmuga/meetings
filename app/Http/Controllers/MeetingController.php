@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Meeting;
 use App\Http\Requests\StoreMeetingRequest;
 use App\Http\Requests\UpdateMeetingRequest;
 use App\MyPaginator;
 use Illuminate\Http\Request;
 use App\Http\Resources\MeetingResource;
-use App\Models\Club;
-use App\Models\GradingRule;
-use App\Models\Member;
+use App\Models\{Meeting,Club,GradingRule,Member,Guest};
 use Illuminate\Support\Str;
 
 // $slug = Str::of('Laravel Framework')->slug('-');
@@ -28,8 +25,9 @@ class MeetingController extends Controller
       return [
               'search'=>$request->input('search')?:null,
               'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::query()
-
+                                                                                   ->withCount(['members','guests'])
                                                                                       ->orderBy('date','desc')
+
                                                                                       ->get()
                                                                               ),$request->input('perPage')?:16,null,['path'=>url()->full()]
                                                                               )->withQueryString()
@@ -86,20 +84,24 @@ class MeetingController extends Controller
         # code...
         //meetings attended by the member
         return [
-                 'members'=>$meeting->scores()->where('scores.attendable_type','App\Models\Member')->get(),
-                 'guests'=>$meeting->scores()->where('scores.attendable_type','App\Models\Guest')->get(),
-                 'attended'=>$meeting->scores()->where('scores.present',true)->get(),
+                 'members_count'=>$meeting->members()->count(),
+                 'members'=>$meeting->members()->get(),
+                 'guests_count'=>$meeting->guests()->count(),
+                 'guests'=>$meeting->guests()->get(),
+
                  'MemberList'=>Member::all('id','name','member_no'),
-                 'GuestList'=>Member::all('id','name')
+                 'GuestList'=>Guest::all('id','name')
                ];
     }
 
 
     public function show(Meeting $meeting)
     {
-        // dd($this->stats($meeting));
+        //  dd(MeetingResource::make($meeting->withCount(['members','guests'])->with(['members','guests'])));
 
-        return inertia('Meeting/Show',array_merge(['meeting'=>MeetingResource::make($meeting)],$this->stats($meeting)));
+        return inertia('Meeting/Show',['meeting'=>collect(MeetingResource::make($meeting))->merge($this->stats($meeting)),
+
+                                      ]);
     }
 
     /**

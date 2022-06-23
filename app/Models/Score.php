@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Score extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     public function attendable()
     {
@@ -17,6 +18,11 @@ class Score extends Model
     public function meeting()
     {
         return $this->belongsTo(Meeting::class);
+    }
+
+    public function badges()
+    {
+        return $this->hasMany(Badge::class);
     }
 
 }

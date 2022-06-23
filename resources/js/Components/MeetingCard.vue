@@ -8,15 +8,20 @@
   </div>
   <div>
     <h3 class="text-3xl font-semibold text-gray-800">{{meeting.date}}</h3>
-    <!-- <p class="">{{meeting.meeting_date_humans}}</p> -->
+    <p class="">{{meeting.meeting_date_humans}}</p>
     <p class="mt-2 text-gray-600">
 
     </p>
   </div>
   <div class="flex flex-col mt-4 text-center">
-   <p>Members {{meeting.members}}</p>
-   <p>Guests {{meeting.guest}}</p>
-   <p>Total {{meeting.guests+meeting.members}}</p>
+
+   <p>Members {{meeting.members_count}}</p>
+   <p>Guests {{meeting.guests_count}}</p>
+   <p>Total {{meeting.attended}}</p>
+   <p>Topic: {{meeting.topic}}</p>
+   <p>Venue: {{meeting.venue}}</p>
+   <p>Time: {{meeting.official_start_time}}</p>
+   <p>Host: {{meeting.host}}</p>
    <div class="flex flex-row justify-center space-x-2">
        <Link
          :href="route('meeting.show',meeting.id)"

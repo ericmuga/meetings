@@ -56,8 +56,10 @@ class MeetingResource extends JsonResource
                   'club'=>$this->club()->first()->name,
                   'official_start_time'=>$this->official_start_time,
                   'official_start_end'=>$this->official_start_end,
-                  'guests'=>$this->attended('guest'),
-                  'members'=>$this->attended('member'),
+                  'guest_count'=>$this->guests_count,
+                  'member_count'=>$this->members_count,
+                  'attended'=>$this->scores()->where('scores.present',true)->count(),
+
                   'icon'=>$icon,
 
 

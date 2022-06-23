@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.7",
         "maatwebsite/excel": "^3.1",
         "psr/simple-cache": "1.0",
+        "staudenmeir/eloquent-has-many-deep": "^1.7",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Card from 'primevue/card';
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 //    import{countries} from '@/assets/countries.js'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
@@ -25,8 +25,8 @@ import TabPanel from 'primevue/tabpanel'
 
  const props=defineProps({
                               meeting:Object,
-                              members:Object,
-                              guests:Object,
+                            //   members:Object,
+                            //   guests:Object,
                               attended:Object,
                               MemberList:Object,
                               GuestList:Object                            //   meetings:Object,
@@ -67,7 +67,7 @@ import TabPanel from 'primevue/tabpanel'
 
                        <div class="gap-2 p-3 rounded-md shadow-md md:col-span-2 sm:col-span-1 shadow-slate-300">
 
-                         <MeetingCard :meeting=meeting.data class="mt-10" />
+                         <MeetingCard :meeting=meeting class="mt-10" />
 
 
                        </div>
@@ -80,24 +80,25 @@ import TabPanel from 'primevue/tabpanel'
                           <div class="w-full">
                         <TabView>
                             <TabPanel header="Members">
-                                <div v-if="members.length==0">No Members were found for this meeting</div>
+                                <div v-if="meeting.length==0">No Members were found for this meeting</div>
                                 <div v-else>
                                     <Table>
-                                        <tr>
-                                            <th>Member Name</th>
+                                        <!-- <td>{{meeting}}</td> -->
+                                        <tr class="text-center">
+                                            <th>Name</th>
                                             <th>Time Score</th>
                                             <th>Present</th>
                                         </tr>
-                                        <tr v-for="member in members" :key="member.id">
+                                        <tr v-for="member in meeting.members" :key="member.id" class="text-center">
                                             <td>{{member.name}}</td>
-                                            <td>{{member.score}}</td>
-                                            <td>{{member.present==1?'Yes':'No'}}</td>
+                                            <td>{{member.score.time_score}}</td>
+                                            <td>{{member.score.present==1?'Yes':'No'}}</td>
                                         </tr>
                                     </Table>
                                 </div>
                             </TabPanel>
                             <TabPanel header="Guests">
-                                  <div v-if="guests.length==0">No guests were found for this meeting</div>
+                                  <div v-if="meeting.length==0">No guests were found for this meeting</div>
                                     <div v-else>
                                         <Table>
                                             <tr>
@@ -105,10 +106,10 @@ import TabPanel from 'primevue/tabpanel'
                                                 <th>Time Score</th>
                                                 <th>Present</th>
                                             </tr>
-                                            <tr v-for="guest in guests" :key="guest.id">
+                                            <tr v-for="guest in meeting.guests" :key="guest.id">
                                                 <td>{{guest.name}}</td>
-                                                <td>{{guest.score}}</td>
-                                                <td>{{guest.present==1?'Yes':'No'}}</td>
+                                                <td>{{guest.score.time_score}}</td>
+                                                <td>{{guest.score.present==1?'Yes':'No'}}</td>
                                             </tr>
                                         </Table>
                                     </div>
