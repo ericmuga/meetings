@@ -54,10 +54,10 @@ class MeetingResource extends JsonResource
                   'meeting_no'=>$this->meeting_no,
                   'grading_rule'=>$this->grading_rule,
                   'club'=>$this->club()->first()->name,
-                  'official_start_time'=>$this->official_start_time,
+                  'official_start_time'=>Carbon::parse($this->official_start_time)->toDateTimeString(),
                   'official_start_end'=>$this->official_start_end,
-                  'guest_count'=>$this->guests_count,
-                  'member_count'=>$this->members_count,
+                  'guests_count'=>$this->guests()->count(),
+                  'members_count'=>$this->members->count(),
                   'attended'=>$this->scores()->where('scores.present',true)->count(),
 
                   'icon'=>$icon,

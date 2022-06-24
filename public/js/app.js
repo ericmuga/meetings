@@ -20914,18 +20914,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/card */ "./node_modules/primevue/card/card.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors.vue */ "./resources/js/Components/ValidationErrors.vue");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var primevue_accordion__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primevue/accordion */ "./node_modules/primevue/accordion/accordion.esm.js");
 /* harmony import */ var primevue_accordiontab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primevue/accordiontab */ "./node_modules/primevue/accordiontab/accordiontab.esm.js");
 /* harmony import */ var _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/MeetingCard.vue */ "./resources/js/Components/MeetingCard.vue");
 /* harmony import */ var primevue_tabview__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primevue/tabview */ "./node_modules/primevue/tabview/tabview.esm.js");
 /* harmony import */ var primevue_tabpanel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primevue/tabpanel */ "./node_modules/primevue/tabpanel/tabpanel.esm.js");
+/* harmony import */ var primevue_checkbox__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primevue/checkbox */ "./node_modules/primevue/checkbox/checkbox.esm.js");
 
 
 
 
 
  //    import{countries} from '@/assets/countries.js'
+
 
 
 
@@ -20956,6 +20958,7 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
+    var checked = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(false);
 
     var beforeEnter = function beforeEnter(el) {
       //    console.log('set the initial state')
@@ -20965,7 +20968,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var enter = function enter(el) {
       // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_11__["default"].to(el, {
+      gsap__WEBPACK_IMPORTED_MODULE_12__["default"].to(el, {
         opacity: 1,
         x: 0,
         duration: 0.8 // onComplete:done
@@ -20974,6 +20977,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var __returned__ = {
+      checked: checked,
       props: props,
       beforeEnter: beforeEnter,
       enter: enter,
@@ -20986,12 +20990,13 @@ __webpack_require__.r(__webpack_exports__);
       reactive: vue__WEBPACK_IMPORTED_MODULE_4__.reactive,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_4__.onMounted,
       BreezeValidationErrors: _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-      gsap: gsap__WEBPACK_IMPORTED_MODULE_11__["default"],
+      gsap: gsap__WEBPACK_IMPORTED_MODULE_12__["default"],
       Accordion: primevue_accordion__WEBPACK_IMPORTED_MODULE_6__["default"],
       AccordionTab: primevue_accordiontab__WEBPACK_IMPORTED_MODULE_7__["default"],
       MeetingCard: _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
       TabView: primevue_tabview__WEBPACK_IMPORTED_MODULE_9__["default"],
-      TabPanel: primevue_tabpanel__WEBPACK_IMPORTED_MODULE_10__["default"]
+      TabPanel: primevue_tabpanel__WEBPACK_IMPORTED_MODULE_10__["default"],
+      Checkbox: primevue_checkbox__WEBPACK_IMPORTED_MODULE_11__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -21861,7 +21866,7 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = ["src"];
 var _hoisted_4 = {
-  "class": "text-3xl font-semibold text-gray-800"
+  "class": "flex justify-center text-3xl font-semibold text-gray-800"
 };
 var _hoisted_5 = {
   "class": ""
@@ -21874,9 +21879,98 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_7 = {
-  "class": "flex flex-col mt-4 text-center"
+  "class": "flex justify-center"
 };
 var _hoisted_8 = {
+  "class": "pl-5 rounded-md table-auto"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "text-left"
+}, "Members", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "text-center"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "text-left"
+}, "Guests", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = {
+  "class": "text-center"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "text-left"
+}, "Present", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  "class": "text-center"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+  "class": "py-3"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_16 = {
+  "class": "bg-slate-300"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "text-left"
+}, "Total", -1
+/* HOISTED */
+);
+
+var _hoisted_18 = {
+  "class": "text-center"
+};
+var _hoisted_19 = {
+  "class": "mt-5"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "font-bold text-left"
+}, "Topic", -1
+/* HOISTED */
+);
+
+var _hoisted_21 = {
+  "class": "text-right"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "font-bold text-left"
+}, "Venue", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = {
+  "class": "text-right"
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "font-bold text-left"
+}, "Host", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = {
+  "class": "text-right"
+};
+var _hoisted_26 = {
+  "class": "py-4 font-semibold text-center"
+};
+var _hoisted_27 = {
   "class": "flex flex-row justify-center space-x-2"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -21893,21 +21987,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.meeting_date_humans), 1
   /* TEXT */
-  ), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Members " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.members_count), 1
+  ), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.members_count), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Guests " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.guests_count), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.guests_count), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Total " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.attended), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.attended), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Topic: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.topic), 1
+  )]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.guests_count + $props.meeting.members_count), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Venue: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.venue), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.topic), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Time: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.official_start_time), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.venue), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Host: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.host), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.host), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meeting.official_start_time), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: _ctx.route('meeting.show', $props.meeting.id)
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21927,7 +22023,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
     icon: "pi pi-times",
     "class": "p-button-rounded p-button-danger p-button-outlined"
-  })])])])]);
+  })])])]);
 }
 
 /***/ }),
@@ -23978,20 +24074,36 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_12 = {
-  key: 0
-};
-var _hoisted_13 = {
-  key: 1
-};
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "guest Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Time Score"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Present")], -1
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+  "class": "text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Time Score"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Present")], -1
 /* HOISTED */
 );
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, "0", -1
+/* HOISTED */
+);
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Stats ");
+var _hoisted_14 = {
+  "class": "field-checkbox"
+};
+var _hoisted_15 = {
+  "for": "binary"
+};
+var _hoisted_16 = {
+  key: 0
+};
+var _hoisted_17 = {
+  key: 1
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "guest Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Time Score"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Present")], -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Stats ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Table = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Table");
@@ -24037,7 +24149,34 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     _: 1
                     /* STABLE */
 
-                  })]))];
+                  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
+                    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{meeting}}</td> "), _hoisted_12, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meeting.MemberList, function (mem) {
+                        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+                          key: mem.id,
+                          "class": "text-center"
+                        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(mem.name), 1
+                        /* TEXT */
+                        ), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Checkbox"], {
+                          id: "binary",
+                          modelValue: $setup.checked,
+                          "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+                            return $setup.checked = $event;
+                          }),
+                          binary: true
+                        }, null, 8
+                        /* PROPS */
+                        , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.checked), 1
+                        /* TEXT */
+                        )])])]);
+                      }), 128
+                      /* KEYED_FRAGMENT */
+                      ))];
+                    }),
+                    _: 1
+                    /* STABLE */
+
+                  })])]))];
                 }),
                 _: 1
                 /* STABLE */
@@ -24046,9 +24185,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Guests"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [$props.meeting.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, "No guests were found for this meeting")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
+                  return [$props.meeting.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, "No guests were found for this meeting")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_14, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meeting.guests, function (guest) {
+                      return [_hoisted_18, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meeting.guests, function (guest) {
                         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
                           key: guest.id
                         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(guest.name), 1
@@ -24074,7 +24213,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Reports"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_15];
+                  return [_hoisted_19];
                 }),
                 _: 1
                 /* STABLE */
@@ -24083,7 +24222,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Stats"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_16];
+                  return [_hoisted_20];
                 }),
                 _: 1
                 /* STABLE */

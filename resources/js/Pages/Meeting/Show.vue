@@ -13,6 +13,7 @@ import AccordionTab from 'primevue/accordiontab';
 import MeetingCard from '@/Components/MeetingCard.vue'
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel'
+import Checkbox from 'primevue/checkbox';
 // import Timeline from 'primevue/timeline';
 // import ScrollPanel from 'primevue/scrollpanel';
 // const props = defineProps({
@@ -22,7 +23,7 @@ import TabPanel from 'primevue/tabpanel'
 
 //    import 'flowbite';
 //  const country= ref(countries)
-
+const checked = ref(false);
  const props=defineProps({
                               meeting:Object,
                             //   members:Object,
@@ -79,7 +80,9 @@ import TabPanel from 'primevue/tabpanel'
 
                           <div class="w-full">
                         <TabView>
-                            <TabPanel header="Members">
+
+
+                            <TabPanel header="Members" >
                                 <div v-if="meeting.length==0">No Members were found for this meeting</div>
                                 <div v-else>
                                     <Table>
@@ -95,8 +98,33 @@ import TabPanel from 'primevue/tabpanel'
                                             <td>{{member.score.present==1?'Yes':'No'}}</td>
                                         </tr>
                                     </Table>
+                                    <div>
+                                        <Table>
+                                        <!-- <td>{{meeting}}</td> -->
+                                        <tr class="text-center">
+                                            <th>Name</th>
+                                            <th>Time Score</th>
+                                            <th>Present</th>
+                                        </tr>
+                                        <tr v-for="mem in meeting.MemberList" :key="mem.id" class="text-center">
+                                            <td>{{mem.name}}</td>
+                                            <td>0</td>
+                                            <td><div class="field-checkbox">
+                                                <Checkbox id="binary" v-model="checked" :binary="true" />
+                                                <label for="binary">{{checked}}</label>
+                                            </div></td>
+
+
+                                           </tr>
+                                        </Table>
+
+                                    </div>
+
                                 </div>
+
                             </TabPanel>
+
+
                             <TabPanel header="Guests">
                                   <div v-if="meeting.length==0">No guests were found for this meeting</div>
                                     <div v-else>

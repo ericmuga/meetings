@@ -24,10 +24,7 @@ class MeetingController extends Controller
 
       return [
               'search'=>$request->input('search')?:null,
-              'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::query()
-                                                                                   ->withCount(['members','guests'])
-                                                                                      ->orderBy('date','desc')
-
+              'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::orderBy('date','desc')
                                                                                       ->get()
                                                                               ),$request->input('perPage')?:16,null,['path'=>url()->full()]
                                                                               )->withQueryString()
@@ -84,12 +81,12 @@ class MeetingController extends Controller
         # code...
         //meetings attended by the member
         return [
-                 'members_count'=>$meeting->members()->count(),
+                //  'members_count'=>$meeting->members()->count(),
                  'members'=>$meeting->members()->get(),
-                 'guests_count'=>$meeting->guests()->count(),
+                //  'guests_count'=>$meeting->guests()->count(),
                  'guests'=>$meeting->guests()->get(),
 
-                 'MemberList'=>Member::all('id','name','member_no'),
+                 'MemberList'=>Member::orderBy('name')->get(),
                  'GuestList'=>Guest::all('id','name')
                ];
     }
@@ -97,8 +94,6 @@ class MeetingController extends Controller
 
     public function show(Meeting $meeting)
     {
-        //  dd(MeetingResource::make($meeting->withCount(['members','guests'])->with(['members','guests'])));
-
         return inertia('Meeting/Show',['meeting'=>collect(MeetingResource::make($meeting))->merge($this->stats($meeting)),
 
                                       ]);

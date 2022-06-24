@@ -7,21 +7,59 @@
     >
   </div>
   <div>
-    <h3 class="text-3xl font-semibold text-gray-800">{{meeting.date}}</h3>
+    <h3 class="flex justify-center text-3xl font-semibold text-gray-800">{{meeting.date}}</h3>
     <p class="">{{meeting.meeting_date_humans}}</p>
     <p class="mt-2 text-gray-600">
 
     </p>
-  </div>
-  <div class="flex flex-col mt-4 text-center">
 
-   <p>Members {{meeting.members_count}}</p>
-   <p>Guests {{meeting.guests_count}}</p>
-   <p>Total {{meeting.attended}}</p>
-   <p>Topic: {{meeting.topic}}</p>
-   <p>Venue: {{meeting.venue}}</p>
-   <p>Time: {{meeting.official_start_time}}</p>
-   <p>Host: {{meeting.host}}</p>
+  </div>
+<div class="flex justify-center">
+
+
+<table class="pl-5 rounded-md table-auto">
+
+  <tbody>
+    <tr>
+      <td class="text-left">Members</td>
+      <td class="text-center">{{meeting.members_count}}</td>
+    </tr>
+     <tr>
+      <td class="text-left">Guests</td>
+      <td class="text-center">{{meeting.guests_count}}</td>
+    </tr>
+
+    <tr>
+      <td class="text-left">Present</td>
+      <td class="text-center">{{meeting.attended}}</td>
+    </tr>
+    <tr class="py-3">
+
+    </tr>
+    <tr class="bg-slate-300">
+      <td class="text-left">Total</td>
+      <td class="text-center">{{meeting.guests_count+meeting.members_count}}</td>
+    </tr>
+
+
+        <tr class="mt-5">
+            <td class="font-bold text-left">Topic</td>
+            <td class="text-right">{{meeting.topic}}</td>
+        </tr>
+
+          <tr>
+            <td class="font-bold text-left">Venue</td>
+            <td class="text-right">{{meeting.venue}}</td>
+        </tr>
+
+        <tr>
+            <td class="font-bold text-left">Host</td>
+            <td class="text-right">{{meeting.host}}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+   <p class="py-4 font-semibold text-center">{{meeting.official_start_time}}</p>
    <div class="flex flex-row justify-center space-x-2">
        <Link
          :href="route('meeting.show',meeting.id)"
@@ -36,7 +74,7 @@
   </div>
 </div>
 
-    </div>
+
 </template>
 
 <script setup>
