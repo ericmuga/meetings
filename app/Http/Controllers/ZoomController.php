@@ -11,7 +11,14 @@ use App\Models\Meeting;
 class ZoomController extends Controller
 {
 
+    public $st;
+    public $ed;
 
+    public function getMeetings(Request $request)
+    {
+      ZoomController::list_meetings(null,$request->Start,$request->end);
+
+    }
 
     public static function  getZoomAccessToken() {
             $key = env('JWT_APP_SECRET','');
@@ -52,20 +59,30 @@ class ZoomController extends Controller
             echo "Meeting Password: ". $data->password;
         }
 
-public static function list_meetings($next_page_token = '') {
+public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
     $client = new Client(['base_uri' => 'https://api.zoom.us']);
 
     $arr_request = [
         "headers" => [
-            "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
-        ]
+                        "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
+        ],
+        "query" => [                    "from"=>$st,
+                                  "to"=>$ed,
+                                  "type"=>'scheduled'
+    ],
+
+
     ];
 
     if (!empty($next_page_token)) {
-        $arr_request['query'] = ["next_page_token" => $next_page_token];
+        $arr_request['query'] = ["next_page_token" => $next_page_token,
+                                  "from"=>$st,
+                                  "to"=>$ed,
+                                  "type"=>'scheduled'
+                                ];
     }
 
-    $response = $client->request('GET', '/v2/users/me/meetings/?type=scheduled&from=2022-03-01&to=2022-03-31', $arr_request);
+    $response = $client->request('GET', '/v2/users/me/meetings/', $arr_request);
 
     $data = json_decode($response->getBody());
 
@@ -89,12 +106,14 @@ public static function list_meetings($next_page_token = '') {
                 "uuid": "aDYlohsHRtCd4ii1uC2+hA=="
 
             */
-            if(!Meeting::where('meeting_id',$d->id)->exists())
-                Meeting::create([
-                    'topic'=>$d->topic?:'',
-                    'meeting_id'=>$d->id?:0,
-                    'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
-                    ]);
+            dd($d);
+
+            // if(!Meeting::where('meeting_id',$d->id)->exists())
+            //     Meeting::create([
+            //         'topic'=>$d->topic?:'',
+            //         'meeting_id'=>$d->id?:0,
+            //         'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
+            //         ]);
            if ( !empty($data->next_page_token) ) {
             ZoomController::list_meetings($data->next_page_token);
 

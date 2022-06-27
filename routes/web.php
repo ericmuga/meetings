@@ -4,7 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\{AdminController,
-       DashboardController, MemberController,MeetingController,ReportController,ScoreController, SetupController,GradingRuleController};
+       DashboardController, MemberController,MeetingController,ReportController,ScoreController, SetupController,GradingRuleController, ZoomController};
 use App\Http\Resources\MemberResource;
 use App\Models\Meeting;
 use App\Models\Member;
@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('members/download',[MemberController::class,'download'])->name('members.download');
     Route::get('members/all',fn()=>Member::all('id','name'));
     Route::post('meeting/scores',[MeetingController::class,'scores'])->name('meeting.scores');
+    Route::post('zoom/meetings',[ZoomController::class,'getMeetings'])->name('zoom.meetings');
     // Route::get('meeting/{meeting}/members',[MeetingController::class, 'members']));
 
     Route::get('/setup', [SetupController::class,'index'])->name('setup.index');

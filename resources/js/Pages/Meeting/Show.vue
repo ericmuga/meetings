@@ -103,7 +103,7 @@ onMounted(() => {
                             <TabPanel header="Members" >
                                 <div v-if="meeting.length==0">No Members were found for this meeting</div>
                                 <div v-else>
-                                   <Button type="submit" class="pi pi-check primary" @click="save()" >Save</Button>
+                                   <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button>
                                    <Table>
                                         <!-- <td>{{meeting}}</td> -->
 
@@ -119,7 +119,7 @@ onMounted(() => {
 
                                                 <form @submit.prevent="save()">
                                                     <div class="field-checkbox">
-                                                        <Checkbox id="binary" v-model="form.attended" :value="member.id"  />
+                                                        <Checkbox id="binary" v-model="form.attended" :value="member.id"  :disabled="meeting.type=='zoom'" />
                                                         <!-- <input @keydown="save()" /> -->
                                                     </div>
                                                 </form>
@@ -130,7 +130,8 @@ onMounted(() => {
                                             <!-- <InputText type="submit" label="Save" /> -->
 
                                     </Table>
-                                          <Button type="submit" class="pi pi-check primary" @click="save()" >Save</Button>
+                                           <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button>
+
                                           <!-- only call `vm.submit()` when the `key` is `Enter` -->
                                             <!-- <input @keyup.enter="save()" /> -->
                                     <div>

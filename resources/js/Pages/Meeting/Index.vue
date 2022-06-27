@@ -6,6 +6,29 @@ import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 
  import gsap from 'gsap';
+import Swal from 'sweetalert2'
+
+const form=useForm({
+                    Start:'',
+                    end:''
+})
+
+
+
+const  showForm=({formValues})=>Swal.fire({
+                                                    title: 'Select date range',
+                                                    html:
+                                                        '<input id="swal-input1" type="date" v-model="form.Start" placeholder="From" class="swal2-input">' +
+                                                        '<input id="swal-input2" type="date" placeholder="To" v-model="form.end" class="swal2-input">',
+                                                    focusConfirm: false,
+                                                    preConfirm: () => {
+                                                                        form.Start=document.getElementById('swal-input1').value,
+                                                                        form.end=document.getElementById('swal-input2').value
+                                                                           form.post(route('zoom.meetings'))
+                                                                    }
+                                                    })
+
+
 
 
 const props=defineProps({ meetings:Object,
@@ -46,9 +69,9 @@ const props=defineProps({ meetings:Object,
                           <Button label="New" icon="pi pi-plus" class="mr-2" />
                         </Link>
 
-                        <Button label="Upload" icon="pi pi-upload" class="p-button-success" />
-                        <i class="mr-2 pi pi-bars p-toolbar-separator" />
-                        <SplitButton label="Save" icon="pi pi-check" :model="items" class="p-button-warning"></SplitButton>
+                        <Button label="Zoom" icon="pi pi-cloud-download" class="p-button-success" @click="showForm" />
+                        <!-- <i class="mr-2 pi pi-bars p-toolbar-separator" /> -->
+                        <!-- <SplitButton label="Save" icon="pi pi-check" :model="items" class="p-button-warning"></SplitButton> -->
                     </template>
 
                     <template #end>

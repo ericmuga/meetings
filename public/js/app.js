@@ -23630,7 +23630,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/MeetingCard.vue */ "./resources/js/Components/MeetingCard.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var primevue_toolbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/toolbar */ "./node_modules/primevue/toolbar/toolbar.esm.js");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -23647,6 +23650,23 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
+    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+      Start: '',
+      end: ''
+    });
+
+    var showForm = function showForm(_ref2) {
+      var formValues = _ref2.formValues;
+      return sweetalert2__WEBPACK_IMPORTED_MODULE_4___default().fire({
+        title: 'Select date range',
+        html: '<input id="swal-input1" type="date" v-model="form.Start" placeholder="From" class="swal2-input">' + '<input id="swal-input2" type="date" placeholder="To" v-model="form.end" class="swal2-input">',
+        focusConfirm: false,
+        preConfirm: function preConfirm() {
+          form.Start = document.getElementById('swal-input1').value, form.end = document.getElementById('swal-input2').value;
+          form.post(route('zoom.meetings'));
+        }
+      });
+    };
 
     var beforeEnter = function beforeEnter(el) {
       //    console.log('set the initial state')
@@ -23656,7 +23676,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var enter = function enter(el) {
       // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_4__["default"].to(el, {
+      gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(el, {
         opacity: 1,
         x: 0,
         duration: 0.8 // onComplete:done
@@ -23665,6 +23685,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var __returned__ = {
+      form: form,
+      showForm: showForm,
       props: props,
       beforeEnter: beforeEnter,
       enter: enter,
@@ -23673,7 +23695,8 @@ __webpack_require__.r(__webpack_exports__);
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head,
       Toolbar: primevue_toolbar__WEBPACK_IMPORTED_MODULE_3__["default"],
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm,
-      gsap: gsap__WEBPACK_IMPORTED_MODULE_4__["default"]
+      gsap: gsap__WEBPACK_IMPORTED_MODULE_5__["default"],
+      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_4___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -27616,52 +27639,43 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "overflow-hidden bg-white shadow-sm sm:rounded-lg"
 };
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "mr-2 pi pi-bars p-toolbar-separator"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "p-input-icon-left"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "pi pi-search"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "w-full text-center"
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   key: 0,
   "class": "p-3 m-3"
 };
-var _hoisted_9 = {
+var _hoisted_8 = {
   key: 1,
   "class": "p-3 mb-10"
 };
-var _hoisted_10 = {
+var _hoisted_9 = {
   "class": "grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4"
 };
-var _hoisted_11 = {
+var _hoisted_10 = {
   "class": "w-full mt-3 text-center"
 };
-var _hoisted_12 = {
+var _hoisted_11 = {
   key: 0
 };
-var _hoisted_13 = {
+var _hoisted_12 = {
   key: 1
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
 
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
-
-  var _component_SplitButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SplitButton");
 
   var _component_InputText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputText");
 
@@ -27689,20 +27703,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, 8
           /* PROPS */
           , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-            label: "Upload",
-            icon: "pi pi-upload",
-            "class": "p-button-success"
-          }), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SplitButton, {
-            label: "Save",
-            icon: "pi pi-check",
-            model: _ctx.items,
-            "class": "p-button-warning"
-          }, null, 8
-          /* PROPS */
-          , ["model"])];
+            label: "Zoom",
+            icon: "pi pi-cloud-download",
+            "class": "p-button-success",
+            onClick: $setup.showForm
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <i class=\"mr-2 pi pi-bars p-toolbar-separator\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <SplitButton label=\"Save\" icon=\"pi pi-check\" :model=\"items\" class=\"p-button-warning\"></SplitButton> ")];
         }),
         end: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
             type: "text",
             modelValue: _ctx.value3,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -27722,11 +27730,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
         links: $props.meetings.links
       }, null, 8
       /* PROPS */
-      , ["links"])]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meetings.data, function (meeting) {
+      , ["links"])]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meetings.data, function (meeting) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "col-span-1",
           key: meeting.id
@@ -27750,7 +27758,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         )]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
         links: $props.meetings.links,
         prefix: _ctx.model
       }, null, 8
@@ -27876,7 +27884,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                   return [$props.meeting.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, "No Members were found for this meeting")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
                     type: "submit",
-                    "class": "pi pi-check primary",
+                    "class": "float-right p-3 m-5 pi pi-check primary icon-left",
                     onClick: _cache[0] || (_cache[0] = function ($event) {
                       return $setup.save();
                     })
@@ -27905,10 +27913,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                           "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
                             return $setup.form.attended = $event;
                           }),
-                          value: member.id
+                          value: member.id,
+                          disabled: $props.meeting.type == 'zoom'
                         }, null, 8
                         /* PROPS */
-                        , ["modelValue", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keydown=\"save()\" /> ")])], 32
+                        , ["modelValue", "value", "disabled"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keydown=\"save()\" /> ")])], 32
                         /* HYDRATE_EVENTS */
                         )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.time_score}}</td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.present==1?'Yes':'No'}}</td> ")]);
                       }), 128
@@ -27920,7 +27929,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
                     type: "submit",
-                    "class": "pi pi-check primary",
+                    "class": "float-right p-3 m-5 pi pi-check primary icon-left",
                     onClick: _cache[3] || (_cache[3] = function ($event) {
                       return $setup.save();
                     })
