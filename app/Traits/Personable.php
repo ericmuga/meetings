@@ -1,18 +1,17 @@
 <?php
 
   namespace App\Traits;
+use App\Models\Contact;
 
-  trait Personable{
+  trait Personable
+  {
 
     public function user()
     {
         return $this->morphOne(User::class,'authenticatable');
     }
 
-    public function scores()
-    {
-        return $this->morphMany(Score::class,'attendable');
-    }
+
 
     public function contacts()
     {

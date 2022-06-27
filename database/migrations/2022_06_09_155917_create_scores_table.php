@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('scores', function (Blueprint $table) {
-            $table->id();
+            $table->unique(['attendable_type','attendable_id','meeting_id'])->index();
             $table->foreignIdFor(Meeting::class);
             $table->morphs('attendable');
             $table->boolean('present');

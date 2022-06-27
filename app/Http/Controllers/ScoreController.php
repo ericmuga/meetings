@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score;
+use App\Http\Resources\ScoreResource;
 use App\Http\Requests\StoreScoreRequest;
 use App\Http\Requests\UpdateScoreRequest;
+use App\Models\{Meeting,Member};
+use Illuminate\Support\Facades\Request;
 
 class ScoreController extends Controller
 {
@@ -13,10 +16,16 @@ class ScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Meeting $meeting)
     {
-        //
+        //    return dd(Score::all());
+        //dd(Member::whereNotIn('id',$meeting->scores()->get()->pluck('attendable_id'))->get());
+
+        return $meeting->scores()->selectRaw('attendable_id as id')->get()->flatten();
+
     }
+
+
 
     /**
      * Show the form for creating a new resource.

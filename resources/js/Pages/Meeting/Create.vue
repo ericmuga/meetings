@@ -26,6 +26,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
                             date:'',
                             venue:'',
                             topic:'',
+                            type:'',
                             host:'',
                             uuid:'',
                              grading_rule_id:'',

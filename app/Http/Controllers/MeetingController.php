@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateMeetingRequest;
 use App\MyPaginator;
 use Illuminate\Http\Request;
 use App\Http\Resources\MeetingResource;
-use App\Models\{Meeting,Club,GradingRule,Member,Guest};
+use App\Models\{Meeting,Club,GradingRule,Member,Guest,Score};
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Str;
 
 // $slug = Str::of('Laravel Framework')->slug('-');
@@ -82,7 +84,7 @@ class MeetingController extends Controller
         //meetings attended by the member
         return [
                 //  'members_count'=>$meeting->members()->count(),
-                 'members'=>$meeting->members()->get(),
+                 'members'=>$meeting->members()->get()->pluck('id')->toArray(),
                 //  'guests_count'=>$meeting->guests()->count(),
                  'guests'=>$meeting->guests()->get(),
 
@@ -94,7 +96,8 @@ class MeetingController extends Controller
 
     public function show(Meeting $meeting)
     {
-        return inertia('Meeting/Show',['meeting'=>collect(MeetingResource::make($meeting))->merge($this->stats($meeting)),
+        return inertia('Meeting/Show',[
+                                      'meeting'=>collect(MeetingResource::make($meeting))->merge($this->stats($meeting)),
 
                                       ]);
     }
@@ -130,6 +133,25 @@ class MeetingController extends Controller
      */
     public function destroy(Meeting $meeting)
     {
-        //
+
+    }
+
+    public function scores(Request $request)
+    {
+        // dd($request->all());
+        $meeting=Meeting::find($request->meeting);
+        $meeting->scores()->delete();
+        foreach ($request->attended as $member)
+        {
+            Score::create(['meeting_id'=>$request->meeting,
+                           'attendable_type'=>'App\Models\Member',
+                           'attendable_id'=>$member,
+                           'present'=>true,
+                           'time_score'=>Carbon::parse($meeting->official_start_time)->diffInMinutes(Carbon::parse($meeting->official_start_time)),
+                        ]);
+        }
+        // $meeting->members()->detach();
+        // $meeting->members()->attach($request->attended);
+        return back();
     }
 }

@@ -17,7 +17,8 @@ return new class extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->enum('type',['physical','makeup','guest_makeup','zoom'])->index();
+            // $table->string('type',['physical','makeup','guest_makeup','zoom'])->index();
+            $table->string('type')->index();
             $table->dateTimeTz('date');
             $table->string('venue');
             $table->string('topic')->index();
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->foreignIdFor(Club::class);
             $table->text('official_start_time');
             $table->text('official_end_time');
-            $table->text('detail');
+            $table->text('detail')->nullable();
             $table->timestamps();
         });
     }

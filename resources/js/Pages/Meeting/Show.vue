@@ -4,8 +4,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Card from 'primevue/card';
-import { ref, reactive, onMounted } from 'vue';
-//    import{countries} from '@/assets/countries.js'
+import { ref, reactive, onMounted, watch } from 'vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
  import Accordion from 'primevue/accordion';
@@ -14,23 +13,39 @@ import MeetingCard from '@/Components/MeetingCard.vue'
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel'
 import Checkbox from 'primevue/checkbox';
-// import Timeline from 'primevue/timeline';
-// import ScrollPanel from 'primevue/scrollpanel';
-// const props = defineProps({
-//   meetings: Object
-// })
+import {useScoreStore} from '@/Stores/ScoreStore'
+import {useMemberStore} from '@/Stores/MemberStore'
+// import {computed} from 'vue'
+import _ from 'lodash'
+// import axios from 'axios';
+import swal from 'sweetalert2'
+
+// const scoreStore=useScoreStore()
+const memberStore=useMemberStore()
+
+const form=useForm({
+                        attended:props.meeting.members,
+                        meeting:props.meeting.id
+                    })
+
+    const save=()=>form.post(route('meeting.scores'))
+                       .onSuccess(
+                            swal.fire(
+                                        'Saved',
+                                        'Attendance has been saved',
+                                        'success'
+                                     ))
 
 
-//    import 'flowbite';
-//  const country= ref(countries)
-const checked = ref(false);
+onMounted(() => {
+   memberStore.fetchMembers()
+})
+
+// const filter=(obj,predicate)=>{_.filter(obj,predicate)}
  const props=defineProps({
                               meeting:Object,
-                            //   members:Object,
-                            //   guests:Object,
                               attended:Object,
-                              MemberList:Object,
-                              GuestList:Object                            //   meetings:Object,
+                                                        //   meetings:Object,
 
                          })
 
@@ -85,38 +100,35 @@ const checked = ref(false);
                             <TabPanel header="Members" >
                                 <div v-if="meeting.length==0">No Members were found for this meeting</div>
                                 <div v-else>
-                                    <Table>
+                                   <Button type="submit" class="pi pi-check primary" @click="save()" >Save</Button>
+                                   <Table>
                                         <!-- <td>{{meeting}}</td> -->
+
                                         <tr class="text-center">
                                             <th>Name</th>
-                                            <th>Time Score</th>
+                                            <!-- <th>Time Score</th> -->
                                             <th>Present</th>
                                         </tr>
-                                        <tr v-for="member in meeting.members" :key="member.id" class="text-center">
-                                            <td>{{member.name}}</td>
-                                            <td>{{member.score.time_score}}</td>
-                                            <td>{{member.score.present==1?'Yes':'No'}}</td>
-                                        </tr>
+
+                                            <tr v-for="member in memberStore.members" :key="member.id" class="text-center">
+                                                <td>{{member.name}}</td>
+                                                <td>
+
+                                                <form @submit.prevent="save()">
+                                                    <div class="field-checkbox">
+                                                        <Checkbox id="binary" v-model="form.attended" :value="member.id"  />
+
+                                                    </div>
+                                                </form>
+                                                </td>
+                                                <!-- <td>{{member.score.time_score}}</td> -->
+                                                <!-- <td>{{member.score.present==1?'Yes':'No'}}</td> -->
+                                            </tr>
+                                            <!-- <InputText type="submit" label="Save" /> -->
+
                                     </Table>
+                                          <Button type="submit" class="pi pi-check primary" @click="save()" >Save</Button>
                                     <div>
-                                        <Table>
-                                        <!-- <td>{{meeting}}</td> -->
-                                        <tr class="text-center">
-                                            <th>Name</th>
-                                            <th>Time Score</th>
-                                            <th>Present</th>
-                                        </tr>
-                                        <tr v-for="mem in meeting.MemberList" :key="mem.id" class="text-center">
-                                            <td>{{mem.name}}</td>
-                                            <td>0</td>
-                                            <td><div class="field-checkbox">
-                                                <Checkbox id="binary" v-model="checked" :binary="true" />
-                                                <label for="binary">{{checked}}</label>
-                                            </div></td>
-
-
-                                           </tr>
-                                        </Table>
 
                                     </div>
 

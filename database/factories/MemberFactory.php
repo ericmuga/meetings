@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,12 +29,13 @@ class MemberFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'name'=>$this->faker->name(),
             'member_no'=>$this->faker->numberBetween(10000,100000),
             'nationality'=>$this->faker->countryCode(),
             'field'=>$this->faker->word(),
+           ];
 
-        ];
     }
 }

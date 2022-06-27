@@ -9,8 +9,15 @@ class GradingRule extends Model
 {
     use HasFactory;
 
+
+    protected $guarded=['id'];
+
     public function meetings()
     {
         return $this->hasMany(Meeting::class);
     }
+
+
+
+
 }

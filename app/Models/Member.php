@@ -14,15 +14,12 @@ class Member extends Model
     protected $guarded=['id'];
 
 
-    public function contacts()
-    {
-        return $this->morphMany(Contact::class,'contactable');
-    }
+
 
 
     public function defaultContact($type=null)
     {
-        return $this->contacts()->when($type,fn($q,$type)=>($q->where('contact_type',$type)))->first()->contact?:'';
+       return optional($this->contacts()->when($type,fn($q,$type)=>($q->where('contact_type',$type)))->first())->contact;
     }
 
     public function scores()

@@ -9,6 +9,7 @@ class Score extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $guarded=['id'];
 
     public function attendable()
     {
@@ -25,4 +26,14 @@ class Score extends Model
         return $this->hasMany(Badge::class);
     }
 
+    public function attendableDetail($type,$id,$detail)
+    {
+        switch ($type)
+        {
+
+            case 'App\Models\Member': if($detail=='email') return Member::find($id)->defaultContact('email'); else  return optional(Member::findOrFail($id))->{$detail}; break;
+            case 'App\Models\Guest':if ($detail=='email')return Guest::find($id)->defaultContact('email'); else return optional(Guest::findOrFail($id))->{$detail}; break;
+            default:return ''; break;
+        }
+    }
 }

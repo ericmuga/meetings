@@ -43,7 +43,7 @@ class MeetingFactory extends Factory
                  'uuid'=>$this->faker->uuid(),
                  'club_id'=>Club::factory(),
                  'meeting_no'=>$this->faker->numberBetween(100000000,10000000000),
-                 'grading_rule_id'=>GradingRule::factory(),
+                 'grading_rule_id'=>1,
                  'official_start_time'=>$this->faker->dateTimeBetween('-1 years','now','Africa/Nairobi'),
                  'official_end_time'=>$this->faker->dateTimeBetween('-1 years','now','Africa/Nairobi'),
                  'detail'=>$this->faker->sentence()

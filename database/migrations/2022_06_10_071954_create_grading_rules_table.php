@@ -19,7 +19,8 @@ return new class extends Migration
             $table->float('min_minutes');
             $table->integer('min_members');
             $table->time('start_time');
-            $table->enum('meeting_type',['physical','makeup','guest_makeup']);
+            // $table->enum('meeting_type',['physical','makeup','guest_makeup']);
+            $table->string('meeting_type');
             $table->timestamps();
         });
     }

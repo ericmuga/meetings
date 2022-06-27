@@ -1,8 +1,9 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
+import { createPinia } from 'pinia'
 // import dayjs from 'dayjs'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
     import gsap from 'gsap';
  import PrimeVue from 'primevue/config'
@@ -25,13 +26,15 @@ import Pagination from '@/Components/Pagination.vue'
 import SpacedRule from '@/Components/SpacedRule.vue'
 import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
 // import Checkbox from 'primevue/checkbox';
 // import Layout from '@/Layouts/Admin'
 // import gsap from 'gsap';
 
 import route from "ziggy-js";
 import ToastService from 'primevue/toastservice';
-
+const pinia = createPinia()
 createInertiaApp({
     // title: (title) => `${title} - ${appName}`,
     resolve: name=>{
@@ -48,6 +51,7 @@ createInertiaApp({
         VueApp.use(plugin)
              .component("Link",Link)
             .use(PrimeVue)
+            .use(pinia)
             // .use(InertiaProgress)
             // .use(ToastService)
             .use(gsap)
@@ -64,7 +68,8 @@ createInertiaApp({
             .component('Breadcrumbs',Breadcrumbs)
             .component('FileUpload',FileUpload)
             .component('Textarea',Textarea)
-            .component('InputNumber',InputNumber)
+            .component('TabPanel',TabPanel)
+            .component('TabView',TabView)
             .component('Card',Card)
             // .component('DataView',DataView)
 
