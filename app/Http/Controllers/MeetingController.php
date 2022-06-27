@@ -133,7 +133,9 @@ class MeetingController extends Controller
      */
     public function destroy(Meeting $meeting)
     {
-
+          $meeting->scores()->delete();
+          $meeting->delete();
+          return back();
     }
 
     public function scores(Request $request)

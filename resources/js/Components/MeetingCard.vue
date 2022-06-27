@@ -68,7 +68,8 @@
 
        </Link>
         <Button icon="pi pi-pencil" class="p-button-rounded p-button-primary p-button-outlined" />
-        <Button icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" />
+        <Drop :dropRoute="route('meeting.destroy',meeting.id)" />
+
    </div>
 
   </div>
@@ -79,6 +80,7 @@
 
 <script setup>
 import {ref,toRefs} from 'vue'
+import Drop from '@/Components/Drop.vue'
    const props= defineProps({meeting:Object})
 
 </script>

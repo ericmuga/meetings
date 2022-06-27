@@ -22283,6 +22283,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _Components_Drop_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Drop.vue */ "./resources/js/Components/Drop.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'MeetingCard',
@@ -22296,7 +22298,8 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       props: props,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      toRefs: vue__WEBPACK_IMPORTED_MODULE_0__.toRefs
+      toRefs: vue__WEBPACK_IMPORTED_MODULE_0__.toRefs,
+      Drop: _Components_Drop_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -24830,10 +24833,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
     icon: "pi pi-pencil",
     "class": "p-button-rounded p-button-primary p-button-outlined"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-    icon: "pi pi-times",
-    "class": "p-button-rounded p-button-danger p-button-outlined"
-  })])])]);
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Drop"], {
+    dropRoute: _ctx.route('meeting.destroy', $props.meeting.id)
+  }, null, 8
+  /* PROPS */
+  , ["dropRoute"])])])]);
 }
 
 /***/ }),
