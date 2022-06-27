@@ -18,7 +18,7 @@ import {useMemberStore} from '@/Stores/MemberStore'
 // import {computed} from 'vue'
 import _ from 'lodash'
 // import axios from 'axios';
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 // const scoreStore=useScoreStore()
 const memberStore=useMemberStore()
@@ -28,13 +28,16 @@ const form=useForm({
                         meeting:props.meeting.id
                     })
 
-    const save=()=>form.post(route('meeting.scores'))
-                       .onSuccess(
-                            swal.fire(
-                                        'Saved',
-                                        'Attendance has been saved',
-                                        'success'
-                                     ))
+    const save=()=>form.post(route('meeting.scores'),{
+                             preserveScroll: true,
+                            onSuccess:()=>Swal.fire(
+                                                'Saved',
+                                                'Attendance has been saved',
+                                                'success'
+                                            )
+                                            })
+
+
 
 
 onMounted(() => {
@@ -117,7 +120,7 @@ onMounted(() => {
                                                 <form @submit.prevent="save()">
                                                     <div class="field-checkbox">
                                                         <Checkbox id="binary" v-model="form.attended" :value="member.id"  />
-
+                                                        <!-- <input @keydown="save()" /> -->
                                                     </div>
                                                 </form>
                                                 </td>
@@ -128,6 +131,8 @@ onMounted(() => {
 
                                     </Table>
                                           <Button type="submit" class="pi pi-check primary" @click="save()" >Save</Button>
+                                          <!-- only call `vm.submit()` when the `key` is `Enter` -->
+                                            <!-- <input @keyup.enter="save()" /> -->
                                     <div>
 
                                     </div>

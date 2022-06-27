@@ -23751,7 +23751,12 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     var save = function save() {
-      return form.post(route('meeting.scores')).onSuccess(sweetalert2__WEBPACK_IMPORTED_MODULE_15___default().fire('Saved', 'Attendance has been saved', 'success'));
+      return form.post(route('meeting.scores'), {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          return sweetalert2__WEBPACK_IMPORTED_MODULE_15___default().fire('Saved', 'Attendance has been saved', 'success');
+        }
+      });
     };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(function () {
@@ -23801,7 +23806,7 @@ __webpack_require__.r(__webpack_exports__);
       useScoreStore: _Stores_ScoreStore__WEBPACK_IMPORTED_MODULE_12__.useScoreStore,
       useMemberStore: _Stores_MemberStore__WEBPACK_IMPORTED_MODULE_13__.useMemberStore,
       _: (lodash__WEBPACK_IMPORTED_MODULE_14___default()),
-      swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_15___default())
+      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_15___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -27899,7 +27904,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                           value: member.id
                         }, null, 8
                         /* PROPS */
-                        , ["modelValue", "value"])])], 32
+                        , ["modelValue", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keydown=\"save()\" /> ")])], 32
                         /* HYDRATE_EVENTS */
                         )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.time_score}}</td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.present==1?'Yes':'No'}}</td> ")]);
                       }), 128
@@ -27922,7 +27927,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     _: 1
                     /* STABLE */
 
-                  }), _hoisted_15]))];
+                  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" only call `vm.submit()` when the `key` is `Enter` "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keyup.enter=\"save()\" /> "), _hoisted_15]))];
                 }),
                 _: 1
                 /* STABLE */
