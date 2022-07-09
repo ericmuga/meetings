@@ -68,10 +68,9 @@ class ZoomController extends Controller
                                                     'official_start_time'=>$d->start_time,
                                                     'official_end_time'=>$d->end_time,
                                                     'meeting_no'=>$d->id,
-                                                    // 'gradable'=>(!stripos($d->topic,'fellowship'))>1?true:false,
-                                                    // 'title'=>$d->topic,
-                                                    // 'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
                                                     ]);
+
+
 
 
 
@@ -80,9 +79,16 @@ class ZoomController extends Controller
                 }
 
       }
+
+       ZoomController::spruceMeetings();
        return redirect(route('meeting.index'));
     }
 
+        public function spruceMeetings()
+        {
+            $zoomDates=Meeting::where('type','zoom')->groupBy('date')->count('*')->orderBy('date','desc')->get();
+            dd($zoomDates);
+        }
 
      public static function getInstanceDetails($instance)
     {
