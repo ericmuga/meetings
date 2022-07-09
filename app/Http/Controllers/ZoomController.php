@@ -89,7 +89,7 @@ class ZoomController extends Controller
             $zoomDates=Meeting::where('type','zoom')->groupBy('date')->selectRaw('count(*) as meetings, date')->get();
             foreach ($zoomDates as $zd)
             {
-                Meeting::where('date',$zd->date)->where('id','<>',Meeting::where('date',$zd->date)->orderBy('date','desc')->first()->id)->delete();
+                Meeting::where('date',$zd->date)->where('id','<>',Meeting::where('date',$zd->date)->orderBy('date','desc')->latest()->id)->delete();
             }
         }
 
