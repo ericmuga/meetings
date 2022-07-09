@@ -29,7 +29,7 @@ class ZoomController extends Controller
 
                     foreach ($instances->meetings as $instance)
                     {
-                        dd($instance);
+                        //dd($instance);
                         dd(ZoomController::getInstanceDetails($instance));
                     }
 
@@ -51,7 +51,7 @@ class ZoomController extends Controller
             "headers" => [
                             "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
             ]];
-          $response = $client->request('GET', '/v2/past_meetings/'.$instance['uuid'], $arr_request);
+          $response = $client->request('GET', '/v2/past_meetings/'.$instance->uuid, $arr_request);
 
             return json_decode($response->getBody());
 
