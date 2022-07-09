@@ -41,7 +41,7 @@ class ZoomController extends Controller
      public static function getInstanceDetails($instance)
     {
         # code...
-        $detials=[];
+       dd($instance);
 
          $client = new Client(['base_uri' => 'https://api.zoom.us/']);
 
