@@ -27,7 +27,7 @@ class ZoomController extends Controller
                     //get meeting instances
                     $instances=ZoomController::meetingInstances($meeting);
 
-                    foreach ($instances['meetings'] as $instance)
+                    foreach ($instances->meetings as $instance)
                     {
                         dd($instance);
                         dd(ZoomController::getInstanceDetails($instance));
