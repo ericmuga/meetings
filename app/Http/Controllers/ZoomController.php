@@ -19,7 +19,7 @@ class ZoomController extends Controller
     {
       ZoomController::list_meetings(null,$request->Start,$request->end);
 
-      $fellowshipMeetings=ZoomMeeting::whereGradable(true)->get();
+      $fellowshipMeetings=ZoomMeeting::where('gradable',true)->get();
             if ($fellowshipMeetings->count()>0) {
                 foreach ($fellowshipMeetings as $meeting)
                 {
@@ -29,7 +29,7 @@ class ZoomController extends Controller
 
                     foreach ($instances->meetings as $instance)
                     {
-                        dd($instances);
+                        //dd($instance);
                         /**
                          *  $table->string('type')->index();
                             $table->dateTimeTz('date');
@@ -61,7 +61,7 @@ class ZoomController extends Controller
      public static function getInstanceDetails($instance)
     {
         # code...
-          // $cleanUUID=(str_contains($instance->uuid,'/'))?urlencode(urlencode($instance->uuid)):$instance->uuid;
+           $cleanUUID=(str_contains($instance->uuid,'/'))?urlencode(urlencode($instance->uuid)):$instance->uuid;
 
          $client = new Client(['base_uri' => 'https://api.zoom.us/']);
 
@@ -69,7 +69,7 @@ class ZoomController extends Controller
             "headers" => [
                             "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
             ]];
-            $response = $client->request('GET', '/v2/past_meetings/'.$instance->uuid, $arr_request);
+          $response = $client->request('GET', '/v2/past_meetings/'.$cleanUUID, $arr_request);
 
             return json_decode($response->getBody());
 
