@@ -20,6 +20,7 @@ class ZoomController extends Controller
       ZoomController::list_meetings(null,$request->Start,$request->end);
 
       $fellowshipMeetings=ZoomMeeting::where('gradable',true)->get();
+      dd($fellowshipMeetings);
             if ($fellowshipMeetings->count()>0) {
                 foreach ($fellowshipMeetings as $meeting)
                 {
