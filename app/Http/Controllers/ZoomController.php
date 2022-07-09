@@ -86,7 +86,7 @@ class ZoomController extends Controller
 
         public function spruceMeetings()
         {
-            $zoomDates=Meeting::where('type','zoom')->groupBy('date')->count('*')->orderBy('date','desc')->get();
+            $zoomDates=Meeting::where('type','zoom')->groupBy('date')->count('*')->get();
             dd($zoomDates);
         }
 
