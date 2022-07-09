@@ -19,7 +19,11 @@ class ZoomController extends Controller
     {
       ZoomController::list_meetings(null,$request->Start,$request->end);
 
+      dd(ZoomMeeting::whereTitle('like','fellowship')->get());
+        return inertia('Meeting/Index');
     }
+
+
 
     public static function  getZoomAccessToken() {
             $key = env('JWT_APP_SECRET','');
@@ -93,33 +97,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
         //dd($data->meetings);
         foreach ( $data->meetings as $d ) {
 
-            //populate the list of meetings here
 
-            /*
-                "agenda": "My Meeting",
-                "created_at": "2022-03-23T05:31:16Z",
-                "duration": 60,
-                "host_id": "30R7kT7bTIKSNUFEuH_Qlg",
-                "id": 97763643886,
-                "join_url": "https://example.com/j/11111",
-                "pmi": "97891943927",
-                "start_time": "2022-03-23T06:00:00Z",
-                "timezone": "America/Los_Angeles",
-                "topic": "My Meeting",
-                "type": 2,
-                "uuid": "aDYlohsHRtCd4ii1uC2+hA=="
-
-            */
-           // dd($d);
-
-            /**
-             *  $table->id();
-            $table->unsignedBigInteger('meeting_no');
-            $table->string('uuid)->nullable();
-            $table->boolean('gradable');
-            $table->foreignIdFor(ZoomUser::class);
-            $table->timestamps();
-             */
 
 
             if(!ZoomMeeting::where('meeting_no',$d->id)->exists())
@@ -138,7 +116,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
         }
 
     }
-    return inertia('Meeting/Index');
+
 }
 
 public static function deleteZoomMeeting($meeting_id) {
