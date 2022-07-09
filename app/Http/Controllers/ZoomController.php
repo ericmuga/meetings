@@ -29,7 +29,7 @@ class ZoomController extends Controller
 
                     foreach ($instances as $instance)
                     {
-                        dd($instance);
+                        dd($instances);
                         dd(ZoomController::getInstanceDetails($instance));
                     }
 
@@ -43,7 +43,7 @@ class ZoomController extends Controller
      public static function getInstanceDetails($instance)
     {
         # code...
-       dd($instance);
+
 
          $client = new Client(['base_uri' => 'https://api.zoom.us/']);
 
@@ -53,10 +53,10 @@ class ZoomController extends Controller
             ]];
           $response = $client->request('GET', '/v2/past_meetings/'.$instance['uuid'], $arr_request);
 
-            $detials = json_decode($response->getBody());
+            return json_decode($response->getBody());
 
-           //dd($data);
-        return $detials;
+
+
     }
 
     public static function meetingInstances($meeting)
@@ -72,10 +72,9 @@ class ZoomController extends Controller
             ]];
           $response = $client->request('GET', '/v2/past_meetings/'.$meeting->meeting_no.'/instances', $arr_request);
 
-            $instances = json_decode($response->getBody());
+            return json_decode($response->getBody());
 
            //dd($data);
-        return $instances;
     }
 
 
