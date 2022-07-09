@@ -60,7 +60,7 @@ class ZoomController extends Controller
         }
 
 public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
-    $client = new Client(['base_uri' => 'https://api.zoom.us']);
+    $client = new Client(['base_uri' => 'https://api.zoom.us/v2/']);
 
     $arr_request = [
         "headers" => [
@@ -82,7 +82,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
                                 ];
     }
 
-    $response = $client->request('GET', '/v2/users/me/meetings/', $arr_request);
+    $response = $client->request('GET', 'users/me/meetings/', $arr_request);
 
     $data = json_decode($response->getBody());
 

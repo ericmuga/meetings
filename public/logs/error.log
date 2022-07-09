@@ -1,0 +1,9 @@
+[Tue Jul 05 12:35:29.614852 2022] [ssl:warn] [pid 16708:tid 588] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:29.614852 2022] [ssl:warn] [pid 16708:tid 588] AH01909: meetings.test:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:29.641910 2022] [ssl:warn] [pid 16708:tid 588] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:29.641910 2022] [ssl:warn] [pid 16708:tid 588] AH01909: meetings.test:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:29.871478 2022] [ssl:warn] [pid 18216:tid 604] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:29.872861 2022] [ssl:warn] [pid 18216:tid 604] AH01909: meetings.test:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:29.893636 2022] [ssl:warn] [pid 18216:tid 604] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:29.893636 2022] [ssl:warn] [pid 18216:tid 604] AH01909: meetings.test:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Jul 05 12:35:49.483695 2022] [php:error] [pid 18216:tid 1896] [client ::1:51369] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 8.0.9. in H:\\code\\meetings\\vendor\\composer\\platform_check.php on line 24
