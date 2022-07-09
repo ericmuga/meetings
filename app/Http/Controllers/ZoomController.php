@@ -20,14 +20,14 @@ class ZoomController extends Controller
       ZoomController::list_meetings(null,$request->Start,$request->end);
 
       $fellowshipMeetings=ZoomMeeting::where('title','like','%fellowship%')->get();
-      if ($fellowshipMeetings->count()>0) {
-        foreach ($fellowshipMeetings as $meeting)
-        {
-            //add instance to normal meeting
-             //get meeting instances
-             $instances=ZoomController::meetingInstances($meeting);
+            if ($fellowshipMeetings->count()>0) {
+                foreach ($fellowshipMeetings as $meeting)
+                {
+                    //add instance to normal meeting
+                    //get meeting instances
+                    $instances=ZoomController::meetingInstances($meeting);
 
-        }
+                }
 
       }
 
@@ -38,6 +38,17 @@ class ZoomController extends Controller
     {
         # code...
         $instances=[];
+
+         $client = new Client(['base_uri' => 'https://api.zoom.us/v2/']);
+
+        $arr_request = [
+            "headers" => [
+                            "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
+            ]];
+        $response = $client->request('GET', 'users/me/meetings/', $arr_request);
+
+            $data = json_decode($response->getBody());
+
 
         return $instances;
     }
@@ -120,7 +131,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
                 //$meetingcount++;
                    ZoomMeeting::create([
                                         'meeting_no'=>$d->id?:0,
-                                        'gradable'=>false,
+                                        'gradable'=>(!stripos($d->topic,'fellowship'))?true:false,
                                         'title'=>$d->topic,
                                         'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
                                         ]);
