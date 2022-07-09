@@ -24,7 +24,7 @@ class ZoomController extends Controller
             $key = env('JWT_APP_SECRET','');
             $payload = array(
                 "iss" =>env('JWT_APP_KEY',''),
-                "exp" =>1657987560//strtotime("17:06 07/16/2022")
+                "exp" =>1657980360//strtotime("17:06 07/16/2022")
             );
            //return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE2NTc5ODAzODcsImlhdCI6MTY1NzM3NTU4N30.7mF8iIo4d984ZzD7F10iABDwF5v1zUgnSPECi0jfITk';
            return JWT::encode($payload, $key,'HS256');
