@@ -25,7 +25,11 @@ class ZoomController extends Controller
                 {
                     //add instance to normal meeting
                     //get meeting instances
-                    dd(ZoomController::meetingInstances($meeting));
+                    $instances=ZoomController::meetingInstances($meeting);
+
+                    foreach ($instances as $instance){
+                        dd(ZoomController::getInstanceDetails($instance));
+                    }
 
                 }
 
@@ -33,6 +37,25 @@ class ZoomController extends Controller
 
     }
 
+
+     public static function getInstanceDetails($instance)
+    {
+        # code...
+        $detials=[];
+
+         $client = new Client(['base_uri' => 'https://api.zoom.us/']);
+
+        $arr_request = [
+            "headers" => [
+                            "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
+            ]];
+          $response = $client->request('GET', '/v2/past_meetings/'.$instance['uuid'], $arr_request);
+
+            $detials = json_decode($response->getBody());
+
+           //dd($data);
+        return $detials;
+    }
 
     public static function meetingInstances($meeting)
     {
