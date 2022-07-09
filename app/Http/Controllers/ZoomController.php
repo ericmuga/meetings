@@ -58,7 +58,7 @@ class ZoomController extends Controller
                           if(($d->participants_count>=$rule->minimum_members) && ($d->duration>=$rule->minimum_minutes))
                             Meeting::create([
                                                     'type'=>'zoom',
-                                                    'date'=>Carbon::parse($d->start_time)->toDateTimeLocalString(),
+                                                    'date'=>Carbon::parse($d->start_time)->toDateString(),
                                                     'venue'=>'online',
                                                     'topic'=>$d->topic,
                                                     'host'=>'default',
