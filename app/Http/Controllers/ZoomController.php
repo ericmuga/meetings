@@ -27,36 +27,18 @@ class ZoomController extends Controller
             if ($fellowshipMeetings->count()>0) {
                 foreach ($fellowshipMeetings as $meeting)
                 {
-                    //add instance to normal meeting
-                    //get meeting instances
-                    $instances=ZoomController::meetingInstances($meeting);
+                     $instances=ZoomController::meetingInstances($meeting);
 
                     foreach ($instances->meetings as $instance)
                     {
-                        //dd($instance);
-                        /**
-                         *  $table->string('type')->index();
-                            $table->dateTimeTz('date');
-                            $table->string('venue');
-                            $table->string('topic')->index();
-                            $table->text('host');
-                            $table->text('uuid')->nullable();
-                            $table->unsignedBigInteger('meeting_no')->index()->nullable();
-                            $table->foreignIdFor(GradingRule::class);
-                            $table->foreignIdFor(Club::class);
-                            $table->text('official_start_time');
-                            $table->text('official_end_time');
-                            $table->text('detail')->nullable();
-                            $table->timestamps();
 
-                         */
                         if (!GradingRule::where('name','Zoom')->exists()) return redirect(route('meeting.index'));
                         else $rule=GradingRule::firstWhere('name','Zoom');
 
                         $d=ZoomController::getInstanceDetails($instance);
                         if(!Meeting::where('uuid',$d->uuid)->exists())
                           if(($d->participants_count>=$rule->minimum_members) && ($d->duration>=$rule->minimum_minutes))
-                            Meeting::create([
+                              Meeting::create([
                                                     'type'=>'zoom',
                                                     'date'=>Carbon::parse($d->start_time)->toDateString(),
                                                     'venue'=>'online',
@@ -70,11 +52,7 @@ class ZoomController extends Controller
                                                     'meeting_no'=>$d->id,
                                                     ]);
 
-
-
-
-
-                    }
+                                }
 
                 }
 
@@ -89,7 +67,11 @@ class ZoomController extends Controller
             $zoomDates=Meeting::where('type','zoom')->groupBy('date')->selectRaw('count(*) as meetings, date')->get();
             foreach ($zoomDates as $zd)
             {
-                Meeting::where('date',$zd->date)->where('id','<>',Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()->id)->delete();
+                Meeting::where('date',$zd->date)->where('id','<>',Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()->id)
+                       ->update(['gradable',false]);
+
+                       Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')
+                              ->update(['gradable',true]);
             }
         }
 
@@ -125,7 +107,10 @@ class ZoomController extends Controller
             ]];
           $response = $client->request('GET', '/v2/past_meetings/'.$meeting->meeting_no.'/instances', $arr_request);
 
-            return json_decode($response->getBody());
+          //return only the latest instance per date.
+         // $instances=json_decode($response->getBody());
+
+          return json_decode($response->getBody());
 
            //dd($data);
     }

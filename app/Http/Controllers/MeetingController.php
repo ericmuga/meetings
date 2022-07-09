@@ -26,8 +26,9 @@ class MeetingController extends Controller
 
       return [
               'search'=>$request->input('search')?:null,
-              'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::orderBy('date','desc')
-                                                                                      ->get()
+              'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::where('gradable',true)
+                                                                                   ->orderBy('date','desc')
+                                                                                   ->get()
                                                                               ),$request->input('perPage')?:16,null,['path'=>url()->full()]
                                                                               )->withQueryString()
 
