@@ -29,7 +29,7 @@ class ZoomController extends Controller
 
                     foreach ($instances->meetings as $instance)
                     {
-                        dd($instance);
+                        dd($instances);
                         /**
                          *  $table->string('type')->index();
                             $table->dateTimeTz('date');
