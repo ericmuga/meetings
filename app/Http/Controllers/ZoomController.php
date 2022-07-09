@@ -90,6 +90,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
 
     if ( !empty($data) ) {
         $meetingcount=0;
+        dd($data->meetings);
         foreach ( $data->meetings as $d ) {
 
             //populate the list of meetings here
@@ -124,11 +125,10 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
             if(!ZoomMeeting::where('meeting_no',$d->id)->exists())
                 $meetingcount++;
                    ZoomMeeting::create([
-                    'meeting_no'=>$d->id?:0,
-                    'gradable'=>false,
-                    // 'user_id'=>auth()->user(),
-                     'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
-                    ]);
+                                        'meeting_no'=>$d->id?:0,
+                                        'gradable'=>false,
+                                        'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
+                                        ]);
            if ( !empty($data->next_page_token) ) {
             ZoomController::list_meetings($data->next_page_token);
 
