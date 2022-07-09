@@ -19,7 +19,7 @@ class ZoomController extends Controller
     {
       ZoomController::list_meetings(null,$request->Start,$request->end);
 
-      dd(ZoomMeeting::whereTitle('like','%fellowship%')->get());
+      dd(ZoomMeeting::all());
         return inertia('Meeting/Index');
     }
 
