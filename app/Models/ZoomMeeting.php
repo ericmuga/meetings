@@ -15,8 +15,8 @@ class ZoomMeeting extends Model
         return $this->hasMany(Meeting::class,'meeting_no','meeting_no');
     }
 
-    public function zoom_user()
-    {
-        return $this->belongsTo(ZoomUser::class);
-    }
+    // public function zoom_user()
+    // {
+    //     return $this->belongsTo(ZoomUser::class);
+    // }
 }

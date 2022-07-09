@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ZoomUser;
+// use App\Models\ZoomUser;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('meeting_no');
             $table->string('uuid')->nullable();
             $table->boolean('gradable');
-            $table->foreignIdFor(ZoomUser::class);
+            // $table->foreignIdFor(ZoomUser::class);
             $table->timestamps();
         });
     }
