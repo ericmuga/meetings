@@ -21,7 +21,7 @@ class ZoomController extends Controller
 
       $fellowshipMeetings=ZoomMeeting::where('title','like','%fellowship%')->get();
             if ($fellowshipMeetings->count()>0) {
-                foreach ($fellowshipMeetings as $meeting)
+                foreach ($fellowshipMeetings['meetings'] as $meeting)
                 {
                     //add instance to normal meeting
                     //get meeting instances
@@ -29,7 +29,7 @@ class ZoomController extends Controller
 
                     foreach ($instances as $instance)
                     {
-                        dd($instances);
+                        dd($instance);
                         dd(ZoomController::getInstanceDetails($instance));
                     }
 
