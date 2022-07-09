@@ -7,6 +7,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GuzzleHttp\Client;
 use App\Models\{Meeting,ZoomMeeting};
+use Carbon\Carbon;
 use Inertia\Inertia;
 
 class ZoomController extends Controller
@@ -19,7 +20,9 @@ class ZoomController extends Controller
     {
       ZoomController::list_meetings(null,$request->Start,$request->end);
 
-      $fellowshipMeetings=ZoomMeeting::where('title','like','%fellowship')->get();
+      $fellowshipMeetings=ZoomMeeting::where('title','like','%fellowship')
+                                    ->orWhere('gradable',true)
+                                    ->get();
       //dd($fellowshipMeetings);
             if ($fellowshipMeetings->count()>0) {
                 foreach ($fellowshipMeetings as $meeting)
@@ -46,9 +49,26 @@ class ZoomController extends Controller
                             $table->text('detail')->nullable();
                             $table->timestamps();
                          */
+                        $d=ZoomController::getInstanceDetails($instance);
+                        if(!Meeting::where('uuid',$d->uuid)->exists())
+                   Meeting::create([
+                                        'type'=>'zoom',
+                                        'date'=>Carbon::parse($d->start_time)->toDateTimeLocalString(),
+                                        'venue'=>'online',
+                                        'topic'=>$d->topic,
+                                        'host'=>'default',
+                                        'uuid'=>$d->uuid,
+                                        'grading_rule_id'=>1,
+                                        'club_id'=>1,
+                                        'official_start_time'=>$d->start_time,
+                                        'official_end_time'=>$d->official_end_time,
+                                        'meeting_no'=>$d->id,
+                                        // 'gradable'=>(!stripos($d->topic,'fellowship'))>1?true:false,
+                                        // 'title'=>$d->topic,
+                                        // 'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
+                                        ]);
 
 
-                        dd(ZoomController::getInstanceDetails($instance));
 
                     }
 
