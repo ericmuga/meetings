@@ -174,7 +174,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
                 //$meetingcount++;
                    ZoomMeeting::create([
                                         'meeting_no'=>$d->id?:0,
-                                        'gradable'=>(!stripos($d->topic,'fellowship'))?true:false,
+                                        'gradable'=>(!stripos($d->topic,'fellowship'))>1?true:false,
                                         'title'=>$d->topic,
                                         'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
                                         ]);
