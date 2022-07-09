@@ -39,13 +39,13 @@ class ZoomController extends Controller
         # code...
         $instances=[];
 
-         $client = new Client(['base_uri' => 'https://api.zoom.us/v2/']);
+         $client = new Client(['base_uri' => 'https://api.zoom.us/']);
 
         $arr_request = [
             "headers" => [
                             "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
             ]];
-          $response = $client->request('GET', '/past_meetings/'.$meeting->meeting_no.'/instances', $arr_request);
+          $response = $client->request('GET', '/v2/past_meetings/'.$meeting->meeting_no.'/instances', $arr_request);
 
             $instances = json_decode($response->getBody());
 
