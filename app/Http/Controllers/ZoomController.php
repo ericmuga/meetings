@@ -47,10 +47,10 @@ class ZoomController extends Controller
             $key = env('JWT_APP_SECRET','');
             $payload = array(
                 "iss" =>env('JWT_APP_KEY',''),
-                "exp" =>1657918800//strtotime("17:06 07/16/2022")
+                "exp" =>strtotime("20:14 07/09/2024")
             );
-            return env('ZOOM_TK');
-        //    return JWT::encode($payload, $key,'HS256');
+            //return env('ZOOM_TK');
+           return JWT::encode($payload, $key,'HS256');
 
 
     }
