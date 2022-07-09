@@ -127,6 +127,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
                    ZoomMeeting::create([
                                         'meeting_no'=>$d->id?:0,
                                         'gradable'=>false,
+                                        'title'=>$d->topic,
                                         'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
                                         ]);
            if ( !empty($data->next_page_token) ) {

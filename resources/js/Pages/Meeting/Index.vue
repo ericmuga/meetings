@@ -18,13 +18,16 @@ const form=useForm({
 const  showForm=({formValues})=>Swal.fire({
                                                     title: 'Select date range',
                                                     html:
-                                                        '<input id="swal-input1" type="date" v-model="form.Start" placeholder="From" class="swal2-input">' +
-                                                        '<input id="swal-input2" type="date" placeholder="To" v-model="form.end" class="swal2-input">',
+                                                        '<input id="swal-input1" type="date"  placeholder="From" class="swal2-input">' +
+                                                        '<input id="swal-input2" type="date" placeholder="To"  class="swal2-input">',
                                                     focusConfirm: false,
                                                     preConfirm: () => {
                                                                         form.Start=document.getElementById('swal-input1').value,
                                                                         form.end=document.getElementById('swal-input2').value
-                                                                           form.post(route('zoom.meetings'))
+                                                                           form.post(route('zoom.meetings'),{
+                                                                                        preserveScroll: true,
+                                                                             onSuccess: () => Inertia.get(route('meeting.index'))}
+                                                                           )
                                                                     }
                                                     })
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('meeting_no');
             $table->string('uuid')->nullable();
+            $table->string('title')->nullable();
             $table->boolean('gradable');
             // $table->foreignIdFor(ZoomUser::class);
             $table->timestamps();
