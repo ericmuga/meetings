@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GuzzleHttp\Client;
-use App\Models\Meeting;
+use App\Models\{Meeting,ZoomMeeting};
 
 class ZoomController extends Controller
 {
@@ -88,6 +88,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
     $data = json_decode($response->getBody());
 
     if ( !empty($data) ) {
+        $meetingcount=0;
         foreach ( $data->meetings as $d ) {
 
             //populate the list of meetings here
@@ -107,23 +108,35 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
                 "uuid": "aDYlohsHRtCd4ii1uC2+hA=="
 
             */
-            dd($d);
+            //dd($d);
 
-            // if(!Meeting::where('meeting_id',$d->id)->exists())
-            //     Meeting::create([
-            //         'topic'=>$d->topic?:'',
-            //         'meeting_id'=>$d->id?:0,
-            //         'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
-            //         ]);
+            /**
+             *  $table->id();
+            $table->unsignedBigInteger('meeting_no');
+            $table->string('uuid)->nullable();
+            $table->boolean('gradable');
+            $table->foreignIdFor(ZoomUser::class);
+            $table->timestamps();
+             */
+
+
+            if(!ZoomMeeting::where('meeting_no',$d->id)->exists())
+                $meetingcount++;
+                   ZoomMeeting::create([
+                    'meeting_no'=>$d->id?:0,
+                    'gradable'=>false,
+                    'user_id'=>auth()->user(),
+                     'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
+                    ]);
            if ( !empty($data->next_page_token) ) {
             ZoomController::list_meetings($data->next_page_token);
 
 
-    }
+            }
         }
 
     }
-    return 'done!';
+    return 'done!'.$meetingcount.'added';
 }
 
 public static function deleteZoomMeeting($meeting_id) {

@@ -9,6 +9,7 @@ class ZoomMeeting extends Model
 {
     use HasFactory;
 
+    protected $guarded=['id'];
     public function meetings()
     {
         return $this->hasMany(Meeting::class,'meeting_no','meeting_no');

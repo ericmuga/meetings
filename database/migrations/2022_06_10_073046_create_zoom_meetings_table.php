@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('zoom_meetings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('meeting_no');
+            $table->string('uuid')->nullable();
             $table->boolean('gradable');
             $table->foreignIdFor(ZoomUser::class);
             $table->timestamps();
