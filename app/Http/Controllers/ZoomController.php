@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GuzzleHttp\Client;
-use App\Models\{Meeting,ZoomMeeting};
+use App\Models\{GradingRule, Meeting,ZoomMeeting};
 use Carbon\Carbon;
 use Inertia\Inertia;
 
@@ -48,25 +48,30 @@ class ZoomController extends Controller
                             $table->text('official_end_time');
                             $table->text('detail')->nullable();
                             $table->timestamps();
+
                          */
+                        if (!GradingRule::where('name','Zoom')->exists()) return redirect(route('meeting.index'));
+                        else $rule=GradingRule::firstWhere('name','Zoom');
+
                         $d=ZoomController::getInstanceDetails($instance);
                         if(!Meeting::where('uuid',$d->uuid)->exists())
-                   Meeting::create([
-                                        'type'=>'zoom',
-                                        'date'=>Carbon::parse($d->start_time)->toDateTimeLocalString(),
-                                        'venue'=>'online',
-                                        'topic'=>$d->topic,
-                                        'host'=>'default',
-                                        'uuid'=>$d->uuid,
-                                        'grading_rule_id'=>1,
-                                        'club_id'=>1,
-                                        'official_start_time'=>$d->start_time,
-                                        'official_end_time'=>$d->end_time,
-                                        'meeting_no'=>$d->id,
-                                        // 'gradable'=>(!stripos($d->topic,'fellowship'))>1?true:false,
-                                        // 'title'=>$d->topic,
-                                        // 'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
-                                        ]);
+                          if(($d->participants_count>=$rule->minimum_members) && ($d->duration>=$rule->minimum_minutes))
+                            Meeting::create([
+                                                    'type'=>'zoom',
+                                                    'date'=>Carbon::parse($d->start_time)->toDateTimeLocalString(),
+                                                    'venue'=>'online',
+                                                    'topic'=>$d->topic,
+                                                    'host'=>'default',
+                                                    'uuid'=>$d->uuid,
+                                                    'grading_rule_id'=>$rule->id(),
+                                                    'club_id'=>$rule->id,
+                                                    'official_start_time'=>$d->start_time,
+                                                    'official_end_time'=>$d->end_time,
+                                                    'meeting_no'=>$d->id,
+                                                    // 'gradable'=>(!stripos($d->topic,'fellowship'))>1?true:false,
+                                                    // 'title'=>$d->topic,
+                                                    // 'uuid'=>((str_contains($d->uuid,'/'))?urlencode(urlencode($d->uuid)):$d->uuid)?:'',
+                                                    ]);
 
 
 
