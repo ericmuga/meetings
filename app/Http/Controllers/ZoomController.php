@@ -61,7 +61,7 @@ class ZoomController extends Controller
                                         'grading_rule_id'=>1,
                                         'club_id'=>1,
                                         'official_start_time'=>$d->start_time,
-                                        'official_end_time'=>$d->official_end_time,
+                                        'official_end_time'=>$d->end_time,
                                         'meeting_no'=>$d->id,
                                         // 'gradable'=>(!stripos($d->topic,'fellowship'))>1?true:false,
                                         // 'title'=>$d->topic,
