@@ -26,6 +26,7 @@ class ZoomController extends Controller
                 "iss" =>env('JWT_APP_KEY',''),
                 "exp" =>1657918800//strtotime("17:06 07/16/2022")
             );
+            return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE3MjA1NDAwODAsImlhdCI6MTY1NzM3NjQzM30.V3BtKvW_LOzCpC7_KpAtOyxBEbmAHu9rl3BAKSu1CDI';
            //return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE2NTc5ODAzODcsImlhdCI6MTY1NzM3NTU4N30.7mF8iIo4d984ZzD7F10iABDwF5v1zUgnSPECi0jfITk';
            return JWT::encode($payload, $key,'HS256');
             // return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE2NDk5Mzg5ODgsImlhdCI6MTY0OTMzNDE4OH0.So0mJbQAipZi5azENcU1yMNtsbODG4OKvcRdILA0E54';
