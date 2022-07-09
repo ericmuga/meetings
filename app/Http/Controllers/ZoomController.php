@@ -25,7 +25,7 @@ class ZoomController extends Controller
                 {
                     //add instance to normal meeting
                     //get meeting instances
-                    $instances=ZoomController::meetingInstances($meeting);
+                    dd(ZoomController::meetingInstances($meeting));
 
                 }
 
@@ -45,11 +45,11 @@ class ZoomController extends Controller
             "headers" => [
                             "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
             ]];
-        $response = $client->request('GET', 'users/me/meetings/', $arr_request);
+          $response = $client->request('GET', '/past_meetings/'.$meeting->meeting_no.'/instances', $arr_request);
 
-            $data = json_decode($response->getBody());
+            $instances = json_decode($response->getBody());
 
-
+           //dd($data);
         return $instances;
     }
 
