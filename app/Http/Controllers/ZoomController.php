@@ -25,11 +25,11 @@ class ZoomController extends Controller
                 {
                     //add instance to normal meeting
                     //get meeting instances
-                    $instances=ZoomController::meetingInstances($meeting['meetings']);
+                    $instances=ZoomController::meetingInstances($meeting);
 
                     foreach ($instances as $instance)
                     {
-                        dd($instance);
+                        dd($instances);
                         dd(ZoomController::getInstanceDetails($instance));
                     }
 
