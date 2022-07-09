@@ -109,7 +109,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
                 "uuid": "aDYlohsHRtCd4ii1uC2+hA=="
 
             */
-            //dd($d);
+            dd($d);
 
             /**
              *  $table->id();
