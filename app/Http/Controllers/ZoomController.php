@@ -27,7 +27,7 @@ class ZoomController extends Controller
                 "exp" =>strtotime("18:29 07/09/2022")
             );
 
-            return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE2NTczODA3MzcsImlhdCI6MTY1NzM3NTMzOH0.jU-oamJAjalVlGv2cLr7Wm7CTVCSyrgD_1zobQqVg';
+            return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE2NTczODA3MzcsImlhdCI6MTY1NzM3NTMzOH0.jU-oamJAjalVlGv2cLr7Wm7CTVCSyrgD_1zobQqVgeyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE2NTczODA3MzcsImlhdCI6MTY1NzM3NTMzOH0.jU-oamJAjalVlGv2cLr7Wm7CTVCSyrgD_1zobQqVgok';
            return JWT::encode($payload, $key,'HS256');
             // return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlRUdkUzOW5iUi1LajZrWDdiNXgyc1EiLCJleHAiOjE2NDk5Mzg5ODgsImlhdCI6MTY0OTMzNDE4OH0.So0mJbQAipZi5azENcU1yMNtsbODG4OKvcRdILA0E54';
 
