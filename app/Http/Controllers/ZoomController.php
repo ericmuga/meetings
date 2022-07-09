@@ -7,6 +7,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GuzzleHttp\Client;
 use App\Models\{Meeting,ZoomMeeting};
+use Inertia\Inertia;
 
 class ZoomController extends Controller
 {
@@ -67,7 +68,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
         "headers" => [
                         "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
         ],
-        "query" => [                    "from"=>$st,
+        "query" => [              "from"=>$st,
                                   "to"=>$ed,
                                   "type"=>'scheduled'
     ],
@@ -136,7 +137,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
         }
 
     }
-    return back();
+    return inertia('Meeting/Index');
 }
 
 public static function deleteZoomMeeting($meeting_id) {
