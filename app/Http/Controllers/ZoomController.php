@@ -61,7 +61,7 @@ class ZoomController extends Controller
      public static function getInstanceDetails($instance)
     {
         # code...
-
+           $cleanUUID=(str_contains($instance->uuid,'/'))?urlencode(urlencode($instance->uuid)):$instance->uuid;
 
          $client = new Client(['base_uri' => 'https://api.zoom.us/']);
 
@@ -69,7 +69,7 @@ class ZoomController extends Controller
             "headers" => [
                             "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
             ]];
-          $response = $client->request('GET', '/v2/past_meetings/'.(str_contains($instance->uuid,'/'))?urlencode(urlencode($instance->uuid)):$instance->uuid, $arr_request);
+          $response = $client->request('GET', '/v2/past_meetings/'.$cleanUUID, $arr_request);
 
             return json_decode($response->getBody());
 
