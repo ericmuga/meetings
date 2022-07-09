@@ -136,7 +136,7 @@ public static function list_meetings($next_page_token = '',$st=null,$ed=null) {
         }
 
     }
-    return 'done!'.$meetingcount.'added';
+    return back();
 }
 
 public static function deleteZoomMeeting($meeting_id) {
