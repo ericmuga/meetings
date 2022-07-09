@@ -19,7 +19,7 @@ class ZoomController extends Controller
     {
       ZoomController::list_meetings(null,$request->Start,$request->end);
 
-      $fellowshipMeetings=ZoomMeeting::where('title','like','%fellowship%')->get();
+      $fellowshipMeetings=ZoomMeeting::whereGradable(true)->get();
             if ($fellowshipMeetings->count()>0) {
                 foreach ($fellowshipMeetings as $meeting)
                 {
@@ -30,7 +30,25 @@ class ZoomController extends Controller
                     foreach ($instances->meetings as $instance)
                     {
                         //dd($instance);
+                        /**
+                         *  $table->string('type')->index();
+                            $table->dateTimeTz('date');
+                            $table->string('venue');
+                            $table->string('topic')->index();
+                            $table->text('host');
+                            $table->text('uuid')->nullable();
+                            $table->unsignedBigInteger('meeting_no')->index()->nullable();
+                            $table->foreignIdFor(GradingRule::class);
+                            $table->foreignIdFor(Club::class);
+                            $table->text('official_start_time');
+                            $table->text('official_end_time');
+                            $table->text('detail')->nullable();
+                            $table->timestamps();
+                         */
+
+
                         dd(ZoomController::getInstanceDetails($instance));
+
                     }
 
                 }
@@ -51,7 +69,7 @@ class ZoomController extends Controller
             "headers" => [
                             "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
             ]];
-          $response = $client->request('GET', '/v2/past_meetings/'.$instance->uuid, $arr_request);
+          $response = $client->request('GET', '/v2/past_meetings/'.(str_contains($instance->uuid,'/'))?urlencode(urlencode($instance->uuid)):$instance->uuid, $arr_request);
 
             return json_decode($response->getBody());
 
