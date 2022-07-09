@@ -70,7 +70,7 @@ class ZoomController extends Controller
                 Meeting::where('date',$zd->date)->where('id','<>',Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()->id)
                        ->update(['gradable'=>false]);
 
-                       Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')
+                       Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()
                               ->update(['gradable'=>true]);
             }
         }
