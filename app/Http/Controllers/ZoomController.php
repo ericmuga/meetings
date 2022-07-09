@@ -68,10 +68,10 @@ class ZoomController extends Controller
             foreach ($zoomDates as $zd)
             {
                 Meeting::where('date',$zd->date)->where('id','<>',Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()->id)
-                       ->update(['gradable',false]);
+                       ->update(['gradable'=>false]);
 
                        Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')
-                              ->update(['gradable',true]);
+                              ->update(['gradable'=>true]);
             }
         }
 
