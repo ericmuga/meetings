@@ -103,6 +103,21 @@ onMounted(() => {
                             <TabPanel header="Members" >
                                 <div v-if="meeting.length==0">No Members were found for this meeting</div>
                                 <div v-else>
+                                    <div v-if="meeting.type=='zoom'">
+                                        <Link
+                                          :href="`'zoom/${meeting.id}/participants`"
+                                          >
+                                            <Button
+                                            type=""
+                                            label="Get Participants"
+
+                                            >
+
+                                            </Button>
+                                        </Link>
+
+
+                                    </div>
                                    <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button>
                                    <Table>
                                         <!-- <td>{{meeting}}</td> -->

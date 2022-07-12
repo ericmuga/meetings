@@ -6,15 +6,210 @@ use Illuminate\Http\Request;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use GuzzleHttp\Client;
-use App\Models\{GradingRule, Meeting,ZoomMeeting};
+use App\Models\{Contact, GradingRule, Guest, Meeting, Participant, Score, ZoomMeeting};
 use Carbon\Carbon;
 use Inertia\Inertia;
+use \Tuqqu\GenderDetector\GenderDetector;
 
 class ZoomController extends Controller
 {
 
     public $st;
     public $ed;
+
+
+
+
+
+
+    public function fetchParticipants(Meeting $meeting,$next_page_token='')
+    {
+        /**
+         *
+         * This method will return participants for a given zoom meeting.
+         * The meeting must have been saved in the database with a given UUID
+         */
+
+         //https://api.zoom.us/v2/metrics/meetings/{meetingId}/participants
+
+         $page_size=30;
+
+         $client = new Client(['base_uri' => env('ZOOM_BASE_ULR')]);
+
+        $arr_request = [
+                            "headers" => [
+                                            "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
+                                        ],
+                            "query" => [              "page_size"=>$page_size,
+                                                      "type"=>'pastOne',  //"past" "pastOne" "live"
+
+                                    ]
+                        ];
+
+
+                if (!empty($next_page_token))
+                {
+                    $arr_request['query'] = [       "next_page_token" => $next_page_token,
+                                                    "page_size"=>$page_size,
+                                                    "type"=>'pastOne',  //"past" "pastOne" "live"
+
+
+                                            ];
+                }
+
+             $response = $client->request('GET', 'metrics/meetings/'.$meeting->uuid.'/participants', $arr_request);
+
+            $data = json_decode($response->getBody());
+
+       if (!empty($data)&& isset($data->participants) ) {
+          foreach ( $data->participants as $participant )
+          {
+                /** //Participants array
+                    "audio_quality": "good",
+                    "camera": "FaceTime HD Camera",
+                    "connection_type": "UDP",
+                    "customer_key": "349589LkJyeW",
+                    "data_center": "United States (SC Top)",
+                    "device": "Phone",
+                    "domain": "example.com",
+                    "email": "user@example.com",
+                    "from_sip_uri": "example.com",
+                    "full_data_center": "United States (SC Top);",
+                    "harddisk_id": "Disk01",
+                    "id": "zJKyaiAyTNC-MWjiWC18KQ",
+                    "in_room_participants": 2,
+                    "ip_address": "10.100.111.8",
+                    "join_time": "2022-03-01T10:15:14Z",
+                    "leave_reason": "Host ended the meeting.",
+                    "leave_time": "2022-03-01T10:17:35Z",
+                    "location": "United States",
+                    "mac_addr": "f85e-a012-92d8",
+                    "microphone": "Microphone (2- High Definition Audio Device)",
+                    "network_type": "Wired",
+                    "participant_user_id": "DYHrdpjrS3uaOf7dPkkg8w",
+                    "pc_name": "HW0010449",
+                    "recording": false,
+                    "registrant_id": "fdgsfh2ey82fuh",
+                    "role": "host",
+                    "screen_share_quality": "good",
+                    "share_application": true,
+                    "share_desktop": true,
+                    "share_whiteboard": true,
+                    "sip_uri": "example.com",
+                    "speaker": "speaker (2- High Definition Audio Device)",
+                    "status": "in_meeting",
+                    "user_id": "20162560",
+                    "user_name": "jchill",
+                    "version": "5.9.1.2581",
+                    "video_quality": "good",
+                    "bo_mtg_id": "Dkgwu8nm/ExG1vM+GhLRhA=="
+                 *
+                 */
+
+
+
+               if(!Participant::where('meeting_id',$meeting->id)
+                          ->where('email',$participant->email)
+                          ->where('join_time',$participant->join_time)
+                          ->exists()
+                 )
+                 {
+                     //insert participant
+                    /**
+                     *
+                        $table->string('instance_uuid');
+                        $table->string('email');
+                        $table->string('join_time');
+                        $table->string('leave_time');
+                        $table->string('meeting_id');
+                     *  */
+
+                     Participant::create(['instance_uuid'=>$meeting->uuid,
+                                          'email'=>$participant->email,
+                                          'join_time'=>$participant->join_time,
+                                          'leave_time'=>$participant->leave_time
+                                         ]);
+                 }
+
+                 $attendable=ZoomController::getAttendable($participant->email);
+
+
+
+               if(!Score::where('meeting_id',$meeting->id)
+                          ->where('attendable_type',$attendable['type'])
+                          ->where('attendable_id',$attendable['id'])
+                          ->exists()
+                 )
+                 {
+
+                    //insert the score
+                    Score::create([
+                                     'meeting_id'=>$meeting->id,
+                                     'attendable_type'=>$attendable['type'],
+                                     'attendable_id'=>$attendable['id'],
+                                     'score'=>0,
+                                     'present'=>false,
+                                 ]);
+                 }
+
+
+                 if ( !empty($data->next_page_token) ) {
+                  ZoomController::fetchParticipants($meeting->id,$data->next_page_token);
+
+
+            }
+        }
+
+    }
+
+
+    }
+
+    public static function getAttendable($participant)
+    {
+       if (!Contact::where('contact_type','email')
+                   ->where('contact',$participant->email)
+                   ->exists()
+          )
+          {
+              $gender='';
+            //  switch ( \Tuqqu\GenderDetector\GenderDetector($participant->user_name))
+            //  {
+            //      case 'male':$gender='m';
+            //          # code...
+            //          break;
+
+            //      default:$gender='f';
+            //          # code...
+            //          break;
+            //  }
+             $guest=Guest::create([
+                              'name'=>$participant->user_name,
+                              'nationality'=>'KE',
+                              'gender' =>$gender,
+                        ]);
+                    Contact::create(['contact'=>$participant->email,
+                                     'contact_type'=>'email',
+                                     'contactable_type'=>'App\Models\Guest',
+                                     'contactable_id'=>$guest->id,
+                    ]);
+
+            return ['type'=>'App\Models\Guest',
+                    'id'=>$guest->id
+                  ];
+
+        }
+        else
+        {
+             $contact=Contact::where('contact_type','email')->where('contact',$participant->email)->select('contactable_type','contactable_id')->first();
+            return [
+                      'type'=>$contact->contactable_type,
+                      'id'=>$contact->contactable_id,
+                   ];
+        }
+    }
+
+
 
     public function getMeetings(Request $request)
     {
@@ -23,7 +218,7 @@ class ZoomController extends Controller
       $fellowshipMeetings=ZoomMeeting::where('title','like','%fellowship')
                                     ->orWhere('gradable',true)
                                     ->get();
-      //dd($fellowshipMeetings);
+
             if ($fellowshipMeetings->count()>0) {
                 foreach ($fellowshipMeetings as $meeting)
                 {
@@ -67,7 +262,8 @@ class ZoomController extends Controller
             $zoomDates=Meeting::where('type','zoom')->groupBy('date')->selectRaw('count(*) as meetings, date')->get();
             foreach ($zoomDates as $zd)
             {
-                Meeting::where('date',$zd->date)->where('id','<>',Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()->id)
+                Meeting::where('date',$zd->date)
+                       ->where('id','<>',Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()->id)
                        ->update(['gradable'=>false]);
 
                        Meeting::where('date',$zd->date)->orderBy('official_start_time','desc')->first()
