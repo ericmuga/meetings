@@ -108,11 +108,10 @@ onMounted(() => {
                                           :href="`'zoom/${meeting.id}/participants`"
                                           >
                                             <Button
-                                            type=""
-                                            label="Get Participants"
-
+                                            type="button"
+                                                class="float-right p-3 m-5 pi pi-download success icon-left"
                                             >
-
+                                             Load Participants
                                             </Button>
                                         </Link>
 
