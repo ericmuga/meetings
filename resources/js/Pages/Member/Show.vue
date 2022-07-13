@@ -76,10 +76,14 @@ import MemberCard from '@/Components/MemberCard.vue'
                                        <div v-if="meetings.length==0">
                                            <p>No meetings were found</p>
                                        </div>
-                                       <div v-else>
-                                        <table>
-                                            <thead>
-                                                <tr class="text-white bg-teal-500" >
+
+
+                                  <div class="relative overflow-x-auto" v-else>
+                                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+
+                                                <tr scope="col" class="px-6 py-3" >
                                                    <th>Date</th>
                                                    <th>Topic</th>
                                                    <th>Score</th>
@@ -88,10 +92,12 @@ import MemberCard from '@/Components/MemberCard.vue'
 
 
                                         <tr v-for="m in meetings" :key="m.id">
-                                                <td>{{m.meeting.date}}</td>
-                                                <td>{{m.meeting.topic}}</td>
-                                                <td>{{m.score}}</td>
-                                         </tr> </table>
+                                                <td class="px-6 py-4">{{m.meeting.date}}</td>
+                                                <td class="px-6 py-4">{{m.meeting.topic}}</td>
+                                                <td class="px-6 py-4">{{m.time_score}}</td>
+                                         </tr>
+
+                                         </table>
                                        </div>
 
 

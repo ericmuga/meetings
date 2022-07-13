@@ -1006,6 +1006,9 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
+.overflow-x-auto {
+  overflow-x: auto;
+}
 .rounded-md {
   border-radius: 0.375rem;
 }
