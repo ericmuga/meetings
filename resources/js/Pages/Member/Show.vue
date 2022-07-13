@@ -94,7 +94,7 @@ import MemberCard from '@/Components/MemberCard.vue'
                                         <tr v-for="m in meetings" :key="m.id">
                                                 <td class="px-6 py-4">{{m.meeting.date}}</td>
                                                 <td class="px-6 py-4">{{m.meeting.topic}}</td>
-                                                <td class="px-6 py-4">{{m.time_score}}</td>
+                                                <td class="px-6 py-4">{{m.present}}</td>
                                          </tr>
 
                                          </table>
