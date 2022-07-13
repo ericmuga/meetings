@@ -11,4 +11,6 @@ class Guest extends Model
 {
     use HasFactory;
     use \App\Traits\Personable;
+
+    protected $guarded =['id'];
 }
