@@ -92,7 +92,7 @@ class ZoomController extends Controller
                                      'meeting_id'=>$meeting->id,
                                      'attendable_type'=>$attendable['type'],
                                      'attendable_id'=>$attendable['id'],
-                                     'score'=>0,
+                                     'time_score'=>0,
                                      'present'=>false,
                                  ]);
                  }
