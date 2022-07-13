@@ -145,11 +145,13 @@ class MemberController extends Controller
         return [
                  'meetings'=>$member->scores()->with(['meeting'=>fn($q)=>$q->orderBy('date','desc')])->get(),
                ];
+
+
     }
     public function show(Member $member)
     {
         //show the member profile
-
+        dd($this->stats($member));
         return inertia('Member/Show',array_merge(['member'=>MemberResource::make($member)],$this->stats($member)));
     }
 

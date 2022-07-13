@@ -118,16 +118,7 @@ class ZoomController extends Controller
           )
           {
               $gender='';
-            //  switch ( \Tuqqu\GenderDetector\GenderDetector($participant->user_name))
-            //  {
-            //      case 'male':$gender='m';
-            //          # code...
-            //          break;
 
-            //      default:$gender='f';
-            //          # code...
-            //          break;
-            //  }
              $guest=Guest::create([
                               'name'=>$participant->name,
                               'nationality'=>'KE',

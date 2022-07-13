@@ -74,10 +74,10 @@ import MemberCard from '@/Components/MemberCard.vue'
                                 <Accordion :activeIndex="0">
                                     <AccordionTab header="Meetings Attended">
                                        <table>
-                                          <tr v-for="meeting in meetings">
-                                            <td>{{meeeting.date}}</td>
+                                          <tr v-for="meeting in meetings" :key="meeting.id">
+                                            <!-- <td>{{meeeting.date}}</td>
                                             <td>{{meeeting.host}}</td>
-                                            <td>{{meeeting.topic}}</td>
+                                            <td>{{meeeting.topic}}</td> -->
                                           </tr>
                                        </table>
                                      </AccordionTab>
