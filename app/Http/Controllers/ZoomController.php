@@ -137,6 +137,7 @@ class ZoomController extends Controller
                                      'contact_type'=>'email',
                                      'contactable_type'=>'App\Models\Guest',
                                      'contactable_id'=>$guest->id,
+                                     'default'=>true,
                     ]);
 
             return ['type'=>'App\Models\Guest',
