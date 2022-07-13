@@ -107,7 +107,7 @@ class ZoomController extends Controller
 
     }
 
-
+     return redirect(route('meeting.show',$meeting->id));
     }
 
     public static function getAttendable($participant)
