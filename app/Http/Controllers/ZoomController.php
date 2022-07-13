@@ -99,7 +99,7 @@ class ZoomController extends Controller
 
 
                  if ( !empty($data->next_page_token) ) {
-                  ZoomController::fetchParticipants($meeting->id,$data->next_page_token);
+                  ZoomController::fetchParticipants($meeting,$data->next_page_token);
 
 
             }
