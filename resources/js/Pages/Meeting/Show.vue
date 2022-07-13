@@ -15,6 +15,7 @@ import TabPanel from 'primevue/tabpanel'
 import Checkbox from 'primevue/checkbox';
 import {useScoreStore} from '@/Stores/ScoreStore'
 import {useMemberStore} from '@/Stores/MemberStore'
+import ScrollPanel from 'primevue/scrollpanel';
 // import {computed} from 'vue'
 import _ from 'lodash'
 // import axios from 'axios';
@@ -120,7 +121,8 @@ onMounted(() => {
                                     </div>
                                     <br>
                                     <hr class="m-3">
-
+                                   <div class="p-5 col-12 md:col-4">
+                                    <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
                                     <Table>
                                         <!-- <td>{{meeting}}</td> -->
 
@@ -147,6 +149,8 @@ onMounted(() => {
                                             <!-- <InputText type="submit" label="Save" /> -->
 
                                     </Table>
+                                       </ScrollPanel>
+                                         </div>
                                            <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button>
 
                                           <!-- only call `vm.submit()` when the `key` is `Enter` -->
@@ -198,3 +202,5 @@ onMounted(() => {
      </div>
     </BreezeAuthenticatedLayout>
 </template>
+
+

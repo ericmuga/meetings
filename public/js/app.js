@@ -23730,7 +23730,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/card */ "./node_modules/primevue/card/card.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors.vue */ "./resources/js/Components/ValidationErrors.vue");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var primevue_accordion__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primevue/accordion */ "./node_modules/primevue/accordion/accordion.esm.js");
 /* harmony import */ var primevue_accordiontab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primevue/accordiontab */ "./node_modules/primevue/accordiontab/accordiontab.esm.js");
 /* harmony import */ var _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/MeetingCard.vue */ "./resources/js/Components/MeetingCard.vue");
@@ -23739,10 +23739,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_checkbox__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primevue/checkbox */ "./node_modules/primevue/checkbox/checkbox.esm.js");
 /* harmony import */ var _Stores_ScoreStore__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/Stores/ScoreStore */ "./resources/js/Stores/ScoreStore.js");
 /* harmony import */ var _Stores_MemberStore__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/Stores/MemberStore */ "./resources/js/Stores/MemberStore.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var primevue_scrollpanel__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primevue/scrollpanel */ "./node_modules/primevue/scrollpanel/scrollpanel.esm.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_16__);
+
 
 
 
@@ -23785,7 +23787,7 @@ __webpack_require__.r(__webpack_exports__);
       return form.post(route('meeting.scores'), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          return sweetalert2__WEBPACK_IMPORTED_MODULE_15___default().fire('Saved', 'Attendance has been saved', 'success');
+          return sweetalert2__WEBPACK_IMPORTED_MODULE_16___default().fire('Saved', 'Attendance has been saved', 'success');
         }
       });
     };
@@ -23802,7 +23804,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var enter = function enter(el) {
       // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_16__["default"].to(el, {
+      gsap__WEBPACK_IMPORTED_MODULE_17__["default"].to(el, {
         opacity: 1,
         x: 0,
         duration: 0.8 // onComplete:done
@@ -23827,7 +23829,7 @@ __webpack_require__.r(__webpack_exports__);
       onMounted: vue__WEBPACK_IMPORTED_MODULE_4__.onMounted,
       watch: vue__WEBPACK_IMPORTED_MODULE_4__.watch,
       BreezeValidationErrors: _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-      gsap: gsap__WEBPACK_IMPORTED_MODULE_16__["default"],
+      gsap: gsap__WEBPACK_IMPORTED_MODULE_17__["default"],
       Accordion: primevue_accordion__WEBPACK_IMPORTED_MODULE_6__["default"],
       AccordionTab: primevue_accordiontab__WEBPACK_IMPORTED_MODULE_7__["default"],
       MeetingCard: _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
@@ -23836,8 +23838,9 @@ __webpack_require__.r(__webpack_exports__);
       Checkbox: primevue_checkbox__WEBPACK_IMPORTED_MODULE_11__["default"],
       useScoreStore: _Stores_ScoreStore__WEBPACK_IMPORTED_MODULE_12__.useScoreStore,
       useMemberStore: _Stores_MemberStore__WEBPACK_IMPORTED_MODULE_13__.useMemberStore,
-      _: (lodash__WEBPACK_IMPORTED_MODULE_14___default()),
-      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_15___default())
+      ScrollPanel: primevue_scrollpanel__WEBPACK_IMPORTED_MODULE_14__["default"],
+      _: (lodash__WEBPACK_IMPORTED_MODULE_15___default()),
+      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_16___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -27846,36 +27849,40 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+var _hoisted_16 = {
+  "class": "p-5 col-12 md:col-4"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
   "class": "text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <th>Time Score</th> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Present")], -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
+var _hoisted_18 = {
   "class": "field-checkbox"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save");
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save");
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_20 = {
+var _hoisted_21 = {
   key: 0
 };
-var _hoisted_21 = {
+var _hoisted_22 = {
   key: 1
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "guest Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Time Score"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Present")], -1
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "guest Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Time Score"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Present")], -1
 /* HOISTED */
 );
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Stats ");
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Stats ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
@@ -27939,39 +27946,52 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                   }, 8
                   /* PROPS */
-                  , ["href"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
+                  , ["href"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ScrollPanel"], {
+                    style: {
+                      "width": "100%",
+                      "height": "200px"
+                    },
+                    "class": "custombar1"
+                  }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{meeting}}</td> "), _hoisted_16, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.memberStore.members, function (member) {
-                        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-                          key: member.id,
-                          "class": "text-center"
-                        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(member.name), 1
-                        /* TEXT */
-                        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-                          onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-                            return $setup.save();
-                          }, ["prevent"]))
-                        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Checkbox"], {
-                          id: "binary",
-                          modelValue: $setup.form.attended,
-                          "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-                            return $setup.form.attended = $event;
-                          }),
-                          value: member.id,
-                          disabled: $props.meeting.type == 'zoom'
-                        }, null, 8
-                        /* PROPS */
-                        , ["modelValue", "value", "disabled"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keydown=\"save()\" /> ")])], 32
-                        /* HYDRATE_EVENTS */
-                        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.time_score}}</td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.present==1?'Yes':'No'}}</td> ")]);
-                      }), 128
-                      /* KEYED_FRAGMENT */
-                      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <InputText type=\"submit\" label=\"Save\" /> ")];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
+                        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{meeting}}</td> "), _hoisted_17, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.memberStore.members, function (member) {
+                            return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+                              key: member.id,
+                              "class": "text-center"
+                            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(member.name), 1
+                            /* TEXT */
+                            ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+                              onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+                                return $setup.save();
+                              }, ["prevent"]))
+                            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Checkbox"], {
+                              id: "binary",
+                              modelValue: $setup.form.attended,
+                              "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+                                return $setup.form.attended = $event;
+                              }),
+                              value: member.id,
+                              disabled: $props.meeting.type == 'zoom'
+                            }, null, 8
+                            /* PROPS */
+                            , ["modelValue", "value", "disabled"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keydown=\"save()\" /> ")])], 32
+                            /* HYDRATE_EVENTS */
+                            )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.time_score}}</td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td>{{member.score.present==1?'Yes':'No'}}</td> ")]);
+                          }), 128
+                          /* KEYED_FRAGMENT */
+                          )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <InputText type=\"submit\" label=\"Save\" /> ")];
+                        }),
+                        _: 1
+                        /* STABLE */
+
+                      })];
                     }),
                     _: 1
                     /* STABLE */
 
-                  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+                  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
                     type: "submit",
                     "class": "float-right p-3 m-5 pi pi-check primary icon-left",
                     onClick: _cache[3] || (_cache[3] = function ($event) {
@@ -27979,12 +27999,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     })
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_18];
+                      return [_hoisted_19];
                     }),
                     _: 1
                     /* STABLE */
 
-                  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" only call `vm.submit()` when the `key` is `Enter` "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keyup.enter=\"save()\" /> "), _hoisted_19]))];
+                  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" only call `vm.submit()` when the `key` is `Enter` "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input @keyup.enter=\"save()\" /> "), _hoisted_20]))];
                 }),
                 _: 1
                 /* STABLE */
@@ -27993,9 +28013,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Guests"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [$props.meeting.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, "No guests were found for this meeting")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
+                  return [$props.meeting.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, "No guests were found for this meeting")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_22, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meeting.guests, function (guest) {
+                      return [_hoisted_23, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meeting.guests, function (guest) {
                         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
                           key: guest.id
                         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(guest.name), 1
@@ -28021,7 +28041,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Reports"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_23];
+                  return [_hoisted_24];
                 }),
                 _: 1
                 /* STABLE */
@@ -28030,7 +28050,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Stats"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_24];
+                  return [_hoisted_25];
                 }),
                 _: 1
                 /* STABLE */
@@ -66856,6 +66876,283 @@ const Ripple = {
         remove(el);
     }
 };
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/scrollpanel/scrollpanel.esm.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/primevue/scrollpanel/scrollpanel.esm.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var primevue_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/utils */ "./node_modules/primevue/utils/utils.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+var script = {
+    name: 'ScrollPanel',
+    initialized: false,
+    documentResizeListener: null,
+    documentMouseMoveListener: null,
+    documentMouseUpListener: null,
+    frame: null,
+    scrollXRatio: null,
+    scrollYRatio: null,
+    isXBarClicked: false,
+    isYBarClicked: false,
+    lastPageX: null,
+    lastPageY: null,
+    mounted() {
+        if (this.$el.offsetParent) {
+            this.initialize();
+        }
+    },
+    updated() {
+        if (!this.initialized && this.$el.offsetParent) {
+            this.initialize();
+        }
+    },
+    beforeUnmount() {
+        this.unbindDocumentResizeListener();
+
+        if (this.frame) {
+            window.cancelAnimationFrame(this.frame);
+        }
+    },
+    methods: {
+        initialize() {
+            this.moveBar();
+            this.bindDocumentResizeListener();
+            this.calculateContainerHeight();
+        },
+        calculateContainerHeight() {
+            let containerStyles = getComputedStyle(this.$el),
+            xBarStyles = getComputedStyle(this.$refs.xBar),
+            pureContainerHeight = primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.getHeight(this.$el) - parseInt(xBarStyles['height'], 10);
+
+            if (containerStyles['max-height'] !== "none" && pureContainerHeight === 0) {
+                if(this.$refs.content.offsetHeight + parseInt(xBarStyles['height'], 10) > parseInt(containerStyles['max-height'], 10)) {
+                    this.$el.style.height = containerStyles['max-height'];
+                }
+                else {
+                    this.$el.style.height = this.$refs.content.offsetHeight + parseFloat(containerStyles.paddingTop) + parseFloat(containerStyles.paddingBottom) + parseFloat(containerStyles.borderTopWidth) + parseFloat(containerStyles.borderBottomWidth) + "px";
+                }
+            }
+        },
+        moveBar() {
+            /* horizontal scroll */
+            let totalWidth = this.$refs.content.scrollWidth;
+            let ownWidth = this.$refs.content.clientWidth;
+            let bottom = (this.$el.clientHeight - this.$refs.xBar.clientHeight) * -1;
+
+            this.scrollXRatio = ownWidth / totalWidth;
+
+            /* vertical scroll */
+            let totalHeight = this.$refs.content.scrollHeight;
+            let ownHeight = this.$refs.content.clientHeight;
+            let right = (this.$el.clientWidth - this.$refs.yBar.clientWidth) * -1;
+
+            this.scrollYRatio = ownHeight / totalHeight;
+
+            this.frame = this.requestAnimationFrame(() => {
+                if (this.scrollXRatio >= 1) {
+                    primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.addClass(this.$refs.xBar, 'p-scrollpanel-hidden');
+                }
+                else {
+                    primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.removeClass(this.$refs.xBar, 'p-scrollpanel-hidden');
+                    this.$refs.xBar.style.cssText = 'width:' + Math.max(this.scrollXRatio * 100, 10) + '%; left:' + (this.$refs.content.scrollLeft / totalWidth) * 100 + '%;bottom:' + bottom + 'px;';
+                }
+
+                if (this.scrollYRatio >= 1) {
+                    primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.addClass(this.$refs.yBar, 'p-scrollpanel-hidden');
+                }
+                else {
+                    primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.removeClass(this.$refs.yBar, 'p-scrollpanel-hidden');
+                    this.$refs.yBar.style.cssText = 'height:' + Math.max(this.scrollYRatio * 100, 10) + '%; top: calc(' + (this.$refs.content.scrollTop / totalHeight) * 100 + '% - ' + this.$refs.xBar.clientHeight + 'px);right:' + right + 'px;';
+                }
+            });
+        },
+        onYBarMouseDown(e) {
+            this.isYBarClicked = true;
+            this.lastPageY = e.pageY;
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.addClass(this.$refs.yBar, 'p-scrollpanel-grabbed');
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.addClass(document.body, 'p-scrollpanel-grabbed');
+
+            this.bindDocumentMouseListeners();
+            e.preventDefault();
+        },
+        onXBarMouseDown(e) {
+            this.isXBarClicked = true;
+            this.lastPageX = e.pageX;
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.addClass(this.$refs.xBar, 'p-scrollpanel-grabbed');
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.addClass(document.body, 'p-scrollpanel-grabbed');
+
+            this.bindDocumentMouseListeners();
+            e.preventDefault();
+        },
+        onDocumentMouseMove(e) {
+            if (this.isXBarClicked) {
+                this.onMouseMoveForXBar(e);
+            }
+            else if (this.isYBarClicked) {
+                this.onMouseMoveForYBar(e);
+            }
+            else {
+                this.onMouseMoveForXBar(e);
+                this.onMouseMoveForYBar(e);
+            }
+        },
+        onMouseMoveForXBar(e) {
+            let deltaX = e.pageX - this.lastPageX;
+            this.lastPageX = e.pageX;
+
+            this.frame = this.requestAnimationFrame(() => {
+                this.$refs.content.scrollLeft += deltaX / this.scrollXRatio;
+            });
+        },
+        onMouseMoveForYBar(e) {
+            let deltaY = e.pageY - this.lastPageY;
+            this.lastPageY = e.pageY;
+
+            this.frame = this.requestAnimationFrame(() => {
+                this.$refs.content.scrollTop += deltaY / this.scrollYRatio;
+            });
+        },
+        onDocumentMouseUp() {
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.removeClass(this.$refs.yBar, 'p-scrollpanel-grabbed');
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.removeClass(this.$refs.xBar, 'p-scrollpanel-grabbed');
+            primevue_utils__WEBPACK_IMPORTED_MODULE_0__.DomHandler.removeClass(document.body, 'p-scrollpanel-grabbed');
+
+            this.unbindDocumentMouseListeners();
+            this.isXBarClicked = false;
+            this.isYBarClicked = false;
+        },
+        requestAnimationFrame(f) {
+            let frame = window.requestAnimationFrame || this.timeoutFrame;
+            return frame(f);
+        },
+        refresh() {
+            this.moveBar();
+        },
+        scrollTop(scrollTop) {
+            let scrollableHeight = this.$refs.content.scrollHeight - this.$refs.content.clientHeight;
+            scrollTop = scrollTop > scrollableHeight ? scrollableHeight : scrollTop > 0 ? scrollTop : 0;
+            this.$refs.contentscrollTop = scrollTop;
+        },
+        bindDocumentMouseListeners() {
+			if (!this.documentMouseMoveListener) {
+				this.documentMouseMoveListener = (e) => {
+					this.onDocumentMouseMove(e);
+				};
+
+				document.addEventListener('mousemove', this.documentMouseMoveListener);
+            }
+
+            if (!this.documentMouseUpListener) {
+				this.documentMouseUpListener = (e) => {
+					this.onDocumentMouseUp(e);
+				};
+
+				document.addEventListener('mouseup', this.documentMouseUpListener);
+			}
+		},
+		unbindDocumentMouseListeners() {
+			if (this.documentMouseMoveListener) {
+				document.removeEventListener('mousemove', this.documentMouseMoveListener);
+				this.documentMouseMoveListener = null;
+            }
+
+            if(this.documentMouseUpListener) {
+				document.removeEventListener('mouseup', this.documentMouseUpListener);
+				this.documentMouseUpListener = null;
+			}
+		},
+        bindDocumentResizeListener() {
+			if (!this.documentResizeListener) {
+				this.documentResizeListener = () => {
+					this.moveBar();
+				};
+
+				window.addEventListener('resize', this.documentResizeListener);
+			}
+		},
+		unbindDocumentResizeListener() {
+			if(this.documentResizeListener) {
+				window.removeEventListener('resize', this.documentResizeListener);
+				this.documentResizeListener = null;
+			}
+		}
+    }
+};
+
+const _hoisted_1 = { class: "p-scrollpanel p-component" };
+const _hoisted_2 = { class: "p-scrollpanel-wrapper" };
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("div", _hoisted_1, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_2, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", {
+        ref: "content",
+        class: "p-scrollpanel-content",
+        onScroll: _cache[0] || (_cache[0] = (...args) => ($options.moveBar && $options.moveBar(...args))),
+        onMouseenter: _cache[1] || (_cache[1] = (...args) => ($options.moveBar && $options.moveBar(...args)))
+      }, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.renderSlot)(_ctx.$slots, "default")
+      ], 544)
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", {
+      ref: "xBar",
+      class: "p-scrollpanel-bar p-scrollpanel-bar-x",
+      onMousedown: _cache[2] || (_cache[2] = (...args) => ($options.onXBarMouseDown && $options.onXBarMouseDown(...args)))
+    }, null, 544),
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", {
+      ref: "yBar",
+      class: "p-scrollpanel-bar p-scrollpanel-bar-y",
+      onMousedown: _cache[3] || (_cache[3] = (...args) => ($options.onYBarMouseDown && $options.onYBarMouseDown(...args)))
+    }, null, 544)
+  ]))
+}
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z = "\n.p-scrollpanel-wrapper {\n    overflow: hidden;\n    width: 100%;\n    height: 100%;\n    position: relative;\n    z-index: 1;\n    float: left;\n}\n.p-scrollpanel-content {\n    height: calc(100% + 18px);\n    width: calc(100% + 18px);\n    padding: 0 18px 18px 0;\n    position: relative;\n    overflow: scroll;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n}\n.p-scrollpanel-bar {\n    position: relative;\n    background: #c1c1c1;\n    border-radius: 3px;\n    z-index: 2;\n    cursor: pointer;\n    opacity: 0;\n    -webkit-transition: opacity 0.25s linear;\n    transition: opacity 0.25s linear;\n}\n.p-scrollpanel-bar-y {\n    width: 9px;\n    top: 0;\n}\n.p-scrollpanel-bar-x {\n    height: 9px;\n    bottom: 0;\n}\n.p-scrollpanel-hidden {\n    visibility: hidden;\n}\n.p-scrollpanel:hover .p-scrollpanel-bar,\n.p-scrollpanel:active .p-scrollpanel-bar {\n    opacity: 1;\n}\n.p-scrollpanel-grabbed {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n";
+styleInject(css_248z);
+
+script.render = render;
 
 
 
