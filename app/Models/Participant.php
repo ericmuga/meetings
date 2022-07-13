@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Participant extends Model
 {
     use HasFactory;
+
+    protected $guarded=['id'];
+    public function meeting()
+    {
+        return $this->belongsTo(Meeting::class);
+    }
 }
