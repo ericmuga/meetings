@@ -78,8 +78,8 @@ import MemberCard from '@/Components/MemberCard.vue'
                                        </div>
                                        <div v-else>
                                         <tr v-for="meeting in meetings" :key="meeting.id">
-                                                <td>{{meeeting.date}}</td>
-                                                <td>{{meeeting.topic}}</td>
+                                                <td>{{meeting.date}}</td>
+                                                <td>{{meeting.topic}}</td>
                                          </tr>
                                        </div>
                                        <table>
