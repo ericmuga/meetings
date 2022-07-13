@@ -6,6 +6,7 @@ use App\Models\Contact;
   trait Personable
   {
 
+    protected $guarded =['id'];
     public function user()
     {
         return $this->morphOne(User::class,'authenticatable');
