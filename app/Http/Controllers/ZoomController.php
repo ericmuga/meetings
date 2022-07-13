@@ -33,7 +33,7 @@ class ZoomController extends Controller
          //https://api.zoom.us/v2/metrics/meetings/{meetingId}/participants
          //https://api.zoom.us/v2/report/meetings/{meetingId}/participants
 
-         $page_size=30;
+         $page_size=50;
 
          $client = new Client(['base_uri' => env('ZOOM_BASE_URL')]);
         //    dd(env('ZOOM_BASE_URL'));
