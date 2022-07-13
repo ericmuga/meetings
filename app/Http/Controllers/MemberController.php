@@ -151,7 +151,7 @@ class MemberController extends Controller
     public function show(Member $member)
     {
         //show the member profile
-        dd($this->stats($member));
+        // dd($this->stats($member));
         return inertia('Member/Show',array_merge(['member'=>MemberResource::make($member)],$this->stats($member)));
     }
 
