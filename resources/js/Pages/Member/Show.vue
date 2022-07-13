@@ -77,9 +77,9 @@ import MemberCard from '@/Components/MemberCard.vue'
                                            <p>No meetings were found</p>
                                        </div>
                                        <div v-else>
-                                        <tr v-for="meeting in meetings.meeting" :key="meeting.id">
-                                                <td>{{meeting.date}}</td>
-                                                <td>{{meeting.topic}}</td>
+                                        <tr v-for="m in meetings.meeting" :key="m.id">
+                                                <td>{{m.date}}</td>
+                                                <td>{{m.topic}}</td>
                                          </tr>
                                        </div>
                                        <table>
