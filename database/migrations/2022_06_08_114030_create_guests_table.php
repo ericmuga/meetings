@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->foreignIdFor(Club::class)->nullable();
             $table->string('nationality')->nullable();
-            $table->enum('gender',['m','f'])->nullable();
+            $table->string('gender')->default('m')->nullable();
             $table->string('field')->nullable();
             $table->timestamps();
         });
