@@ -104,14 +104,18 @@ onMounted(() => {
                             <TabPanel header="Members" >
                                 <div v-if="meeting.length==0">No Members were found for this meeting</div>
                                 <div v-else>
-                                   <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button>
+                                   <div class="flex flex-row justify-right">
+
+
+
+                                   <Button type="submit" class="p-3 pi pi-check primary icon-left" @click="save()" >Save</Button>
                                    <div v-if="meeting.type=='zoom'">
                                         <Link
                                           :href="route('zoom.participants',meeting.id)"
                                           >
                                             <Button
                                             type="button"
-                                                class="float-left p-3 m-5 pi pi-download p-button-success icon-left"
+                                                class="float-left p-3 pi pi-download p-button-success icon-left"
                                             >
                                              Participants
                                             </Button>
@@ -119,8 +123,9 @@ onMounted(() => {
 
 
                                     </div>
+                                     </div>
                                     <br>
-                                    <hr class="m-3">
+                                    <hr >
                                    <div class="p-5 col-12 md:col-4">
                                     <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
                                     <Table>
@@ -151,7 +156,7 @@ onMounted(() => {
                                     </Table>
                                        </ScrollPanel>
                                          </div>
-                                           <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button>
+                                           <!-- <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button> -->
 
                                           <!-- only call `vm.submit()` when the `key` is `Enter` -->
                                             <!-- <input @keyup.enter="save()" /> -->
