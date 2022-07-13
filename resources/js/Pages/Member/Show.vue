@@ -77,23 +77,26 @@ import MemberCard from '@/Components/MemberCard.vue'
                                            <p>No meetings were found</p>
                                        </div>
                                        <div v-else>
-                                           <th>
-                                               <tr >
-                                                   <td>Date</td>
-                                                   <td>Topic</td>
-                                                   <td>Score</td>
+                                        <table>
+                                            <thead>
+                                                <tr class="text-white bg-teal-500" >
+                                                   <th>Date</th>
+                                                   <th>Topic</th>
+                                                   <th>Score</th>
                                                </tr>
-                                           </th>
+                                            </thead>
+
+
                                         <tr v-for="m in meetings" :key="m.id">
                                                 <td>{{m.meeting.date}}</td>
                                                 <td>{{m.meeting.topic}}</td>
                                                 <td>{{m.score}}</td>
-                                         </tr>
+                                         </tr> </table>
                                        </div>
-                                       <table>
 
 
-                                       </table>
+
+
                                      </AccordionTab>
                                       <AccordionTab header="Contacts">
                                          <table>
