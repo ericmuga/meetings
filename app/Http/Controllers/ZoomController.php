@@ -67,19 +67,19 @@ class ZoomController extends Controller
           foreach ( $data->participants as $participant )
           {
                if(!Participant::where('meeting_id',$meeting->id)
-                          ->where('email',$participant->email)
+                          ->where('email',$participant->user_email)
                           ->where('join_time',$participant->join_time)
                           ->exists()
                  )
                  {
                      Participant::create(['instance_uuid'=>$meeting->uuid,
-                                          'email'=>$participant->email,
+                                          'email'=>$participant->user_email,
                                           'join_time'=>$participant->join_time,
                                           'leave_time'=>$participant->leave_time
                                          ]);
                  }
 
-                 $attendable=ZoomController::getAttendable($participant->email);
+                 $attendable=ZoomController::getAttendable($participant->user_email);
 
              if(!Score::where('meeting_id',$meeting->id)
                           ->where('attendable_type',$attendable['type'])
