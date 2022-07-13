@@ -73,12 +73,18 @@ import MemberCard from '@/Components/MemberCard.vue'
                           <div class="w-full">
                                 <Accordion :activeIndex="0">
                                     <AccordionTab header="Meetings Attended">
+                                       <div v-if="meetings.length==0">
+                                           <p>No meetings were found</p>
+                                       </div>
+                                       <div v-else>
+                                        <tr v-for="meeting in meetings" :key="meeting.id">
+                                                <td>{{meeeting.date}}</td>
+                                                <td>{{meeeting.topic}}</td>
+                                         </tr>
+                                       </div>
                                        <table>
-                                          <tr v-for="meeting in meetings" :key="meeting.id">
-                                            <!-- <td>{{meeeting.date}}</td>
-                                            <td>{{meeeting.host}}</td>
-                                            <td>{{meeeting.topic}}</td> -->
-                                          </tr>
+
+
                                        </table>
                                      </AccordionTab>
                                       <AccordionTab header="Contacts">
