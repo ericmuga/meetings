@@ -106,7 +106,7 @@ onMounted(() => {
                                    <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button>
                                    <div v-if="meeting.type=='zoom'">
                                         <Link
-                                          :href="`'zoom/${meeting.id}/participants`"
+                                          :href="route('zoom.participants',meeting.id)"
                                           >
                                             <Button
                                             type="button"
@@ -118,6 +118,9 @@ onMounted(() => {
 
 
                                     </div>
+                                    <br>
+                                    <hr class="m-3">
+
                                     <Table>
                                         <!-- <td>{{meeting}}</td> -->
 

@@ -34,8 +34,8 @@ class ZoomController extends Controller
 
          $page_size=30;
 
-         $client = new Client(['base_uri' => env('ZOOM_BASE_ULR')]);
-
+         $client = new Client(['base_uri' => env('ZOOM_BASE_URL')]);
+        //    dd(env('ZOOM_BASE_URL'));
         $arr_request = [
                             "headers" => [
                                             "Authorization" => "Bearer ".ZoomController::getZoomAccessToken()
