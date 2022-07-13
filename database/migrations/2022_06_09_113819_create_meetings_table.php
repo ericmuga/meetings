@@ -30,6 +30,7 @@ return new class extends Migration
             $table->text('official_start_time');
             $table->text('official_end_time');
             $table->boolean('gradable')->default(false);
+            // $table->integer('participants');
             $table->text('detail')->nullable();
             $table->timestamps();
         });

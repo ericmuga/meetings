@@ -41,6 +41,7 @@ class MeetingFactory extends Factory
                  'topic'=>$this->faker->word(),
                  'host'=>$this->faker->word(),
                  'uuid'=>$this->faker->uuid(),
+                 'gradable'=>true,
                  'club_id'=>Club::factory(),
                  'meeting_no'=>$this->faker->numberBetween(100000000,10000000000),
                  'grading_rule_id'=>1,
