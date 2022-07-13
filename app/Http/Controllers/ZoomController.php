@@ -60,70 +60,17 @@ class ZoomController extends Controller
              $response = $client->request('GET', 'metrics/meetings/'.$meeting->uuid.'/participants', $arr_request);
 
             $data = json_decode($response->getBody());
+            dd($data);
 
        if (!empty($data)&& isset($data->participants) ) {
           foreach ( $data->participants as $participant )
           {
-                /** //Participants array
-                    "audio_quality": "good",
-                    "camera": "FaceTime HD Camera",
-                    "connection_type": "UDP",
-                    "customer_key": "349589LkJyeW",
-                    "data_center": "United States (SC Top)",
-                    "device": "Phone",
-                    "domain": "example.com",
-                    "email": "user@example.com",
-                    "from_sip_uri": "example.com",
-                    "full_data_center": "United States (SC Top);",
-                    "harddisk_id": "Disk01",
-                    "id": "zJKyaiAyTNC-MWjiWC18KQ",
-                    "in_room_participants": 2,
-                    "ip_address": "10.100.111.8",
-                    "join_time": "2022-03-01T10:15:14Z",
-                    "leave_reason": "Host ended the meeting.",
-                    "leave_time": "2022-03-01T10:17:35Z",
-                    "location": "United States",
-                    "mac_addr": "f85e-a012-92d8",
-                    "microphone": "Microphone (2- High Definition Audio Device)",
-                    "network_type": "Wired",
-                    "participant_user_id": "DYHrdpjrS3uaOf7dPkkg8w",
-                    "pc_name": "HW0010449",
-                    "recording": false,
-                    "registrant_id": "fdgsfh2ey82fuh",
-                    "role": "host",
-                    "screen_share_quality": "good",
-                    "share_application": true,
-                    "share_desktop": true,
-                    "share_whiteboard": true,
-                    "sip_uri": "example.com",
-                    "speaker": "speaker (2- High Definition Audio Device)",
-                    "status": "in_meeting",
-                    "user_id": "20162560",
-                    "user_name": "jchill",
-                    "version": "5.9.1.2581",
-                    "video_quality": "good",
-                    "bo_mtg_id": "Dkgwu8nm/ExG1vM+GhLRhA=="
-                 *
-                 */
-
-
-
                if(!Participant::where('meeting_id',$meeting->id)
                           ->where('email',$participant->email)
                           ->where('join_time',$participant->join_time)
                           ->exists()
                  )
                  {
-                     //insert participant
-                    /**
-                     *
-                        $table->string('instance_uuid');
-                        $table->string('email');
-                        $table->string('join_time');
-                        $table->string('leave_time');
-                        $table->string('meeting_id');
-                     *  */
-
                      Participant::create(['instance_uuid'=>$meeting->uuid,
                                           'email'=>$participant->email,
                                           'join_time'=>$participant->join_time,
@@ -133,17 +80,13 @@ class ZoomController extends Controller
 
                  $attendable=ZoomController::getAttendable($participant->email);
 
-
-
-               if(!Score::where('meeting_id',$meeting->id)
+             if(!Score::where('meeting_id',$meeting->id)
                           ->where('attendable_type',$attendable['type'])
                           ->where('attendable_id',$attendable['id'])
                           ->exists()
                  )
                  {
-
-                    //insert the score
-                    Score::create([
+                      Score::create([
                                      'meeting_id'=>$meeting->id,
                                      'attendable_type'=>$attendable['type'],
                                      'attendable_id'=>$attendable['id'],
@@ -245,6 +188,7 @@ class ZoomController extends Controller
                                                     'official_start_time'=>$d->start_time,
                                                     'official_end_time'=>$d->end_time,
                                                     'meeting_no'=>$d->id,
+                                                    // 'meeting'=>$d->participants
                                                     ]);
 
                                 }
