@@ -80,7 +80,7 @@ class ZoomController extends Controller
                                          ]);
                  }
 
-                 $attendable=ZoomController::getAttendable($participant->user_email);
+                 $attendable=ZoomController::getAttendable($participant);
 
              if(!Score::where('meeting_id',$meeting->id)
                           ->where('attendable_type',$attendable['type'])
