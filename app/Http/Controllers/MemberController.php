@@ -143,7 +143,7 @@ class MemberController extends Controller
         # code...
         //meetings attended by the member
         return [
-                 'meetings'=>$member->scores()->with(['meetings'=>fn($q)=>$q->orderBy('date','desc')])->get(),
+                 'meetings'=>$member->scores()->with(['meeting'=>fn($q)=>$q->orderBy('date','desc')])->get(),
                ];
     }
     public function show(Member $member)
