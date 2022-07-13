@@ -129,7 +129,7 @@ class ZoomController extends Controller
             //          break;
             //  }
              $guest=Guest::create([
-                              'name'=>$participant->user_name,
+                              'name'=>$participant->name,
                               'nationality'=>'KE',
                               'gender' =>$gender,
                         ]);
