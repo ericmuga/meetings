@@ -31,6 +31,7 @@ class ZoomController extends Controller
          */
 
          //https://api.zoom.us/v2/metrics/meetings/{meetingId}/participants
+         //https://api.zoom.us/v2/report/meetings/{meetingId}/participants
 
          $page_size=30;
 
@@ -57,7 +58,7 @@ class ZoomController extends Controller
                                             ];
                 }
 
-             $response = $client->request('GET', 'metrics/meetings/'.$meeting->uuid.'/participants', $arr_request);
+             $response = $client->request('GET', 'report/meetings/'.$meeting->uuid.'/participants', $arr_request);
 
             $data = json_decode($response->getBody());
             dd($data);

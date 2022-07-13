@@ -110,7 +110,7 @@ onMounted(() => {
                                           >
                                             <Button
                                             type="button"
-                                                class="float-left p-3 m-5 pi pi-user p-button-success icon-left"
+                                                class="float-left p-3 m-5 pi pi-download p-button-success icon-left"
                                             >
                                              Participants
                                             </Button>

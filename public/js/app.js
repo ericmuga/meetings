@@ -27924,7 +27924,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
                         type: "button",
-                        "class": "float-left p-3 m-5 pi pi-user p-button-success icon-left"
+                        "class": "float-left p-3 m-5 pi pi-download p-button-success icon-left"
                       }, {
                         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                           return [_hoisted_13];
