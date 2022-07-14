@@ -135,7 +135,6 @@ class ZoomController extends Controller
                                                     "page_size"=>$page_size,
                                                     "type"=>'pastOne',  //"past" "pastOne" "live"
 
-
                                             ];
                 }
 
@@ -143,34 +142,28 @@ class ZoomController extends Controller
 
             $data = json_decode($response->getBody());
            // dd($data);
-
-       if (!empty($data)&& isset($data->participants) ) {
+         $participants_list=[];
+       if (!empty($data)&& isset($data->participants) )
+       {
           foreach ( $data->participants as $participant )
           {
-            //    if(!Participant::where('meeting_id',$meeting->id)
-            //               ->where('email',$participant->user_email)
-            //               ->where('join_time',$participant->join_time)
-            //               ->exists()
-            //      )
-            //      {
-                     Participant::create(['instance_uuid'=>$meeting->uuid,
+               array_push($participants_list,['instance_uuid'=>$meeting->uuid,
                                           'email'=>$participant->user_email,
                                           'name'=>$participant->name,
                                           'join_time'=>$participant->join_time,
                                           'leave_time'=>$participant->leave_time,
                                           'meeting_id'=>$meeting->id,
                                          ]);
-                //  }
-
-
-
-
-                 if ( !empty($data->next_page_token) ) {
+                if ( !empty($data->next_page_token) ) {
                   ZoomController::fetchParticipants($meeting,$data->next_page_token);
 
 
             }
+
+
         }
+
+        Participant::create($participants_list);
 
     }
 
@@ -184,7 +177,7 @@ class ZoomController extends Controller
                    ->exists()
           )
           {
-              $gender='';
+             $gender='';
 
              $guest=Guest::create([
                               'name'=>$participant->name,
@@ -205,7 +198,10 @@ class ZoomController extends Controller
         }
         else
         {
-             $contact=Contact::where('contact_type','email')->where('contact',$participant->email)->select('contactable_type','contactable_id')->first();
+             $contact=Contact::where('contact_type','email')
+                             ->where('contact',$participant->email)
+                             ->select('contactable_type','contactable_id')
+                             ->first();
             return [
                       'type'=>$contact->contactable_type,
                       'id'=>$contact->contactable_id,
