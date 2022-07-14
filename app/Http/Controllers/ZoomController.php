@@ -147,12 +147,12 @@ class ZoomController extends Controller
        if (!empty($data)&& isset($data->participants) ) {
           foreach ( $data->participants as $participant )
           {
-               if(!Participant::where('meeting_id',$meeting->id)
-                          ->where('email',$participant->user_email)
-                          ->where('join_time',$participant->join_time)
-                          ->exists()
-                 )
-                 {
+            //    if(!Participant::where('meeting_id',$meeting->id)
+            //               ->where('email',$participant->user_email)
+            //               ->where('join_time',$participant->join_time)
+            //               ->exists()
+            //      )
+            //      {
                      Participant::create(['instance_uuid'=>$meeting->uuid,
                                           'email'=>$participant->user_email,
                                           'name'=>$participant->name,
@@ -160,7 +160,7 @@ class ZoomController extends Controller
                                           'leave_time'=>$participant->leave_time,
                                           'meeting_id'=>$meeting->id,
                                          ]);
-                 }
+                //  }
 
 
 
