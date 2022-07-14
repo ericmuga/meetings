@@ -170,6 +170,7 @@ class ZoomController extends Controller
     }
     if (!empty($this->participants_list))
     {
+        dd($this->participants_list);
         Participant::create($this->participants_list);
         $this->participants_list=[];
     }
