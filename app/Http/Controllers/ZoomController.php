@@ -75,7 +75,7 @@ class ZoomController extends Controller
         }
 
 
-
+         return redirect(route('meeting.show',$meeting->id));
 
 
     }
