@@ -143,7 +143,7 @@ class ZoomController extends Controller
              $response = $client->request('GET', 'report/meetings/'.$meeting->uuid.'/participants', $arr_request);
 
             $data = json_decode($response->getBody());
-           // dd($data);
+            dd($data);
 
        if (!empty($data)&& isset($data->participants) )
        {
@@ -170,7 +170,7 @@ class ZoomController extends Controller
     }
     if (!empty($this->participants_list))
     {
-        dd($this->participants_list);
+        // dd($this->participants_list);
         $meeting->participants()->delete();
         Participant::insert($this->participants_list);
         $this->participants_list=[];
