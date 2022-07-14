@@ -155,6 +155,7 @@ class ZoomController extends Controller
                  {
                      Participant::create(['instance_uuid'=>$meeting->uuid,
                                           'email'=>$participant->user_email,
+                                          'name'=>$participant->name,
                                           'join_time'=>$participant->join_time,
                                           'leave_time'=>$participant->leave_time,
                                           'meeting_id'=>$meeting->id,

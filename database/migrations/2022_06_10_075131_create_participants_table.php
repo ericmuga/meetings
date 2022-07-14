@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('instance_uuid');
             $table->string('email');
+            $table->string('name');
             $table->string('join_time');
             $table->string('leave_time');
             $table->string('meeting_id');
