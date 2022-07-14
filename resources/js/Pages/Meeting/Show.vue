@@ -108,7 +108,7 @@ onMounted(() => {
 
 
 
-                                   <Button type="submit" class="p-3 pi pi-check primary icon-left" @click="save()" >Save</Button>
+                                   <Button type="submit" v-if="meeting.type!='zoom'" class="p-3 pi pi-check primary icon-left" @click="save()" >Save</Button>
                                    <div v-if="meeting.type=='zoom'">
                                         <Link
                                           :href="route('zoom.participants',meeting.id)"
@@ -126,7 +126,7 @@ onMounted(() => {
                                           >
                                             <Button
                                             type="button"
-                                                class="float-left p-3 pi pi-download p-button-success icon-left"
+                                                class="float-left p-3 pi pi-check p-button-warning icon-left"
                                             >
                                              Grade
                                             </Button>
