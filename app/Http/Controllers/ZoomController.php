@@ -180,7 +180,7 @@ class ZoomController extends Controller
     public static function getAttendable($participant)
     {
        if (!Contact::where('contact_type','email')
-                   ->where('contact',$participant->user_email)
+                   ->where('contact',$participant->email)
                    ->exists()
           )
           {
@@ -191,7 +191,7 @@ class ZoomController extends Controller
                               'nationality'=>'KE',
                               'gender' =>$gender,
                         ]);
-                    Contact::create(['contact'=>$participant->user_email,
+                    Contact::create(['contact'=>$participant->email,
                                      'contact_type'=>'email',
                                      'contactable_type'=>'App\Models\Guest',
                                      'contactable_id'=>$guest->id,
@@ -205,7 +205,7 @@ class ZoomController extends Controller
         }
         else
         {
-             $contact=Contact::where('contact_type','email')->where('contact',$participant->user_email)->select('contactable_type','contactable_id')->first();
+             $contact=Contact::where('contact_type','email')->where('contact',$participant->email)->select('contactable_type','contactable_id')->first();
             return [
                       'type'=>$contact->contactable_type,
                       'id'=>$contact->contactable_id,
