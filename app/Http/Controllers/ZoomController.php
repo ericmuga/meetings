@@ -18,6 +18,8 @@ class ZoomController extends Controller
     public $st;
     public $ed;
 
+    protected  $participants_list=[];
+
 
     public function gradeParticipants(Meeting $meeting)
     {
@@ -142,18 +144,18 @@ class ZoomController extends Controller
 
             $data = json_decode($response->getBody());
            // dd($data);
-         $participants_list=[];
+
        if (!empty($data)&& isset($data->participants) )
        {
           foreach ( $data->participants as $participant )
           {
-               array_push($participants_list,['instance_uuid'=>$meeting->uuid,
-                                          'email'=>$participant->user_email,
-                                          'name'=>$participant->name,
-                                          'join_time'=>$participant->join_time,
-                                          'leave_time'=>$participant->leave_time,
-                                          'meeting_id'=>$meeting->id,
-                                         ]);
+               array_push($this->participants_list,['instance_uuid'=>$meeting->uuid,
+                                                'email'=>$participant->user_email,
+                                                'name'=>$participant->name,
+                                                'join_time'=>$participant->join_time,
+                                                'leave_time'=>$participant->leave_time,
+                                                'meeting_id'=>$meeting->id,
+                                                ]);
                 if ( !empty($data->next_page_token) ) {
                   ZoomController::fetchParticipants($meeting,$data->next_page_token);
 
@@ -163,8 +165,13 @@ class ZoomController extends Controller
 
         }
 
-        Participant::create($participants_list);
 
+
+    }
+    if (!empty($this->participants_list))
+    {
+        Participant::create($this->participants_list);
+        $this->participants_list=[];
     }
 
      return redirect(route('meeting.show',$meeting->id));
