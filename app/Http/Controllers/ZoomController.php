@@ -143,7 +143,7 @@ class ZoomController extends Controller
              $response = $client->request('GET', 'report/meetings/'.$meeting->uuid.'/participants', $arr_request);
 
             $data = json_decode($response->getBody());
-            dd((array)$data['participants']);
+            dd($data->participants);
 
        if (!empty($data)&& isset($data->participants) )
        {
