@@ -22,7 +22,7 @@ class ZoomController extends Controller
     public function gradeParticipants(Meeting $meeting)
     {
         //this function will insert scores of a participant in the scores table
-      $rule=$meeting->grading_rule()->get();
+      $rule=$meeting->grading_rule()->first();
       foreach ($meeting->participants()->get() as $participant)
         {
             $attendable=ZoomController::getAttendable($participant);
