@@ -183,6 +183,8 @@ onMounted(() => {
                             <TabPanel header="Guests">
                                   <div v-if="meeting.length==0">No guests were found for this meeting</div>
                                     <div v-else>
+                                          <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
+
                                         <Table>
                                             <tr>
                                                 <th>guest Name</th>
@@ -195,6 +197,7 @@ onMounted(() => {
                                                 <td>{{guest.score.present==1?'Yes':'No'}}</td>
                                             </tr>
                                         </Table>
+                                          </ScrollPanel>
                                     </div>
                             </TabPanel>
                             <TabPanel header="Reports">
