@@ -42,7 +42,7 @@ class ZoomController extends Controller
 
                  if ($loop==0) //meaning first entry
                  {
-                     if (Carbon::parse($e->join_time)->toTimeString() > Carbon::parse($meeting->rule->start_time)->toTimeString())
+                     if (Carbon::parse($e->join_time)->toTimeString() > Carbon::parse($rule->start_time)->toTimeString())
                      {
                         ZoomController::insertScore(false,0,$meeting,$attendable);
                         $skip=1;
