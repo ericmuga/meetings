@@ -40,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('meeting/scores',[MeetingController::class,'scores'])->name('meeting.scores');
     Route::post('zoom/meetings',[ZoomController::class,'getMeetings'])->name('zoom.meetings');
     Route::get('/meetings/{meeting}/participants',[ZoomController::class,'fetchParticipants'])->name('zoom.participants');
+    Route::get('/meetings/{meeting}/grade',[ZoomController::class,'gradeParticipants'])->name('zoom.grade');
     // Route::get('meeting/{meeting}/members',[MeetingController::class, 'members']));
 
 

@@ -121,6 +121,17 @@ onMounted(() => {
                                             </Button>
                                         </Link>
 
+                                         <Link
+                                          :href="route('zoom.grade',meeting.id)"
+                                          >
+                                            <Button
+                                            type="button"
+                                                class="float-left p-3 pi pi-download p-button-success icon-left"
+                                            >
+                                             Grade
+                                            </Button>
+                                        </Link>
+
 
                                     </div>
                                      </div>

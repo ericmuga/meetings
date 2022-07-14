@@ -10,6 +10,7 @@ use App\Models\{Contact, GradingRule, Guest, Meeting, Participant, Score, ZoomMe
 use Carbon\Carbon;
 use Inertia\Inertia;
 use \Tuqqu\GenderDetector\GenderDetector;
+use Illuminate\Support\Facades\DB;
 
 class ZoomController extends Controller
 {
@@ -18,7 +19,87 @@ class ZoomController extends Controller
     public $ed;
 
 
+    public function gradeParticipants(Meeting $meeting)
+    {
+        //this function will insert scores of a participant in the scores table
+      $rule=$meeting->grading_rule();
+      foreach ($meeting->participants() as $participant)
+        {
+            $attendable=ZoomController::getAttendable($participant);
+           //determine the score based on the grading rule.
+           $entries=DB::table('participants')
+                      ->where('email',$participant->email)
+                      ->where('meeting_id',$participant->meeting_id)
+                      ->orderBy('join_time')
+                      ->selectRaw('email,join_time,leave_time')
+                      ->get();
 
+            $loop=0;$time_score=0;$email='';
+            foreach ($entries as $e)
+            {
+                 //check if earliest entry is after rules earliest time
+                 if ($email!=$e->email) $loop=0;
+
+                 if ($loop==0) //meaning first entry
+                 {
+                     if (Carbon::parse($e->join_time)->toTimeString() > Carbon::parse($meeting->rule->start_time)->toTimeString())
+                     {
+                        ZoomController::insertScore(false,0,$meeting,$attendable);
+                        $skip=1;
+                     }
+                     else //meaning time is
+                     {
+                         $time_score+=Carbon::parse($e->join_time)->diffInMinutes($e->leave_time);
+
+                     }
+                 }
+                 else
+                 {
+                     $time_score+=Carbon::parse($e->join_time)->diffInMinutes($e->leave_time);
+
+                 }
+
+
+                 if ($time_score < $rule->min_minutes)
+                 {
+                     ZoomController::insertScore(false,$time_score,$meeting,$attendable);
+                 }
+                else
+                  ZoomController::insertScore(true,$time_score,$meeting,$attendable);
+
+                 $loop++;
+            }
+
+
+
+        }
+
+
+
+
+
+    }
+
+
+    public static function insertScore($score,$time_score,$meeting,$attendable)
+    {
+
+            if(!Score::where('meeting_id',$meeting->id)
+                                    ->where('attendable_type',$attendable['type'])
+                                    ->where('attendable_id',$attendable['id'])
+                                    ->exists()
+                            )
+                            {
+                                Score::create([
+                                                'meeting_id'=>$meeting->id,
+                                                'attendable_type'=>$attendable['type'],
+                                                'attendable_id'=>$attendable['id'],
+                                                'time_score'=>$time_score,
+                                                'present'=>$score,
+                                            ]);
+                            }
+
+    }
 
 
 
@@ -80,22 +161,7 @@ class ZoomController extends Controller
                                          ]);
                  }
 
-                 $attendable=ZoomController::getAttendable($participant);
 
-             if(!Score::where('meeting_id',$meeting->id)
-                          ->where('attendable_type',$attendable['type'])
-                          ->where('attendable_id',$attendable['id'])
-                          ->exists()
-                 )
-                 {
-                      Score::create([
-                                     'meeting_id'=>$meeting->id,
-                                     'attendable_type'=>$attendable['type'],
-                                     'attendable_id'=>$attendable['id'],
-                                     'time_score'=>0,
-                                     'present'=>false,
-                                 ]);
-                 }
 
 
                  if ( !empty($data->next_page_token) ) {
@@ -179,8 +245,8 @@ class ZoomController extends Controller
                                                     'uuid'=>$d->uuid,
                                                     'grading_rule_id'=>$rule->id,
                                                     'club_id'=>1,
-                                                    'official_start_time'=>$d->start_time,
-                                                    'official_end_time'=>$d->end_time,
+                                                    'official_start_time'=>Carbon::parse($d->start_time)->addHours(19),
+                                                    'official_end_time'=>Carbon::parse($d->start_time)->addHours(20),
                                                     'meeting_no'=>$d->id,
                                                     // 'meeting'=>$d->participants
                                                     ]);
