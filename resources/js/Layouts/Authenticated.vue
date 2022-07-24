@@ -30,17 +30,18 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
-                                <BreezeNavLink :href="route('member.index')" :active="route().current('member.index')">
+
+                                <BreezeNavLink v-if="$page.props.auth.type==='Admin'" :href="route('member.index')" :active="route().current('member.index')">
                                     Members
                                 </BreezeNavLink>
 
-                                 <BreezeNavLink :href="route('meeting.index')" :active="route().current('meeting.index')">
+                                 <BreezeNavLink v-if="$page.props.auth.type==='Admin'" :href="route('meeting.index')" :active="route().current('meeting.index')">
                                     Meetings
                                 </BreezeNavLink>
                                  <BreezeNavLink :href="route('report.index')" :active="route().current('report.index')">
                                     Reports
                                 </BreezeNavLink>
-                                 <BreezeNavLink :href="route('admin.index')" :active="route().current('admin.index')">
+                                 <BreezeNavLink v-if="$page.props.auth.type==='Admin'" :href="route('admin.index')" :active="route().current('admin.index')">
                                     Admin
                                 </BreezeNavLink>
                             </div>
@@ -89,18 +90,18 @@ const showingNavigationDropdown = ref(false);
                         <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </BreezeResponsiveNavLink>
-                         <BreezeResponsiveNavLink :href="route('member.index')" :active="route().current('member.index')">
+                         <BreezeResponsiveNavLink v-if="$page.props.auth.type==='Admin'" :href="route('member.index')" :active="route().current('member.index')">
                                     Members
                                 </BreezeResponsiveNavLink>
 
-                        <BreezeResponsiveNavLink :href="route('meeting.index')" :active="route().current('meeting.index')">
+                        <BreezeResponsiveNavLink v-if="$page.props.auth.type==='Admin'" :href="route('meeting.index')" :active="route().current('meeting.index')">
                                     Meetings
                         </BreezeResponsiveNavLink>
 
                          <BreezeResponsiveNavLink :href="route('report.index')" :active="route().current('report.index')">
                                     Reports
                         </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink :href="route('admin.index')" :active="route().current('admin.index')">
+                        <BreezeResponsiveNavLink v-if="$page.props.auth.type==='Admin'" :href="route('admin.index')" :active="route().current('admin.index')">
                                     Admin
                         </BreezeResponsiveNavLink>
                     </div>

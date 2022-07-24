@@ -24,12 +24,13 @@ const drop=()=>Swal.fire({
                                         confirmButtonText: 'Yes, delete it!'
                                         }).then((result) => {
                                             if (result.isConfirmed) {
-                                                                            Inertia.delete(props.dropRoute).onSuccess(
-                                                                                Swal.fire(
-                                                                                'Deleted!',
-                                                                                'Item has been deleted.',
-                                                                                'success'
-                                                                        ))
+                                                                            Inertia.delete(props.dropRoute)
+                                                                            .onSuccess(
+                                                                                            Swal.fire(
+                                                                                            'Deleted!',
+                                                                                            'Item has been deleted.',
+                                                                                            'success'
+                                                                                    ))
                                                             }
                         })
 

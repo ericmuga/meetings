@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ScoreSeeder extends Seeder
+class MakeupRequestSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ScoreSeeder extends Seeder
      */
     public function run()
     {
-        
+        //
     }
 }

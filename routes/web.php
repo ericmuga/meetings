@@ -4,7 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\{AdminController,
-       DashboardController, MemberController,MeetingController,ReportController,ScoreController, SetupController,GradingRuleController, ZoomController};
+                            DashboardController, MemberController,MeetingController,ReportController,ScoreController,
+                            SetupController,GradingRuleController, MakeupRequestController, ZoomController};
 use App\Http\Resources\MemberResource;
 use App\Models\Meeting;
 use App\Models\Member;
@@ -25,6 +26,7 @@ use App\Models\Member;
 Route::get('/',fn()=>redirect(route('login')));
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
+    Route::resource('guest', GuestController::class);
     Route::resource('meeting', MeetingController::class);
 
     Route::delete('grading/{id}',[GradingRuleController::class,'destroy'])->name('grading.destroy');
@@ -42,6 +44,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/meetings/{meeting}/participants',[ZoomController::class,'fetchParticipants'])->name('zoom.participants');
     Route::get('/meetings/{meeting}/grade',[ZoomController::class,'gradeParticipants'])->name('zoom.grade');
     // Route::get('meeting/{meeting}/members',[MeetingController::class, 'members']));
+
+    Route::get('makeups',[MakeupRequestController::class, 'index'])->name('makeups.index');
 
 
     Route::get('/setup', [SetupController::class,'index'])->name('setup.index');

@@ -16,6 +16,19 @@ import Swal from 'sweetalert2'
         form.post(route('members.import'))
    }
 
+
+const form2 = useForm({
+                            name:'',
+                            field:'',
+                            member_no:'',
+                            email:'',
+                             phone:'',
+                             gender:'',
+                            //  club:1,
+                             nationality:''
+
+                            })
+
 const props=defineProps({ members:Object,
                              model:String,
                              search:String,
@@ -40,6 +53,41 @@ const props=defineProps({ members:Object,
             })
         }
 
+const  showForm=({formValues})=>Swal.fire({
+                                                    title: 'Create New Member',
+                                                    html:
+                                                        '<input id="name" type="text"  placeholder="Name*" class="swal2-input">' +
+                                                        '<input id="email" type="email"  placeholder="email*" class="swal2-input" required>' +
+                                                        '<input id="phone" type="text"  placeholder="Phone No.*" class="swal2-input" required>' +
+                                                        '<input id="field" type="text"  placeholder="Field/Occupation" class="swal2-input" required>' +
+                                                        '<input id="nationality" type="text"  placeholder="nationality" class="swal2-input" required>' +
+                                                        '<input id="member_no" type="text"  placeholder="Member No.*" class="swal2-input" required>' +
+                                                        '<select  id="gender" name="" type="text"  placeholder="Gender" class="swal2-input" required>' +
+                                                            '<option  value="f">Female</option>' +
+                                                            '<option  value="m">Male</option>' +
+                                                        '</select>'
+                                                        ,
+                                                   focusConfirm: false,
+                                                    preConfirm: () => {
+                                                                        form2.name=document.getElementById('name').value,
+                                                                        form2.email=document.getElementById('email').value,
+                                                                        form2.phone=document.getElementById('phone').value,
+                                                                        form2.member_no=document.getElementById('member_no').value,
+                                                                        form2.gender=document.getElementById('gender').value,
+                                                                        form2.field=document.getElementById('field').value,
+                                                                        form2.nationality=document.getElementById('nationality').value,
+                                                                           form2.post(route('member.store'),{
+                                                                                        preserveScroll: true,
+                                                                                        onSuccess: () => Swal.fire(
+                                                                                                                'Success!',
+                                                                                                                'Member has been added.',
+                                                                                                                'success')
+
+                                                                             }
+                                                                           )
+                                                                    }
+                                                    })
+
 
 </script>
 
@@ -58,9 +106,9 @@ const props=defineProps({ members:Object,
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                    <Toolbar>
                     <template #start>
-                        <Link :href="route('member.create')">
-                          <Button label="New" icon="pi pi-plus" class="mr-2" />
-                        </Link>
+                        <!-- <Link :href="route('member.create')"> -->
+                          <Button label="New" icon="pi pi-plus" class="mr-2" @click="showForm"/>
+                        <!-- </Link> -->
 
 
                         <Form @submit.prevent="uploadMembers" class="flex flex-row ">

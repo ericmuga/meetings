@@ -149,7 +149,13 @@ onMounted(() => {
                                         </tr>
 
                                             <tr v-for="member in memberStore.members" :key="member.id" class="text-center">
-                                                <td>{{member.name}}</td>
+                                                <td>
+                                                    <Link
+                                                      :href="route('member.show',member.id)"
+                                                     >
+                                                    {{member.name}}
+                                                    </Link>
+                                                    </td>
                                                 <td>
 
                                                 <form @submit.prevent="save()">
