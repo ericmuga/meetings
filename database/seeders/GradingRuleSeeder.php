@@ -24,6 +24,14 @@ class GradingRuleSeeder extends Seeder
                     'meeting_type'=>'zoom'
                   ]);
 
+        DB::table('grading_rules')
+        ->insert(['name'=>'physical',
+                'min_minutes'=>0,
+                'min_members'=>0,
+                'start_time'=>Carbon::parse('19:00'),
+                'meeting_type'=>'physical'
+                ]);
+
     }
 
 
