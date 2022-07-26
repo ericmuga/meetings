@@ -13,7 +13,7 @@ class StoreGuestRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return request()->user()->user_type->name=='Admin'??false;
     }
 
     /**
@@ -24,7 +24,12 @@ class StoreGuestRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'email'=>'required|unique:contacts,contact',
+            'phone'=>'unique:contacts,contact',
+            'gender'=>'in:m,f',
+            'type'=>'in:Rotarian,Rotaractor,None'
+
         ];
     }
 }

@@ -36,13 +36,15 @@ class StoreMeetingRequest extends FormRequest
      */
     public function rules()
     {
+
+
         return [
                   'date'=>'required',
                   'venue'=>'required',
                   'topic'=>'required',
                   'official_start_time'=>'required',
                   'official_end_time'=>'required',
-
+                  'grading_rule_id'=>'required'
 
                ];
     }

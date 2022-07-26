@@ -87,7 +87,7 @@ class MeetingController extends Controller
                 //  'members_count'=>$meeting->members()->count(),
                  'members'=>$meeting->members()->get()->pluck('id')->toArray(),
                 //  'guests_count'=>$meeting->guests()->count(),
-                 'guests'=>$meeting->guests()->get(),
+                 'guests'=>$meeting->guests()->get()->pluck('id')->toArray(),
 
                  'MemberList'=>Member::orderBy('name')->get(),
                  'GuestList'=>Guest::all('id','name')

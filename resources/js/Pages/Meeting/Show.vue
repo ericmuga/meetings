@@ -26,6 +26,7 @@ const memberStore=useMemberStore()
 
 const form=useForm({
                         attended:props.meeting.members,
+                        guestsAttended:props.meeting.guests,
                         meeting:props.meeting.id
                     })
 
@@ -43,6 +44,7 @@ const form=useForm({
 
 onMounted(() => {
    memberStore.fetchMembers()
+   memberStore.fetchGuests()
 })
 
 // const filter=(obj,predicate)=>{_.filter(obj,predicate)}
@@ -96,6 +98,14 @@ onMounted(() => {
                           <div class="w-full tracking-wide text-center text-white uppercase bg-teal-500 rounded-lg">
                               meeting Stats
                           </div>
+                            <div class="flex flex-col w-full">
+                                <div class="justify-end">
+                                   <Button type="submit" v-if="meeting.type!='zoom'" class="p-3 pi pi-check icon-left p-button-raised p-button-success" @click="save()" label="Save"/>
+
+                                </div>
+
+                            </div>
+
 
                           <div class="w-full">
                         <TabView>
@@ -108,7 +118,6 @@ onMounted(() => {
 
 
 
-                                   <Button type="submit" v-if="meeting.type!='zoom'" class="p-3 pi pi-check primary icon-left" @click="save()" >Save</Button>
                                    <div v-if="meeting.type=='zoom'">
                                         <Link
                                           :href="route('zoom.participants',meeting.id)"
@@ -135,16 +144,11 @@ onMounted(() => {
 
                                     </div>
                                      </div>
-                                    <br>
-                                    <hr >
                                    <div class="p-5 col-12 md:col-4">
-                                    <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
+                                     <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
                                     <Table>
-                                        <!-- <td>{{meeting}}</td> -->
-
                                         <tr class="text-center">
                                             <th>Name</th>
-                                            <!-- <th>Time Score</th> -->
                                             <th>Present</th>
                                         </tr>
 
@@ -153,30 +157,25 @@ onMounted(() => {
                                                     <Link
                                                       :href="route('member.show',member.id)"
                                                      >
-                                                    {{member.name}}
+                                                        {{member.name}}
                                                     </Link>
-                                                    </td>
+                                                </td>
                                                 <td>
 
                                                 <form @submit.prevent="save()">
                                                     <div class="field-checkbox">
                                                         <Checkbox id="binary" v-model="form.attended" :value="member.id"  :disabled="meeting.type=='zoom'" />
-                                                        <!-- <input @keydown="save()" /> -->
                                                     </div>
                                                 </form>
                                                 </td>
-                                                <!-- <td>{{member.score.time_score}}</td> -->
-                                                <!-- <td>{{member.score.present==1?'Yes':'No'}}</td> -->
+
                                             </tr>
-                                            <!-- <InputText type="submit" label="Save" /> -->
+
 
                                     </Table>
                                        </ScrollPanel>
                                          </div>
-                                           <!-- <Button type="submit" class="float-right p-3 m-5 pi pi-check primary icon-left" @click="save()" >Save</Button> -->
 
-                                          <!-- only call `vm.submit()` when the `key` is `Enter` -->
-                                            <!-- <input @keyup.enter="save()" /> -->
                                     <div>
 
                                     </div>
@@ -192,16 +191,30 @@ onMounted(() => {
                                           <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
 
                                         <Table>
-                                            <tr>
-                                                <th>guest Name</th>
-                                                <th>Time Score</th>
+                                            <tr class="text-center">
+                                                <th>Name</th>
+                                                <!-- <th>Time Score</th> -->
                                                 <th>Present</th>
                                             </tr>
-                                            <tr v-for="guest in meeting.guests" :key="guest.id">
-                                                <td>{{guest.name}}</td>
-                                                <td>{{guest.score.time_score}}</td>
-                                                <td>{{guest.score.present==1?'Yes':'No'}}</td>
-                                            </tr>
+
+                                                <tr v-for="guest in memberStore.guests" :key="guest.id" class="text-center">
+                                                    <td>
+                                                        <Link
+                                                        :href="route('guest.show',guest.id)"
+                                                        >
+                                                            {{guest.name}}
+                                                        </Link>
+                                                    </td>
+                                                    <td>
+
+                                                    <form @submit.prevent="save()">
+                                                        <div class="field-checkbox">
+                                                            <Checkbox id="binary" v-model="form.guestsAttended" :value="guest.id"  :disabled="meeting.type=='zoom'" />
+                                                        </div>
+                                                    </form>
+                                                    </td>
+
+                                                </tr>
                                         </Table>
                                           </ScrollPanel>
                                     </div>

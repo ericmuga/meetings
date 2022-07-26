@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guest;
+use App\Models\{Guest,Contact};
 use App\Http\Requests\StoreGuestRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateGuestRequest;
+use App\MyPaginator;
+use App\Http\Resources\GuestResource;
 
 class GuestController extends Controller
 {
@@ -13,9 +16,39 @@ class GuestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function list(Request $request )
     {
-        //
+
+
+      return [
+              'search'=>$request->input('search')?:null,
+              'burl'=>base_path(),
+              'guests'=>MyPaginator::paginate(GuestResource::collection(Guest::query()
+                                                                                ->when($request->input('search'),
+                                                                                        fn($query,$search)=>($query->where('name','like','%'.$search.'%')
+                                                                                                                   ->orWhere('field','like','%'.$search.'%')
+                                                                                                                   ->orWhereHas('contacts',fn($q)=>$q->where('contact','like','%'.$search.'%'))
+
+                                                                                                            )
+                                                                                       )
+                                                                                      ->orderBy('name')
+                                                                                      ->get()
+                                                                              ),$request->input('perPage')?:16,null,['path'=>url()->full()]
+                                                                              )->withQueryString()
+
+
+              ];
+
+
+
+    }
+
+
+     public function index(Request $request)
+    {
+       //show the list of all the guests
+       return inertia('Guest/Index',$this->list($request));
     }
 
     /**
@@ -37,6 +70,29 @@ class GuestController extends Controller
     public function store(StoreGuestRequest $request)
     {
         //
+       $Guest=Guest::create($request->only(['name','gender','field','type','nationality']));
+      //attach contacts
+
+       Contact::create([
+                          'contact'=>$request->email,
+                          'contact_type'=>'email',
+                          'contactable_type'=>'App\Models\Guest',
+                          'contactable_id'=>$Guest->id,
+                          'default'=>true
+
+                 ]);
+       if ($request->has('phone'))
+       {
+           Contact::create([
+                          'contact'=>$request->phone,
+                          'contact_type'=>'phone',
+                          'contactable_type'=>'App\Models\Guest',
+                          'contactable_id'=>$Guest->id,
+                          'default'=>true
+
+                         ]);
+       }
+        return redirect(Route('guest.index'));
     }
 
     /**
@@ -81,6 +137,11 @@ class GuestController extends Controller
      */
     public function destroy(Guest $guest)
     {
-        //
+        $guest->contacts()->delete();
+        $guest->scores()->delete();
+
+        $guest->delete();
+
+        return back();
     }
 }

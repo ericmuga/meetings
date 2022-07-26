@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nationality')->nullable();
             $table->string('gender')->default('m')->nullable();
             $table->string('field')->nullable();
+            $table->string('type')->default('none')->nullable();
             $table->timestamps();
         });
     }

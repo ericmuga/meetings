@@ -29,6 +29,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
                             type:'',
                             host:'',
                             uuid:'',
+                            gradable:true,
                              grading_rule_id:'',
                              club_id:1,
                              official_start_time:'',
@@ -72,7 +73,7 @@ const props=defineProps({
 </script>
 
 <template>
-    <Head title="Members" />
+    <Head title="Create Meeting" />
     <BreezeAuthenticatedLayout>
      <div class="py-6">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -217,16 +218,24 @@ const props=defineProps({
                                                 placeholder="Club"
                                                 />
 
-                                    </div>
+                                     </div>
+
+
                                      <div class="col-span-2 sm:col-span-1">
                                        <Textarea v-model="form.detail" :autoResize="true" rows="5" cols="30" placeholder="Detail"  />
                                      </div>
 
 
-<br>
 
 
                                 <div class="col-span-2 sm:col-span-1 bg-gray-50">
+
+                                   <div class="field-checkbox">
+                                        <Checkbox id="binary" v-model="form.gradable" :binary="true" />
+                                        <label for="binary">Gradable</label>
+                                    </div>
+                                      </div>
+                                      <div class="col-span-2 sm:col-span-1 bg-gray-50">
                                  <button type="submit" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
                                 </div>
 

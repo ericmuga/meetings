@@ -31,9 +31,7 @@ class GradingRuleFactory extends Factory
                 'min_minutes'=>$this->faker->numberBetween(30,90),
                 'min_members'=>$this->faker->numberBetween(10,90),
                 'start_time'=>$this->faker->time(),
-                'meeting_type'=>$this->faker->randomElement(['physical','makeup','guest_makeup']),
-
-
-        ];
+                'meeting_type'=>$this->faker->randomElement(['physical','makeup']),
+                 ];
     }
 }

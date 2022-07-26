@@ -4,9 +4,18 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\{AdminController,
-                            DashboardController, MemberController,MeetingController,ReportController,ScoreController,
-                            SetupController,GradingRuleController, MakeupRequestController, ZoomController};
+                          DashboardController,
+                          MemberController,
+                          MeetingController,
+                          ReportController,
+                          ScoreController,
+                          SetupController,
+                          GradingRuleController,
+                          MakeupRequestController,
+                          ZoomController,
+                         GuestController};
 use App\Http\Resources\MemberResource;
+use App\Models\Guest;
 use App\Models\Meeting;
 use App\Models\Member;
 
@@ -38,7 +47,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/report/{id}',[ReportController::class,'show'])->name('report.show');
     Route::post('members/import',[MemberController::class,'upload'])->name('members.import');
     Route::get('members/download',[MemberController::class,'download'])->name('members.download');
+
+    //all API functions
     Route::get('members/all',fn()=>Member::all('id','name'));
+    Route::get('guests/all',fn()=>Guest::all('id','name'));
+
+
     Route::post('meeting/scores',[MeetingController::class,'scores'])->name('meeting.scores');
     Route::post('zoom/meetings',[ZoomController::class,'getMeetings'])->name('zoom.meetings');
     Route::get('/meetings/{meeting}/participants',[ZoomController::class,'fetchParticipants'])->name('zoom.participants');

@@ -17,6 +17,12 @@ use App\Models\Contact;
     {
         return $this->morphMany(Contact::class,'contactable');
     }
+
+
+     public function scores()
+    {
+        return $this->morphMany(Score::class,'attendable');
+    }
   }
 
 ?>
