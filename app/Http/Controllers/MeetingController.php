@@ -26,6 +26,7 @@ class MeetingController extends Controller
 
       return [
               'search'=>$request->input('search')?:null,
+              'types'=>['zoom','physical','makeup'],
               'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::where('gradable',true)
                                                                                    ->orderBy('date','desc')
                                                                                    ->get()

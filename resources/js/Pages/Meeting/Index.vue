@@ -4,14 +4,17 @@ import MeetingCard from '@/Components/MeetingCard.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
+import SearchBox from '@/Components/SearchBox.vue';
 
  import gsap from 'gsap';
 import Swal from 'sweetalert2'
+import { onMounted } from '@vue/runtime-core';
 
 const form=useForm({
                     Start:'',
-                    end:''
-})
+                    end:'',
+                    types:props.types
+                  })
 
 
 
@@ -36,10 +39,18 @@ const  showForm=({formValues})=>Swal.fire({
 
 const props=defineProps({ meetings:Object,
                              search:String,
-
+                             types:Array,
 
 
                             })
+
+const meeting_types=[
+                        {name: 'zoom', code: 'zoom'},
+                        {name: 'physical', code: 'physical'},
+                        {name: 'makeup', code: 'makeup'},
+
+                    ]
+
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
@@ -79,12 +90,19 @@ const props=defineProps({ meetings:Object,
 
                     <template #end>
                         <span class="p-input-icon-left">
-                            <i class="pi pi-search" />
-                            <InputText type="text" v-model="value3" placeholder="Search" />
+                            <div class="flex flex-row gap-2">
+                                <MultiSelect v-model="form.types" :options="meeting_types" optionLabel="name" class="flex justify-right" placeholder="Meeting Types"
+
+                                />
+
+                                    <SearchBox class="flex justify-left" :model="`meeting.index`" />
+                            </div>
+
+
                         </span>
-                        <!-- <Button icon="pi pi-search" class="mr-2" /> -->
+                        <!-- <Button icon="pi pi-search" class="mr-2" />
                         <Button icon="pi pi-calendar" class="mr-2 p-button-success" />
-                        <Button icon="pi pi-times" class="p-button-danger" />
+                        <Button icon="pi pi-times" class="p-button-danger" /> -->
                     </template>
                 </Toolbar>
 

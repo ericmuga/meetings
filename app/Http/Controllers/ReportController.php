@@ -19,7 +19,7 @@ class ReportController extends Controller
                                     ['name'=>'zoom meetings', 'id'=>5],
                                     ['name'=>'member attendance', 'id'=>6],
                                     ['name'=>'guest attendance', 'id'=>7],
-                                    ['name'=>'qr codes', 'id'=>8],
+                                    // ['name'=>'qr codes', 'id'=>8],
                              ];
 
                   if (!$id) return $reportList;

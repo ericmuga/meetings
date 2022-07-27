@@ -23938,9 +23938,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/MeetingCard.vue */ "./resources/js/Components/MeetingCard.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var primevue_toolbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/toolbar */ "./node_modules/primevue/toolbar/toolbar.esm.js");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Components_SearchBox_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/SearchBox.vue */ "./resources/js/Components/SearchBox.vue");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
+
+
 
 
 
@@ -23952,7 +23956,8 @@ __webpack_require__.r(__webpack_exports__);
   __name: 'Index',
   props: {
     meetings: Object,
-    search: String
+    search: String,
+    types: Array
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -23960,12 +23965,13 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
       Start: '',
-      end: ''
+      end: '',
+      types: props.types
     });
 
     var showForm = function showForm(_ref2) {
       var formValues = _ref2.formValues;
-      return sweetalert2__WEBPACK_IMPORTED_MODULE_4___default().fire({
+      return sweetalert2__WEBPACK_IMPORTED_MODULE_5___default().fire({
         title: 'Select date range',
         html: '<input id="swal-input1" type="date"  placeholder="From" class="swal2-input">' + '<input id="swal-input2" type="date" placeholder="To"  class="swal2-input">',
         focusConfirm: false,
@@ -23981,6 +23987,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
+    var meeting_types = [{
+      name: 'zoom',
+      code: 'zoom'
+    }, {
+      name: 'physical',
+      code: 'physical'
+    }, {
+      name: 'makeup',
+      code: 'makeup'
+    }];
+
     var beforeEnter = function beforeEnter(el) {
       //    console.log('set the initial state')
       el.style.opacity = 0;
@@ -23989,7 +24006,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var enter = function enter(el) {
       // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(el, {
+      gsap__WEBPACK_IMPORTED_MODULE_6__["default"].to(el, {
         opacity: 1,
         x: 0,
         duration: 0.8 // onComplete:done
@@ -24001,6 +24018,7 @@ __webpack_require__.r(__webpack_exports__);
       form: form,
       showForm: showForm,
       props: props,
+      meeting_types: meeting_types,
       beforeEnter: beforeEnter,
       enter: enter,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -24008,8 +24026,10 @@ __webpack_require__.r(__webpack_exports__);
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head,
       Toolbar: primevue_toolbar__WEBPACK_IMPORTED_MODULE_3__["default"],
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm,
-      gsap: gsap__WEBPACK_IMPORTED_MODULE_5__["default"],
-      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_4___default())
+      SearchBox: _Components_SearchBox_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+      gsap: gsap__WEBPACK_IMPORTED_MODULE_6__["default"],
+      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()),
+      onMounted: _vue_runtime_core__WEBPACK_IMPORTED_MODULE_7__.onMounted
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -28649,13 +28669,9 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "p-input-icon-left"
 };
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "pi pi-search"
-}, null, -1
-/* HOISTED */
-);
-
+var _hoisted_5 = {
+  "class": "flex flex-row gap-2"
+};
 var _hoisted_6 = {
   "class": "w-full text-center"
 };
@@ -28684,7 +28700,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
-  var _component_InputText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputText");
+  var _component_MultiSelect = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("MultiSelect");
 
   var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
 
@@ -28717,22 +28733,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <i class=\"mr-2 pi pi-bars p-toolbar-separator\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <SplitButton label=\"Save\" icon=\"pi pi-check\" :model=\"items\" class=\"p-button-warning\"></SplitButton> ")];
         }),
         end: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
-            type: "text",
-            modelValue: _ctx.value3,
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MultiSelect, {
+            modelValue: $setup.form.types,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-              return _ctx.value3 = $event;
+              return $setup.form.types = $event;
             }),
-            placeholder: "Search"
+            options: $setup.meeting_types,
+            optionLabel: "name",
+            "class": "flex justify-right",
+            placeholder: "Meeting Types"
           }, null, 8
           /* PROPS */
-          , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Button icon=\"pi pi-search\" class=\"mr-2\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-            icon: "pi pi-calendar",
-            "class": "mr-2 p-button-success"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-            icon: "pi pi-times",
-            "class": "p-button-danger"
-          })];
+          , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchBox"], {
+            "class": "flex justify-left",
+            model: "meeting.index"
+          }, null, 8
+          /* PROPS */
+          , ["model"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Button icon=\"pi pi-search\" class=\"mr-2\" />\n                        <Button icon=\"pi pi-calendar\" class=\"mr-2 p-button-success\" />\n                        <Button icon=\"pi pi-times\" class=\"p-button-danger\" /> ")];
         }),
         _: 1
         /* STABLE */
