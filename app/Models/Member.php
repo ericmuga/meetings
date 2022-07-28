@@ -27,4 +27,10 @@ class Member extends Model
         return $this->morphMany(Score::class,'attendable');
     }
 
+    public function makeuprequests()
+    {
+
+        return $this->hasMany(MakeupRequest::class);
+    }
+
 }

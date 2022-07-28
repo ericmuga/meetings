@@ -59,7 +59,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/meetings/{meeting}/grade',[ZoomController::class,'gradeParticipants'])->name('zoom.grade');
     // Route::get('meeting/{meeting}/members',[MeetingController::class, 'members']));
 
-    Route::get('makeups',[MakeupRequestController::class, 'index'])->name('makeups.index');
+    Route::get('makeups',[MakeupRequestController::class, 'index'])->name('makeup.index');
 
 
     Route::get('/setup', [SetupController::class,'index'])->name('setup.index');

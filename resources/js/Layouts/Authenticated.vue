@@ -38,6 +38,10 @@ const showingNavigationDropdown = ref(false);
                                  <BreezeNavLink v-if="$page.props.auth.type==='Admin'" :href="route('meeting.index')" :active="route().current('meeting.index')">
                                     Meetings
                                 </BreezeNavLink>
+
+                                 <BreezeNavLink v-if="$page.props.auth.type==='Admin'" :href="route('makeup.index')" :active="route().current('makeup.index')">
+                                    Makeups
+                                </BreezeNavLink>
                                  <BreezeNavLink :href="route('report.index')" :active="route().current('report.index')">
                                     Reports
                                 </BreezeNavLink>
@@ -96,6 +100,10 @@ const showingNavigationDropdown = ref(false);
 
                         <BreezeResponsiveNavLink v-if="$page.props.auth.type==='Admin'" :href="route('meeting.index')" :active="route().current('meeting.index')">
                                     Meetings
+                        </BreezeResponsiveNavLink>
+
+                         <BreezeResponsiveNavLink v-if="$page.props.auth.type==='Admin'" :href="route('makeup.index')" :active="route().current('makeup.index')">
+                                    Makeups
                         </BreezeResponsiveNavLink>
 
                          <BreezeResponsiveNavLink :href="route('report.index')" :active="route().current('report.index')">

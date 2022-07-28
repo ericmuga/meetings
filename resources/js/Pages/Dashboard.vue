@@ -116,6 +116,20 @@ const beforeEnter=(el)=>{
                                                 </Link>
                                          </div>
 
+                                          <div class="px-6 pt-4 pb-2 text-center">
+                                                <Link :href="route('makeup.index')">
+                                                  <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg">
+                                                    <img class="w-full max-h-48" src="/images/makeup.png" alt="admin Gravatar" >
+                                                    <div class="flex justify-center px-6 py-4">
+                                                        <div class="mb-2 text-xl font-bold ">Admin</div>
+                                                    </div>
+                                                    <p class="text-base text-center text-gray-700">
+                                                            <!-- {{admins}} -->
+                                                    </p>
+                                                 </div>
+                                                </Link>
+                                         </div>
+
                                     </div>
                              </transition>
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\MyPaginator;
 use App\Models\MakeupRequest;
 use App\Http\Requests\StoreMakeupRequestRequest;
 use App\Http\Requests\UpdateMakeupRequestRequest;
+use Illuminate\Http\Request;
+use App\Http\Resources\MakeupRequestResource;
 
 class MakeupRequestController extends Controller
 {
@@ -12,11 +15,47 @@ class MakeupRequestController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     *
      */
-    public function index()
+
+    public function list(Request $request )
     {
-        //
-        return inertia('Makeup/Index');
+
+
+      return [
+              'search'=>$request->input('search')?:null,
+              'model'=>'makeup',
+              'burl'=>base_path(),
+
+              'makeups'=>MyPaginator::paginate(MakeupRequestResource::collection(MakeupRequest::query()
+                                                                                ->when($request->input('search'),
+                                                                                        fn($query,$search)=>($query->where('makeup_date','like','%'.$search.'%')
+                                                                                                                //    ->orWhere('MakeupRequest_no','like','%'.$search.'%')
+                                                                                                                //    ->orWhere('field','like','%'.$search.'%')
+                                                                                                                //    ->orWhereHas('contacts',fn($q)=>$q->where('contact','like','%'.$search.'%'))
+
+                                                                                                            )
+                                                                                       )
+                                                                                      ->orderBy('makeup_date')
+                                                                                      ->get()
+                                                                              ),$request->input('perPage')?:16,null,['path'=>url()->full()]
+                                                                              )->withQueryString()
+
+
+              ];
+
+
+
+    }
+
+    public function index(Request $request)
+    {
+
+
+
+
+        return inertia('Makeup/Index', $this->list($request));
     }
 
     /**
