@@ -117,7 +117,7 @@ const requests={}
                         <TabView>
 
 
-                            <TabPanel header="Members" >
+                            <TabPanel header="Members" v-if="meeting.type!='makeup'" >
                                 <div v-if="meeting.length==0">No Members were found for this meeting</div>
                                 <div v-else>
                                    <div class="flex flex-row justify-right">
@@ -225,9 +225,7 @@ const requests={}
                                           </ScrollPanel>
                                     </div>
                             </TabPanel>
-                            <TabPanel header="Reports">
-                                Reports
-                            </TabPanel>
+
                             <TabPanel header="Requests" v-if="meeting.type=='makeup'">
 
                                       <div class="relative overflow-x-auto shadow-md sm:rounded-lg" v-if="meeting.requests.data.length>0">
@@ -243,11 +241,9 @@ const requests={}
                                                         <th scope="col" class="px-6 py-3">
                                                             Requested By
                                                         </th>
+
                                                         <th scope="col" class="px-6 py-3">
-                                                            Approver
-                                                        </th>
-                                                        <th scope="col" class="px-6 py-3">
-                                                            Approval Date
+                                                            Approve
                                                         </th>
                                                         <th scope="col" class="px-6 py-3">
                                                             Action
@@ -270,13 +266,11 @@ const requests={}
                                                         </td>
 
                                                         <td class="px-6 py-4">
-                                                            {{request.approver}}
+                                                            <Checkbox id="binary" v-model="checked" :binary="true" />
                                                         </td>
+
                                                         <td class="px-6 py-4">
-                                                            {{request.approval_date}}
-                                                        </td>
-                                                        <td class="px-6 py-4">
-                                                            <Link :href="route('makeup.edit',request.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                            <Link :href="route('makeup.edit',request.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</Link>
                                                         </td>
                                                     </tr>
 
@@ -285,6 +279,9 @@ const requests={}
                                         </div>
 
 
+                            </TabPanel>
+                            <TabPanel header="Reports">
+                                Reports
                             </TabPanel>
                         </TabView>
 

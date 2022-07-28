@@ -94,7 +94,7 @@ class MeetingController extends Controller
 
                  'MemberList'=>Member::orderBy('name')->get(),
                  'GuestList'=>Guest::all('id','name'),
-                 'requests'=>MakeupRequestResource::collection(MakeupRequest::all()),
+                 'requests'=>MakeupRequestResource::collection(MakeupRequest::whereNull('approver')->get()),
                ];
     }
 
