@@ -8,25 +8,13 @@ import Swal from 'sweetalert2'
  import gsap from 'gsap';
 
  import SearchBox from '@/Components/SearchBox.vue'
-  const form = useForm({
-                            makeup_list: null,
-                            })
-
-   const uploadmakeups=()=>{
-        form.post(route('makeups.import'))
-   }
 
 
 const form2 = useForm({
-                            name:'',
-                            field:'',
-                            makeup_no:'',
-                            email:'',
-                             phone:'',
-                             gender:'',
-                            //  club:1,
-                             nationality:''
-
+                            date:'',
+                            description:'',
+                            detail:'',
+                            category:'',
                             })
 
 const props=defineProps({ makeups:Object,
@@ -37,50 +25,31 @@ const props=defineProps({ makeups:Object,
 
                             })
 
- const beforeEnter=(el)=>{
-            //    console.log('set the initial state')
-             el.style.opacity=0;
-             el.style.transform='translateX(-40px)'
-        }
 
-        const enter =(el)=>{
-            // console.log('starting to enter into the dom')
-                gsap.to(el,{
-                    opacity:1,
-                    x:0,
-                    duration:0.8,
-                            // onComplete:done
-            })
-        }
 
 const  showForm=({formValues})=>Swal.fire({
                                                     title: 'Create New makeup',
                                                     html:
-                                                        '<input id="name" type="text"  placeholder="Name*" class="swal2-input">' +
-                                                        '<input id="email" type="email"  placeholder="email*" class="swal2-input" required>' +
-                                                        '<input id="phone" type="text"  placeholder="Phone No.*" class="swal2-input" required>' +
-                                                        '<input id="field" type="text"  placeholder="Field/Occupation" class="swal2-input" required>' +
-                                                        '<input id="nationality" type="text"  placeholder="nationality" class="swal2-input" required>' +
-                                                        '<input id="makeup_no" type="text"  placeholder="makeup No.*" class="swal2-input" required>' +
-                                                        '<select  id="gender" name="" type="text"  placeholder="Gender" class="swal2-input" required>' +
-                                                            '<option  value="f">Female</option>' +
-                                                            '<option  value="m">Male</option>' +
+                                                        '<input id="date" type="date"  placeholder="Date*" class="swal2-input">' +
+                                                        '<input id="description" type="text"  placeholder="Description*" class="swal2-input" required>' +
+                                                        '<textarea id="detail" rows="50" cols="20" class="swal2-input" placeholder="Details ..*"></textarea>' +
+                                                        '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' +
+                                                            '<option  value="meeting">Meeting</option>' +
+                                                            '<option  value="other">Other</option>' +
                                                         '</select>'
                                                         ,
                                                    focusConfirm: false,
                                                     preConfirm: () => {
-                                                                        form2.name=document.getElementById('name').value,
-                                                                        form2.email=document.getElementById('email').value,
-                                                                        form2.phone=document.getElementById('phone').value,
-                                                                        form2.makeup_no=document.getElementById('makeup_no').value,
-                                                                        form2.gender=document.getElementById('gender').value,
-                                                                        form2.field=document.getElementById('field').value,
-                                                                        form2.nationality=document.getElementById('nationality').value,
+                                                                        form2.date=document.getElementById('date').value,
+                                                                        form2.description=document.getElementById('description').value,
+                                                                        form2.detail=document.getElementById('detail').value,
+                                                                        form2.category=document.getElementById('category').value,
+
                                                                            form2.post(route('makeup.store'),{
                                                                                         preserveScroll: true,
                                                                                         onSuccess: () => Swal.fire(
                                                                                                                 'Success!',
-                                                                                                                'makeup has been added.',
+                                                                                                                'Makeup request has been added.',
                                                                                                                 'success')
 
                                                                              }
@@ -136,20 +105,79 @@ const  showForm=({formValues})=>Swal.fire({
                                 <Pagination :links=makeups.links :prefix=model />
                             </div>
 
-                        </div>
-                    <div class="grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4">
+                             </div>
+                    <!-- <div class="grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4"> -->
 
-                             <div class="col-span-1" v-for="makeup in makeups.data" :key="makeup.id">
                                 <transition
                                         appear
                                          @before-enter="beforeEnter"
                                         @enter="enter"
+
                                     >
+
+                                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg" v-if="makeups.data.length>0">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                    <tr>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Date
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Description
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Requested By
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Approver
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Approval Date
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                                                        v-for="makeup in makeups.data" :key=makeup.id
+                                                      >
+                                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            {{makeup.makeup_date}}
+                                                        </th>
+                                                        <td class="px-6 py-4">
+                                                            {{makeup.description}}
+                                                        </td>
+
+                                                        <td class="px-6 py-4">
+                                                            {{makeup.member}}
+                                                        </td>
+
+                                                        <td class="px-6 py-4">
+                                                            {{makeup.approver}}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                            {{makeup.approval_date}}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                            <Link :href="route('makeup.edit',makeup.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    <!-- <div class="col-span-1" v-for="makeup in makeups.data" :key="makeup.id">
+
                                         {{makeup}}
-                                        <!-- <makeupCard :makeup=makeup /> -->
+                                   </div> -->
+
+
                                 </transition>
-                            </div>
-</div>
+
+                     <!-- </div> -->
 
                         <div class="w-full text-center">
                             <div v-if="makeups.data.length===0">

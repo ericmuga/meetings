@@ -31,9 +31,6 @@ class MakeupRequestController extends Controller
               'makeups'=>MyPaginator::paginate(MakeupRequestResource::collection(MakeupRequest::query()
                                                                                 ->when($request->input('search'),
                                                                                         fn($query,$search)=>($query->where('makeup_date','like','%'.$search.'%')
-                                                                                                                //    ->orWhere('MakeupRequest_no','like','%'.$search.'%')
-                                                                                                                //    ->orWhere('field','like','%'.$search.'%')
-                                                                                                                //    ->orWhereHas('contacts',fn($q)=>$q->where('contact','like','%'.$search.'%'))
 
                                                                                                             )
                                                                                        )
@@ -52,17 +49,10 @@ class MakeupRequestController extends Controller
     public function index(Request $request)
     {
 
-
-
-
         return inertia('Makeup/Index', $this->list($request));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
@@ -76,7 +66,16 @@ class MakeupRequestController extends Controller
      */
     public function store(StoreMakeupRequestRequest $request)
     {
-        //
+        MakeupRequest::create([
+            'description'=>$request->description,
+            'makeup_date'=>$request->date,
+            'details'=>$request->detail,
+            'category'=>$request->category,
+            'member_id'=>$request->user()->authenticatable_id,
+
+     ]);
+
+      return redirect(Route('makeup.index'));
     }
 
     /**

@@ -14,6 +14,19 @@ class MakeupRequestResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+                   'id'=>$this->id,
+                   'makeup_date'=>$this->makeup_date,
+                   'description'=>$this->description,
+                   'details'=>$this->details,
+                   'category'=>$this->category,
+                   'member'=>$this->member->name,
+                   'approver'=>$this->approver,
+                   'approval_date'=>$this->approval_date,
+
+
+
+
+        ];
     }
 }

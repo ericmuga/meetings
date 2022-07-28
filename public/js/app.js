@@ -23841,52 +23841,24 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-      makeup_list: null
-    });
-
-    var uploadmakeups = function uploadmakeups() {
-      form.post(route('makeups.import'));
-    };
-
     var form2 = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-      name: '',
-      field: '',
-      makeup_no: '',
-      email: '',
-      phone: '',
-      gender: '',
-      //  club:1,
-      nationality: ''
+      date: '',
+      description: '',
+      detail: '',
+      category: ''
     });
-
-    var beforeEnter = function beforeEnter(el) {
-      //    console.log('set the initial state')
-      el.style.opacity = 0;
-      el.style.transform = 'translateX(-40px)';
-    };
-
-    var enter = function enter(el) {
-      // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(el, {
-        opacity: 1,
-        x: 0,
-        duration: 0.8 // onComplete:done
-
-      });
-    };
 
     var showForm = function showForm(_ref2) {
       var formValues = _ref2.formValues;
       return sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
         title: 'Create New makeup',
-        html: '<input id="name" type="text"  placeholder="Name*" class="swal2-input">' + '<input id="email" type="email"  placeholder="email*" class="swal2-input" required>' + '<input id="phone" type="text"  placeholder="Phone No.*" class="swal2-input" required>' + '<input id="field" type="text"  placeholder="Field/Occupation" class="swal2-input" required>' + '<input id="nationality" type="text"  placeholder="nationality" class="swal2-input" required>' + '<input id="makeup_no" type="text"  placeholder="makeup No.*" class="swal2-input" required>' + '<select  id="gender" name="" type="text"  placeholder="Gender" class="swal2-input" required>' + '<option  value="f">Female</option>' + '<option  value="m">Male</option>' + '</select>',
+        html: '<input id="date" type="date"  placeholder="Date*" class="swal2-input">' + '<input id="description" type="text"  placeholder="Description*" class="swal2-input" required>' + '<textarea id="detail" rows="50" cols="20" class="swal2-input" placeholder="Details ..*"></textarea>' + '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' + '<option  value="meeting">Meeting</option>' + '<option  value="other">Other</option>' + '</select>',
         focusConfirm: false,
         preConfirm: function preConfirm() {
-          form2.name = document.getElementById('name').value, form2.email = document.getElementById('email').value, form2.phone = document.getElementById('phone').value, form2.makeup_no = document.getElementById('makeup_no').value, form2.gender = document.getElementById('gender').value, form2.field = document.getElementById('field').value, form2.nationality = document.getElementById('nationality').value, form2.post(route('makeup.store'), {
+          form2.date = document.getElementById('date').value, form2.description = document.getElementById('description').value, form2.detail = document.getElementById('detail').value, form2.category = document.getElementById('category').value, form2.post(route('makeup.store'), {
             preserveScroll: true,
             onSuccess: function onSuccess() {
-              return sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire('Success!', 'makeup has been added.', 'success');
+              return sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire('Success!', 'Makeup request has been added.', 'success');
             }
           });
         }
@@ -23894,12 +23866,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var __returned__ = {
-      form: form,
-      uploadmakeups: uploadmakeups,
       form2: form2,
       props: props,
-      beforeEnter: beforeEnter,
-      enter: enter,
       showForm: showForm,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
@@ -25830,7 +25798,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Meetings ");
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Makeups ");
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Makeup Requests ");
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
 
@@ -25884,7 +25852,7 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Meetings ");
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Makeups ");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Makeup Requests ");
 
 var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
 
@@ -28500,21 +28468,74 @@ var _hoisted_8 = {
   key: 1
 };
 var _hoisted_9 = {
-  "class": "grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4"
+  key: 0,
+  "class": "relative overflow-x-auto shadow-md sm:rounded-lg"
 };
 var _hoisted_10 = {
+  "class": "w-full text-sm text-left text-gray-500 dark:text-gray-400"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-6 py-3"
+}, " Date "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-6 py-3"
+}, " Description "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-6 py-3"
+}, " Requested By "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-6 py-3"
+}, " Approver "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-6 py-3"
+}, " Approval Date "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-6 py-3"
+}, " Action ")])], -1
+/* HOISTED */
+);
+
+var _hoisted_12 = {
+  scope: "row",
+  "class": "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+};
+var _hoisted_13 = {
+  "class": "px-6 py-4"
+};
+var _hoisted_14 = {
+  "class": "px-6 py-4"
+};
+var _hoisted_15 = {
+  "class": "px-6 py-4"
+};
+var _hoisted_16 = {
+  "class": "px-6 py-4"
+};
+var _hoisted_17 = {
+  "class": "px-6 py-4"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit");
+
+var _hoisted_19 = {
   "class": "w-full text-center"
 };
-var _hoisted_11 = {
+var _hoisted_20 = {
   key: 0
 };
-var _hoisted_12 = {
+var _hoisted_21 = {
   key: 1
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
 
   var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
+
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Makeups"
@@ -28544,29 +28565,49 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         prefix: $props.model
       }, null, 8
       /* PROPS */
-      , ["links", "prefix"])]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.makeups.data, function (makeup) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-          "class": "col-span-1",
-          key: makeup.id
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-          appear: "",
-          onBeforeEnter: $setup.beforeEnter,
-          onEnter: $setup.enter
-        }, {
-          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(makeup), 1
+      , ["links", "prefix"])]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+        appear: "",
+        onBeforeEnter: _ctx.beforeEnter,
+        onEnter: _ctx.enter
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [$props.makeups.data.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.makeups.data, function (makeup) {
+            return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+              "class": "bg-white border-b dark:bg-gray-900 dark:border-gray-700",
+              key: makeup.id
+            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(makeup.makeup_date), 1
             /* TEXT */
-            )];
-          }),
-          _: 2
-          /* DYNAMIC */
+            ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(makeup.description), 1
+            /* TEXT */
+            ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(makeup.member), 1
+            /* TEXT */
+            ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(makeup.approver), 1
+            /* TEXT */
+            ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(makeup.approval_date), 1
+            /* TEXT */
+            ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+              href: _ctx.route('makeup.edit', makeup.id),
+              "class": "font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            }, {
+              "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                return [_hoisted_18];
+              }),
+              _: 2
+              /* DYNAMIC */
 
-        }, 1024
-        /* DYNAMIC_SLOTS */
-        )]);
-      }), 128
-      /* KEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$props.makeups.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+            }, 1032
+            /* PROPS, DYNAMIC_SLOTS */
+            , ["href"])])]);
+          }), 128
+          /* KEYED_FRAGMENT */
+          ))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["onBeforeEnter", "onEnter"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [$props.makeups.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
         links: $props.makeups.links,
         prefix: $props.model
       }, null, 8

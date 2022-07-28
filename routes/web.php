@@ -16,6 +16,7 @@ use App\Http\Controllers\{AdminController,
                          GuestController};
 use App\Http\Resources\MemberResource;
 use App\Models\Guest;
+use App\Models\MakeupRequest;
 use App\Models\Meeting;
 use App\Models\Member;
 
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
     Route::resource('guest', GuestController::class);
     Route::resource('meeting', MeetingController::class);
+    Route::resource('makeup', MakeupRequestController::class);
 
     Route::delete('grading/{id}',[GradingRuleController::class,'destroy'])->name('grading.destroy');
      Route::resource('grading', GradingRuleController::class);
