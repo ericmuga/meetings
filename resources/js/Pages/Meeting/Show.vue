@@ -280,9 +280,14 @@ const requests={}
 
 
                             </TabPanel>
+                            <TabPanel header="Approved Requests" v-if="meeting.type=='makeup'">
+                                Approved Requests
+                            </TabPanel>
                             <TabPanel header="Reports">
                                 Reports
                             </TabPanel>
+
+
                         </TabView>
 
                          </div>
