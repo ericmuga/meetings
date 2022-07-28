@@ -51,9 +51,15 @@ onMounted(() => {
  const props=defineProps({
                               meeting:Object,
                               attended:Object,
+
                                                         //   meetings:Object,
 
                          })
+
+const requests={}
+
+
+
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
@@ -185,7 +191,7 @@ onMounted(() => {
                             </TabPanel>
 
 
-                            <TabPanel header="Guests">
+                            <TabPanel header="Guests" v-if="meeting.type!='makeup'">
                                   <div v-if="meeting.length==0">No guests were found for this meeting</div>
                                     <div v-else>
                                           <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
@@ -222,8 +228,63 @@ onMounted(() => {
                             <TabPanel header="Reports">
                                 Reports
                             </TabPanel>
-                            <TabPanel header="Stats">
-                                Stats
+                            <TabPanel header="Requests" v-if="meeting.type=='makeup'">
+
+                                      <div class="relative overflow-x-auto shadow-md sm:rounded-lg" v-if="meeting.requests.data.length>0">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                    <tr>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Date
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Description
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Requested By
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Approver
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Approval Date
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                                                        v-for="request in meeting.requests.data" :key=request.id
+                                                      >
+                                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            {{request.makeup_date}}
+                                                        </th>
+                                                        <td class="px-6 py-4">
+                                                            {{request.description}}
+                                                        </td>
+
+                                                        <td class="px-6 py-4">
+                                                            {{request.member}}
+                                                        </td>
+
+                                                        <td class="px-6 py-4">
+                                                            {{request.approver}}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                            {{request.approval_date}}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                            <Link :href="route('makeup.edit',request.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
                             </TabPanel>
                         </TabView>
 

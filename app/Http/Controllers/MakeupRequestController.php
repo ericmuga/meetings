@@ -49,6 +49,7 @@ class MakeupRequestController extends Controller
     public function index(Request $request)
     {
 
+
         return inertia('Makeup/Index', $this->list($request));
     }
 

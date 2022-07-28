@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMeetingRequest;
 use App\Http\Requests\UpdateMeetingRequest;
+use App\Http\Resources\MakeupRequestResource;
 use App\MyPaginator;
 use Illuminate\Http\Request;
 use App\Http\Resources\MeetingResource;
-use App\Models\{Meeting,Club,GradingRule,Member,Guest,Score};
+use App\Models\{Meeting,Club,GradingRule,Member,Guest,Score,MakeupRequest};
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Str;
@@ -27,6 +28,7 @@ class MeetingController extends Controller
       return [
               'search'=>$request->input('search')?:null,
               'types'=>['zoom','physical','makeup'],
+              'requests'=>MakeupRequest::all(),
               'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::where('gradable',true)
                                                                                    ->orderBy('date','desc')
                                                                                    ->get()
@@ -91,7 +93,8 @@ class MeetingController extends Controller
                  'guests'=>$meeting->guests()->get()->pluck('id')->toArray(),
 
                  'MemberList'=>Member::orderBy('name')->get(),
-                 'GuestList'=>Guest::all('id','name')
+                 'GuestList'=>Guest::all('id','name'),
+                 'requests'=>MakeupRequestResource::collection(MakeupRequest::all()),
                ];
     }
 

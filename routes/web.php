@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //all API functions
     Route::get('members/all',fn()=>Member::all('id','name'));
     Route::get('guests/all',fn()=>Guest::all('id','name'));
+    Route::get('makeups/all',fn()=>MakeupRequest::all());
 
 
     Route::post('meeting/scores',[MeetingController::class,'scores'])->name('meeting.scores');
