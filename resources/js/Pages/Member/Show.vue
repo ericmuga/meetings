@@ -128,17 +128,67 @@ import MemberCard from '@/Components/MemberCard.vue'
                                             <Button label="New" icon="pi pi-plus" class="mr-2" />
                                         </Link>
                                     </AccordionTab>
-                                    <AccordionTab header="Makeups Attended">
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.</p>
+                                    <AccordionTab header="Makeups Requests">
+
+                                             <div class="relative overflow-x-auto shadow-md sm:rounded-lg" v-if="member.data.makeuprequests.length>0">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                    <tr>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Date
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Description
+                                                        </th>
+
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Approved by
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Approval Date
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                                                        v-for="request in member.data.makeuprequests" :key=request.id
+                                                      >
+                                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            {{request.makeup_date}}
+                                                        </th>
+                                                        <td class="px-6 py-4">
+                                                            {{request.description}}
+                                                        </td>
+
+                                                        <td class="px-6 py-4">
+                                                            {{request.approver}}
+                                                        </td>
+
+                                                        <td class="px-6 py-4">
+                                                            {{request.approval_date}}
+                                                        </td>
+
+                                                        <!-- <td class="px-6 py-4">
+                                                            <Link :href="route('makeup.edit',request.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</Link>
+                                                        </td> -->
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+                                        <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.</p> -->
                                     </AccordionTab>
-                                    <AccordionTab header="Attendance Score">
+                                    <!-- <AccordionTab header="Attendance Score">
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-                                    </AccordionTab>
+                                    </AccordionTab> -->
                                      <AccordionTab header="Guests invited">
-                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+                                        <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p> -->
                                     </AccordionTab>
                                       <AccordionTab header="Communications">
-                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+                                        <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p> -->
                                     </AccordionTab>
                                     <AccordionTab header="History">
 

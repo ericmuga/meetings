@@ -26,7 +26,8 @@ class MemberResource extends JsonResource
             'gravatar'=>Gravatar::get($this->defaultContact('email')),
             'phone'=>$this->defaultContact('phone'),
             'email'=>$this->defaultContact('email'),
-            'contacts'=>$this->contacts()->get()
+            'contacts'=>$this->contacts()->get(),
+            'makeuprequests'=>$this->makeuprequests()->get()
             // 'email'=>Contact::where('contact_type','email')
             //                 ->where('contactable_type','App\Models\Member')
             //                 ->where('contactable_id',$this->id)->first()->contact
