@@ -143,7 +143,7 @@ class ZoomController extends Controller
              $response = $client->request('GET', 'report/meetings/'.$meeting->uuid.'/participants', $arr_request);
 
             $data = json_decode($response->getBody());
-            dd((array)$data->participants);
+            //dd((array)$data->participants);
 
        if (!empty($data)&& isset($data->participants) )
        {
@@ -242,7 +242,8 @@ class ZoomController extends Controller
                         $d=ZoomController::getInstanceDetails($instance);
                         if(!Meeting::where('uuid',$d->uuid)->exists())
                           if(($d->participants_count>=$rule->minimum_members) && ($d->duration>=$rule->minimum_minutes))
-                              Meeting::create([
+                           dd(Carbon::parse($d->start_time)->dayOfWeek());
+                          Meeting::create([
                                                     'type'=>'zoom',
                                                     'date'=>Carbon::parse($d->start_time)->toDateString(),
                                                     'venue'=>'online',
