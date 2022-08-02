@@ -115,7 +115,6 @@ const makeupDetail=(makeup) =>{
                                         'Requested By:'+makeup.member+'<br/>, ' +
                                         'Detail:'+makeup.detail,
                                     showCloseButton: true,
-                                    showCancelButton: true,
                                     focusConfirm: false,
 
                                     })

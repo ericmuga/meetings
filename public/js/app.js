@@ -24348,7 +24348,6 @@ __webpack_require__.r(__webpack_exports__);
         title: '<strong>' + makeup.description + '</strong>',
         html: 'Date:' + makeup.makeup_date + '<br/>, ' + 'Requested By:' + makeup.member + '<br/>, ' + 'Detail:' + makeup.detail,
         showCloseButton: true,
-        showCancelButton: true,
         focusConfirm: false
       });
     };
