@@ -76,7 +76,7 @@ class MakeupRequestController extends Controller
 
      ]);
 
-      return redirect(Route('makeup.index'));
+      return back();
     }
 
     /**

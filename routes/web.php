@@ -34,11 +34,13 @@ use App\Models\Member;
 */
 
 Route::get('/',fn()=>redirect(route('login')));
+Route::resource('makeup', MakeupRequestController::class);
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
     Route::resource('guest', GuestController::class);
     Route::resource('meeting', MeetingController::class);
-    Route::resource('makeup', MakeupRequestController::class);
+
 
     Route::delete('grading/{id}',[GradingRuleController::class,'destroy'])->name('grading.destroy');
      Route::resource('grading', GradingRuleController::class);

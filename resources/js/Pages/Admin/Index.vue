@@ -86,7 +86,7 @@ const props=defineProps({
                                                     {{guests}}
                                                 </p>
                                             <div class="px-6 pt-4 pb-2 text-center">
-                                                <Link :href="route('member.index')">
+                                                <Link :href="route('guest.index')">
                                                     <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
                                                 </Link>
                                             </div>
