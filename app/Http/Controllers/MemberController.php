@@ -192,6 +192,6 @@ class MemberController extends Controller
 
         $member->delete();
 
-        return redirect(route('member.index'))
+        return redirect(route('member.index'));
     }
 }
