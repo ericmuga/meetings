@@ -106,7 +106,20 @@ const form2 = useForm({
             })
         }
 
+const makeupDetail=(makeup) =>{
+                                //  alert(makeup.description)
+                                   Swal.fire({
+                                    title: '<strong>'+makeup.description+'</strong>',
+                                    html:
+                                        'Date:'+makeup.makeup_date+'<br/>, ' +
+                                        'Requested By:'+makeup.member+'<br/>, ' +
+                                        'Detail:'+makeup.detail,
+                                    showCloseButton: true,
+                                    showCancelButton: true,
+                                    focusConfirm: false,
 
+                                    })
+}
 const  showForm=({formValues})=>Swal.fire({
                                                     title: 'Create New guest',
                                                     html:
@@ -326,7 +339,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                             Approve
                                                         </th>
                                                         <th scope="col" class="px-6 py-3">
-                                                            Action
+                                                            View
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -350,7 +363,8 @@ const  showForm=({formValues})=>Swal.fire({
                                                         </td>
 
                                                         <td class="px-6 py-4">
-                                                            <Link :href="route('makeup.edit',request.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</Link>
+                                                            <Button label="Detail" icon="pi pi-book" class="info" @click="makeupDetail(request)"/>
+                                                            <!-- <Link :href="route('makeup.edit',request.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</Link> -->
                                                         </td>
                                                     </tr>
 

@@ -24342,6 +24342,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
+    var makeupDetail = function makeupDetail(makeup) {
+      //  alert(makeup.description)
+      sweetalert2__WEBPACK_IMPORTED_MODULE_16___default().fire({
+        title: '<strong>' + makeup.description + '</strong>',
+        html: 'Date:' + makeup.makeup_date + '<br/>, ' + 'Requested By:' + makeup.member + '<br/>, ' + 'Detail:' + makeup.detail,
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false
+      });
+    };
+
     var showForm = function showForm(_ref2) {
       var formValues = _ref2.formValues;
       return sweetalert2__WEBPACK_IMPORTED_MODULE_16___default().fire({
@@ -24369,6 +24380,7 @@ __webpack_require__.r(__webpack_exports__);
       form2: form2,
       beforeEnter: beforeEnter,
       enter: enter,
+      makeupDetail: makeupDetail,
       showForm: showForm,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
@@ -29606,7 +29618,7 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, " Approve "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col",
   "class": "px-6 py-3"
-}, " Action ")])], -1
+}, " View ")])], -1
 /* HOISTED */
 );
 
@@ -29627,11 +29639,9 @@ var _hoisted_34 = {
   "class": "px-6 py-4"
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Details");
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Approved Requests ");
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Approved Requests ");
-
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reports ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
@@ -29883,19 +29893,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       binary: true
                     }, null, 8
                     /* PROPS */
-                    , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                      href: _ctx.route('makeup.edit', request.id),
-                      "class": "font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    }, {
-                      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                        return [_hoisted_35];
-                      }),
-                      _: 2
-                      /* DYNAMIC */
-
-                    }, 1032
-                    /* PROPS, DYNAMIC_SLOTS */
-                    , ["href"])])]);
+                    , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+                      label: "Detail",
+                      icon: "pi pi-book",
+                      "class": "info",
+                      onClick: function onClick($event) {
+                        return $setup.makeupDetail(request);
+                      }
+                    }, null, 8
+                    /* PROPS */
+                    , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Link :href=\"route('makeup.edit',request.id)\" class=\"font-medium text-blue-600 dark:text-blue-500 hover:underline\">Details</Link> ")])]);
                   }), 128
                   /* KEYED_FRAGMENT */
                   ))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
@@ -29908,7 +29915,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Approved Requests"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_36];
+                  return [_hoisted_35];
                 }),
                 _: 1
                 /* STABLE */
@@ -29917,7 +29924,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 header: "Reports"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_37];
+                  return [_hoisted_36];
                 }),
                 _: 1
                 /* STABLE */
