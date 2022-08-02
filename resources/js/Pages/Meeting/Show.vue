@@ -18,10 +18,26 @@ import {useMemberStore} from '@/Stores/MemberStore'
 import ScrollPanel from 'primevue/scrollpanel';
 // import {computed} from 'vue'
 import _ from 'lodash'
+// import filter from 'lodash/filter'
 // import axios from 'axios';
 import Swal from 'sweetalert2'
+import SearchBox from '@/Components/SearchBox.vue'
 
 // const scoreStore=useScoreStore()
+
+
+
+let searchKey=ref('')
+//   const getRoute=computed(()=>route(`${props.model}'.index'`))
+  watch(searchKey,_.debounce((value)=>{
+
+            if (searchKey!='')
+                allGuests= _.filter(allGuests,{'name':value});
+            else allGuests=allGuests2;
+        },300));
+
+
+
 const memberStore=useMemberStore()
 
 const form=useForm({
@@ -45,6 +61,9 @@ const form=useForm({
 onMounted(() => {
    memberStore.fetchMembers()
    memberStore.fetchGuests()
+   const allGuests=memberStore.guests
+   const allGuests2=memberStore.guests
+
 })
 
 // const filter=(obj,predicate)=>{_.filter(obj,predicate)}
@@ -58,7 +77,17 @@ onMounted(() => {
 
 const requests={}
 
+const form2 = useForm({
+                            name:'',
+                            field:'',
+                            email:'',
+                             phone:'',
+                             gender:'',
+                             club:1,
+                             nationality:'',
+                             type:'',
 
+                            })
 
 
  const beforeEnter=(el)=>{
@@ -78,6 +107,44 @@ const requests={}
         }
 
 
+const  showForm=({formValues})=>Swal.fire({
+                                                    title: 'Create New guest',
+                                                    html:
+                                                        '<input id="name" type="text"  placeholder="Name*" class="swal2-input">' +
+                                                        '<input id="email" type="email"  placeholder="email*" class="swal2-input" required>' +
+                                                        '<input id="phone" type="text"  placeholder="Phone No.*" class="swal2-input" required>' +
+                                                        '<input id="field" type="text"  placeholder="Field/Occupation" class="swal2-input" required>' +
+                                                        '<input id="nationality" type="text"  placeholder="Nationality" class="swal2-input" required>' +
+                                                        '<select  id="gender" name="" type="text"  placeholder="Gender" class="swal2-input" required>' +
+                                                            '<option  value="f">Female</option>' +
+                                                            '<option  value="m">Male</option>' +
+                                                        '</select>'+
+                                                        ' <select  id="type" name="type" type="text" class="swal2-input" required>' +
+                                                            '<option  value="Rotarian">Rotarian</option>' +
+                                                            '<option  value="Rotaractor">Rotaractor</option>' +
+                                                            '<option  value="None">None</option>' +
+                                                        '</select>'
+                                                        ,
+                                                   focusConfirm: false,
+                                                    preConfirm: () => {
+                                                                        form2.name=document.getElementById('name').value,
+                                                                        form2.email=document.getElementById('email').value,
+                                                                        form2.phone=document.getElementById('phone').value,
+                                                                        form2.gender=document.getElementById('gender').value,
+                                                                        form2.field=document.getElementById('field').value,
+                                                                        form2.type=document.getElementById('type').value,
+                                                                        form2.nationality=document.getElementById('nationality').value,
+                                                                        form2.post(route('guest.store'),{
+                                                                                        preserveScroll: true,
+                                                                                        onSuccess: () => Swal.fire(
+                                                                                                                'Success!',
+                                                                                                                'Guest has been added.',
+                                                                                                                'success')
+
+                                                                             }
+                                                                           )
+                                                                    }
+                                                    })
 </script>
 
 <template>
@@ -193,8 +260,20 @@ const requests={}
 
                             <TabPanel header="Guests" v-if="meeting.type!='makeup'">
                                   <div v-if="meeting.length==0">No guests were found for this meeting</div>
+                                   <!-- <SearchBox :model="member"/> -->
                                     <div v-else>
-                                          <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
+                                        <div class="gap-2">
+
+
+                                        <span class="p-input-icon-left">
+                                            <i class="pi pi-search" />
+                                            <InputText type="text" v-model="searchKey" placeholder="Search" />
+                                       </span>
+
+                                      <Button class="ml-3" label="New" icon="pi pi-user" @click="showForm" />
+                                            </div>
+
+                                        <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
 
                                         <Table>
                                             <tr class="text-center">
@@ -203,7 +282,7 @@ const requests={}
                                                 <th>Present</th>
                                             </tr>
 
-                                                <tr v-for="guest in memberStore.guests" :key="guest.id" class="text-center">
+                                                <tr v-for="guest in allGuests" :key="guest.id" class="text-center">
                                                     <td>
                                                         <Link
                                                         :href="route('guest.show',guest.id)"
@@ -229,6 +308,7 @@ const requests={}
                             <TabPanel header="Requests" v-if="meeting.type=='makeup'">
 
                                       <div class="relative overflow-x-auto shadow-md sm:rounded-lg" v-if="meeting.requests.data.length>0">
+
                                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                                     <tr>
