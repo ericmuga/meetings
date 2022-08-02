@@ -24265,13 +24265,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import {computed} from 'vue'
-
- // import filter from 'lodash/filter'
-// import axios from 'axios';
 
 
- // const scoreStore=useScoreStore()
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'Show',

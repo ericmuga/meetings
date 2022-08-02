@@ -16,14 +16,10 @@ import Checkbox from 'primevue/checkbox';
 import {useScoreStore} from '@/Stores/ScoreStore'
 import {useMemberStore} from '@/Stores/MemberStore'
 import ScrollPanel from 'primevue/scrollpanel';
-// import {computed} from 'vue'
 import _ from 'lodash'
-// import filter from 'lodash/filter'
-// import axios from 'axios';
 import Swal from 'sweetalert2'
 import SearchBox from '@/Components/SearchBox.vue'
 
-// const scoreStore=useScoreStore()
 
 
 
