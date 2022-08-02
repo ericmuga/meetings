@@ -101,10 +101,24 @@ class GuestController extends Controller
      * @param  \App\Models\Guest  $guest
      * @return \Illuminate\Http\Response
      */
+
+public function stats($guest)
+    {
+        # code...
+        //meetings attended by the guest
+        return [
+                 'meetings'=>$guest->scores()->with(['meeting'=>fn($q)=>$q->orderBy('date','desc')])->get(),
+               ];
+
+
+    }
     public function show(Guest $guest)
     {
-        //
+        //show the guest profile
+        // dd($this->stats($guest));
+        return inertia('Guest/Show',array_merge(['guest'=>GuestResource::make($guest)],$this->stats($guest)));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -142,6 +156,6 @@ class GuestController extends Controller
 
         $guest->delete();
 
-        return back();
+        return redirect (route('guest.index'));
     }
 }
