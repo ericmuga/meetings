@@ -51,9 +51,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('members/download',[MemberController::class,'download'])->name('members.download');
 
     //all API functions
-    Route::get('members/all',fn()=>Member::all('id','name'));
-    Route::get('guests/all',fn()=>Guest::all('id','name'));
-    Route::get('makeups/all',fn()=>MakeupRequest::all());
+    Route::get('members/all',fn()=>Member::all('id','name')->sortBy('name'));
+    Route::get('guests/all',fn()=>Guest::all('id','name')->sortBy('name'));
+    Route::get('makeups/all',fn()=>MakeupRequest::all()->sortBy('name'));
 
 
     Route::post('meeting/scores',[MeetingController::class,'scores'])->name('meeting.scores');
