@@ -33,6 +33,7 @@ const props=defineProps({ members:Object,
                              model:String,
                              search:String,
                              baseURL:String,
+                             member_count:String,
 
 
                             })
@@ -134,10 +135,10 @@ const  showForm=({formValues})=>Swal.fire({
                           <Button label="Download" icon="pi pi-download" class="mr-2 p-button-secondary" />
                         </a>
 
-
                 </template>
 
                     <template #end>
+                         <Button disabled icon="pi pi-bolt" class="mr-2 p-button-warning" :label="`Total:${member_count}`" />
                         <span class="p-input-icon-left">
                             <i class="pi pi-search" />
                              <SearchBox :model="`member.index`" />

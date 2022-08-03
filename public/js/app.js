@@ -24663,7 +24663,8 @@ __webpack_require__.r(__webpack_exports__);
     members: Object,
     model: String,
     search: String,
-    baseURL: String
+    baseURL: String,
+    member_count: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -30735,7 +30736,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           , _hoisted_4)];
         }),
         end: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchBox"], {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+            disabled: "",
+            icon: "pi pi-bolt",
+            "class": "mr-2 p-button-warning",
+            label: "Total:".concat($props.member_count)
+          }, null, 8
+          /* PROPS */
+          , ["label"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchBox"], {
             model: "member.index"
           }, null, 8
           /* PROPS */

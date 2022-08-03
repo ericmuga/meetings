@@ -44,7 +44,7 @@ class MemberController extends Controller
                 'search'=>$request->input('search')?:null,
                 'model'=>'member',
                 'burl'=>base_path(),
-
+                'member_count'=>Member::count(),
                 'members'=>MyPaginator::paginate(MemberResource::collection(Member::query()
                                                                                   ->when($request->input('search'),
                                                                                           fn($query,$search)=>($query->where('name','like','%'.$search.'%')
