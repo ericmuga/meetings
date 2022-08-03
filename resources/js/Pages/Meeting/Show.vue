@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Card from 'primevue/card';
-import { ref, reactive, onMounted, watch } from 'vue';
+import { ref, reactive, onMounted, watch, computed } from 'vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
  import Accordion from 'primevue/accordion';
@@ -19,18 +19,16 @@ import ScrollPanel from 'primevue/scrollpanel';
 import _ from 'lodash'
 import Swal from 'sweetalert2'
 import SearchBox from '@/Components/SearchBox.vue'
-
+import axios from 'axios'
 
 
 
 let searchKey=ref('')
-//   const getRoute=computed(()=>route(`${props.model}'.index'`))
-  watch(searchKey,_.debounce((value)=>{
+//   watch(searchKey,_.debounce((value)=>
+//          {
+//             guests=memberStore.getFilteredGuests(value);
 
-            if (searchKey!='')
-                allGuests= _.filter(allGuests,{'name':value});
-            else allGuests=allGuests2;
-        },300));
+//         },300));
 
 
 
@@ -45,20 +43,21 @@ const form=useForm({
     const save=()=>form.post(route('meeting.scores'),{
                              preserveScroll: true,
                             onSuccess:()=>Swal.fire(
-                                                'Saved',
-                                                'Attendance has been saved',
-                                                'success'
-                                            )
-                                            })
+                                                        'Saved',
+                                                        'Attendance has been saved',
+                                                        'success'
+                                                    )
+                                                    })
 
 
 
+const guests=[{id:1,name:'Kevin'},{id:2,name:'Millicent'}];
+
+const filteredGuests= computed(()=>guests.filter(guest=>guests.name.includes(searchKey)));
 
 onMounted(() => {
    memberStore.fetchMembers()
    memberStore.fetchGuests()
-   const allGuests=memberStore.guests
-   const allGuests2=memberStore.guests
 
 })
 
@@ -71,7 +70,7 @@ onMounted(() => {
 
                          })
 
-const requests={}
+
 
 const form2 = useForm({
                             name:'',
@@ -278,7 +277,7 @@ const  showForm=({formValues})=>Swal.fire({
                                             <InputText type="text" v-model="searchKey" placeholder="Search" />
                                        </span>
 
-                                      <Button class="ml-3" label="New" icon="pi pi-user" @click="showForm" />
+                                      <Button class="ml-3" label="New" icon="pi pi-user" v-model=searchKey />
                                             </div>
 
                                         <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
@@ -290,7 +289,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                 <th>Present</th>
                                             </tr>
 
-                                                <tr v-for="guest in allGuests" :key="guest.id" class="text-center">
+                                                <tr v-for="guest in filteredGuests" :key="guest.id" class="text-center">
                                                     <td>
                                                         <Link
                                                         :href="route('guest.show',guest.id)"

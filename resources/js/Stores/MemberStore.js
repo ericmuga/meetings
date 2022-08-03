@@ -3,6 +3,7 @@ import { defineStore } from "pinia"
 
 import axios from 'axios'
 import Swal from "sweetalert2"
+import _ from 'lodash';
 
 export const useMemberStore=defineStore ('MemberStore',{
 
@@ -25,7 +26,11 @@ export const useMemberStore=defineStore ('MemberStore',{
                             // getMeetingMembers(state){
                             //     return state.meetingMembers
                             // }
-                        },
+
+
+                        }, getFilteredGuests(searchKey){
+                               return this.guests.filter(guest=>guest.name.toLowerCase().includes(this.searchKey.toLowerCase()))
+                           },
 
                     async fetchMembers() {
                                             try {
@@ -58,6 +63,20 @@ export const useMemberStore=defineStore ('MemberStore',{
                         }
                     },
 
+                     async findGuest(name) {
+                        try {
+                    const {data}= await axios.get('/findGuest/',{'name':name})
+                            this.guests = data
+                        }
+                        catch (error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                footer: `'<a href="">${error.message}</a>'`
+                              })
+                        }
+                    }
 
                     // async fetchMeetingMembers(meeting) {
                     //     try {

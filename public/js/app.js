@@ -24234,7 +24234,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/card */ "./node_modules/primevue/card/card.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors.vue */ "./resources/js/Components/ValidationErrors.vue");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var primevue_accordion__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primevue/accordion */ "./node_modules/primevue/accordion/accordion.esm.js");
 /* harmony import */ var primevue_accordiontab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primevue/accordiontab */ "./node_modules/primevue/accordiontab/accordiontab.esm.js");
 /* harmony import */ var _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/MeetingCard.vue */ "./resources/js/Components/MeetingCard.vue");
@@ -24249,6 +24249,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var _Components_SearchBox_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/Components/SearchBox.vue */ "./resources/js/Components/SearchBox.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_18__);
+
 
 
 
@@ -24280,13 +24283,11 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var searchKey = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(''); //   const getRoute=computed(()=>route(`${props.model}'.index'`))
+    var searchKey = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(''); //   watch(searchKey,_.debounce((value)=>
+    //          {
+    //             guests=memberStore.getFilteredGuests(value);
+    //         },300));
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_4__.watch)(searchKey, lodash__WEBPACK_IMPORTED_MODULE_15___default().debounce(function (value) {
-      if (searchKey != '') allGuests = lodash__WEBPACK_IMPORTED_MODULE_15___default().filter(allGuests, {
-        'name': value
-      });else allGuests = allGuests2;
-    }, 300));
     var memberStore = (0,_Stores_MemberStore__WEBPACK_IMPORTED_MODULE_13__.useMemberStore)();
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       attended: props.meeting.members,
@@ -24303,14 +24304,23 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
+    var guests = [{
+      id: 1,
+      name: 'Kevin'
+    }, {
+      id: 2,
+      name: 'Millicent'
+    }];
+    var filteredGuests = (0,vue__WEBPACK_IMPORTED_MODULE_4__.computed)(function () {
+      return guests.filter(function (guest) {
+        return guests.name.includes(searchKey);
+      });
+    });
     (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(function () {
       memberStore.fetchMembers();
       memberStore.fetchGuests();
-      var allGuests = memberStore.guests;
-      var allGuests2 = memberStore.guests;
     }); // const filter=(obj,predicate)=>{_.filter(obj,predicate)}
 
-    var requests = {};
     var form2 = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       name: '',
       field: '',
@@ -24330,7 +24340,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var enter = function enter(el) {
       // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_18__["default"].to(el, {
+      gsap__WEBPACK_IMPORTED_MODULE_19__["default"].to(el, {
         opacity: 1,
         x: 0,
         duration: 0.8 // onComplete:done
@@ -24370,8 +24380,9 @@ __webpack_require__.r(__webpack_exports__);
       memberStore: memberStore,
       form: form,
       save: save,
+      guests: guests,
+      filteredGuests: filteredGuests,
       props: props,
-      requests: requests,
       form2: form2,
       beforeEnter: beforeEnter,
       enter: enter,
@@ -24386,8 +24397,9 @@ __webpack_require__.r(__webpack_exports__);
       reactive: vue__WEBPACK_IMPORTED_MODULE_4__.reactive,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_4__.onMounted,
       watch: vue__WEBPACK_IMPORTED_MODULE_4__.watch,
+      computed: vue__WEBPACK_IMPORTED_MODULE_4__.computed,
       BreezeValidationErrors: _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-      gsap: gsap__WEBPACK_IMPORTED_MODULE_18__["default"],
+      gsap: gsap__WEBPACK_IMPORTED_MODULE_19__["default"],
       Accordion: primevue_accordion__WEBPACK_IMPORTED_MODULE_6__["default"],
       AccordionTab: primevue_accordiontab__WEBPACK_IMPORTED_MODULE_7__["default"],
       MeetingCard: _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
@@ -24399,7 +24411,8 @@ __webpack_require__.r(__webpack_exports__);
       ScrollPanel: primevue_scrollpanel__WEBPACK_IMPORTED_MODULE_14__["default"],
       _: (lodash__WEBPACK_IMPORTED_MODULE_15___default()),
       Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_16___default()),
-      SearchBox: _Components_SearchBox_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
+      SearchBox: _Components_SearchBox_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
+      axios: (axios__WEBPACK_IMPORTED_MODULE_18___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -29800,8 +29813,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": "ml-3",
                     label: "New",
                     icon: "pi pi-user",
-                    onClick: $setup.showForm
-                  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ScrollPanel"], {
+                    modelValue: $setup.searchKey,
+                    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+                      return $setup.searchKey = $event;
+                    })
+                  }, null, 8
+                  /* PROPS */
+                  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ScrollPanel"], {
                     style: {
                       "width": "100%",
                       "height": "200px"
@@ -29811,7 +29829,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Table, null, {
                         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                          return [_hoisted_25, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.allGuests, function (guest) {
+                          return [_hoisted_25, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.filteredGuests, function (guest) {
                             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
                               key: guest.id,
                               "class": "text-center"
@@ -29829,13 +29847,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             }, 1032
                             /* PROPS, DYNAMIC_SLOTS */
                             , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-                              onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+                              onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
                                 return $setup.save();
                               }, ["prevent"]))
                             }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Checkbox"], {
                               id: "binary",
                               modelValue: $setup.form.guestsAttended,
-                              "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+                              "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
                                 return $setup.form.guestsAttended = $event;
                               }),
                               value: guest.id,
@@ -29882,7 +29900,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Checkbox"], {
                       id: "binary",
                       modelValue: _ctx.checked,
-                      "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+                      "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
                         return _ctx.checked = $event;
                       }),
                       binary: true
@@ -31025,11 +31043,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "useMemberStore": () => (/* binding */ useMemberStore)
 /* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.esm-browser.js");
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.esm-browser.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -31041,7 +31061,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var useMemberStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('MemberStore', {
+
+var useMemberStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)('MemberStore', {
   //state
   state: function state() {
     return {
@@ -31059,8 +31080,15 @@ var useMemberStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('MemberS
       // }
 
     },
-    fetchMembers: function fetchMembers() {
+    getFilteredGuests: function getFilteredGuests(searchKey) {
       var _this = this;
+
+      return this.guests.filter(function (guest) {
+        return guest.name.toLowerCase().includes(_this.searchKey.toLowerCase());
+      });
+    },
+    fetchMembers: function fetchMembers() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var _yield$axios$get, data;
@@ -31076,7 +31104,7 @@ var useMemberStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('MemberS
               case 3:
                 _yield$axios$get = _context.sent;
                 data = _yield$axios$get.data;
-                _this.members = data;
+                _this2.members = data;
                 _context.next = 11;
                 break;
 
@@ -31099,7 +31127,7 @@ var useMemberStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('MemberS
       }))();
     },
     fetchGuests: function fetchGuests() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var _yield$axios$get2, data;
@@ -31115,7 +31143,7 @@ var useMemberStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('MemberS
               case 3:
                 _yield$axios$get2 = _context2.sent;
                 data = _yield$axios$get2.data;
-                _this2.guests = data;
+                _this3.guests = data;
                 _context2.next = 11;
                 break;
 
@@ -31135,6 +31163,47 @@ var useMemberStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('MemberS
             }
           }
         }, _callee2, null, [[0, 8]]);
+      }))();
+    },
+    findGuest: function findGuest(name) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var _yield$axios$get3, data;
+
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get('/findGuest/', {
+                  'name': name
+                });
+
+              case 3:
+                _yield$axios$get3 = _context3.sent;
+                data = _yield$axios$get3.data;
+                _this4.guests = data;
+                _context3.next = 11;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+                sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                  footer: "'<a href=\"\">".concat(_context3.t0.message, "</a>'")
+                });
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 8]]);
       }))();
     } // async fetchMeetingMembers(meeting) {
     //     try {

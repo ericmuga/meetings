@@ -241,7 +241,11 @@ class ZoomController extends Controller
 
                         $d=ZoomController::getInstanceDetails($instance);
                         if(!Meeting::where('uuid',$d->uuid)->exists())
-                          if(($d->participants_count>=$rule->minimum_members) && ($d->duration>=$rule->minimum_minutes) && Carbon::parse($d->start_time)->dayOfWeek==4)
+                          if(($d->participants_count>=$rule->minimum_members)
+                                && ($d->duration>=$rule->minimum_minutes)
+                                && Carbon::parse($d->start_time)->dayOfWeek==4
+                                && Carbon::parse($d->start_time)>='2022-07-01'
+                            )
                           Meeting::create([
                                                     'type'=>'zoom',
                                                     'date'=>Carbon::parse($d->start_time)->toDateString(),

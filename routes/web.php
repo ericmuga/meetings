@@ -19,6 +19,7 @@ use App\Models\Guest;
 use App\Models\MakeupRequest;
 use App\Models\Meeting;
 use App\Models\Member;
+use Illuminate\Http\Request;
 
 // use App\Models\GradingRule;
 
@@ -56,6 +57,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('members/all',fn()=>Member::all('id','name')->sortBy('name'));
     Route::get('guests/all',fn()=>Guest::all('id','name')->sortBy('name'));
     Route::get('makeups/all',fn()=>MakeupRequest::all()->sortBy('name'));
+
+    Route::get('findGuest/{name}',fn(Request $request)=>Guest::where('name','like',$request->name.'%')->get());
 
 
     Route::post('meeting/scores',[MeetingController::class,'scores'])->name('meeting.scores');
