@@ -240,12 +240,12 @@ class ZoomController extends Controller
                         else $rule=GradingRule::firstWhere('name','Zoom');
 
                         $d=ZoomController::getInstanceDetails($instance);
-                    dd(Carbon::parse($d->start_time)->toDateString());
+                   // dd(Carbon::parse($d->start_time)->toDateString());
                         if(!Meeting::where('uuid',$d->uuid)->exists())
                           if(($d->participants_count>=$rule->minimum_members)
                                 && ($d->duration>=$rule->minimum_minutes)
                                 && Carbon::parse($d->start_time)->dayOfWeek==4
-                                && Carbon::parse($d->start_time)->toDateString()>=Carbon::parse('2022-07-01')->toDateTimeString()
+                                // && Carbon::parse($d->start_time)->toDateString()>=Carbon::parse('2022-07-01')->toDateTimeString()
                             )
                           Meeting::create([
                                                     'type'=>'zoom',
