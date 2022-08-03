@@ -681,9 +681,6 @@ select {
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
-.float-right {
-  float: right;
-}
 .float-left {
   float: left;
 }
@@ -695,9 +692,6 @@ select {
 }
 .m-3 {
   margin: 0.75rem;
-}
-.m-5 {
-  margin: 1.25rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -766,14 +760,14 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .-mt-16 {
   margin-top: -4rem;
 }
 .mt-5 {
   margin-top: 1.25rem;
-}
-.mb-1 {
-  margin-bottom: 0.25rem;
 }
 .mt-6 {
   margin-top: 1.5rem;
@@ -835,11 +829,11 @@ select {
 .h-20 {
   height: 5rem;
 }
-.h-10 {
-  height: 2.5rem;
-}
 .h-24 {
   height: 6rem;
+}
+.h-10 {
+  height: 2.5rem;
 }
 .h-9 {
   height: 2.25rem;
@@ -874,11 +868,11 @@ select {
 .w-48 {
   width: 12rem;
 }
-.w-10 {
-  width: 2.5rem;
-}
 .w-24 {
   width: 6rem;
+}
+.w-10 {
+  width: 2.5rem;
 }
 .w-4 {
   width: 1rem;
@@ -895,11 +889,11 @@ select {
 .max-w-6xl {
   max-width: 72rem;
 }
-.max-w-md {
-  max-width: 28rem;
-}
 .max-w-sm {
   max-width: 24rem;
+}
+.max-w-md {
+  max-width: 28rem;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -983,15 +977,15 @@ select {
 .gap-2 {
   gap: 0.5rem;
 }
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1218,14 +1212,14 @@ select {
 .pl-10 {
   padding-left: 2.5rem;
 }
-.pl-5 {
-  padding-left: 1.25rem;
-}
 .pt-4 {
   padding-top: 1rem;
 }
 .pb-5 {
   padding-bottom: 1.25rem;
+}
+.pl-5 {
+  padding-left: 1.25rem;
 }
 .pt-1 {
   padding-top: 0.25rem;
@@ -1272,13 +1266,13 @@ select {
   font-size: 0.75rem;
   line-height: 1rem;
 }
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 .text-base {
   font-size: 1rem;
@@ -1522,13 +1516,13 @@ select {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
-.hover\:text-gray-900:hover {
-  --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
-}
 .hover\:text-red-300:hover {
   --tw-text-opacity: 1;
   color: rgb(252 165 165 / var(--tw-text-opacity));
+}
+.hover\:text-gray-900:hover {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;

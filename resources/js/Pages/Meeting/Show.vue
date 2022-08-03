@@ -51,9 +51,9 @@ const form=useForm({
 
 
 
-const guests=[{id:1,name:'Kevin'},{id:2,name:'Millicent'}];
+// const guests=[{id:1,name:'Kevin'},{id:2,name:'Millicent'}];
 
-const filteredGuests= computed(()=>guests.filter(guest=>guests.name.includes(searchKey)));
+// const filteredGuests= computed(()=>guests.filter(guest=>guests.name.includes(searchKey)));
 
 onMounted(() => {
    memberStore.fetchMembers()
@@ -289,7 +289,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                 <th>Present</th>
                                             </tr>
 
-                                                <tr v-for="guest in filteredGuests" :key="guest.id" class="text-center">
+                                                <tr v-for="guest in memberStore.guests " :key="guest.id" class="text-center">
                                                     <td>
                                                         <Link
                                                         :href="route('guest.show',guest.id)"

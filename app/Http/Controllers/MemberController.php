@@ -176,7 +176,30 @@ class MemberController extends Controller
      */
     public function update(UpdateMemberRequest $request, Member $member)
     {
-        //
+        $member->contacts()->delete();
+
+         Contact::create([
+                          'contact'=>$request->email,
+                          'contact_type'=>'email',
+                          'contactable_type'=>'App\Models\Member',
+                          'contactable_id'=>$member->id,
+                          'default'=>true
+
+                 ]);
+        if ($request->has('phone'))
+        {
+            Contact::create([
+                            'contact'=>$request->phone,
+                            'contact_type'=>'phone',
+                            'contactable_type'=>'App\Models\Member',
+                            'contactable_id'=>$member->id,
+                            'default'=>true
+
+                            ]);
+        }
+
+        $member->update($request->all());
+        return redirect(Route('member.show',$member->id));
     }
 
     /**
