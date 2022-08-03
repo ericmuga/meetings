@@ -81,7 +81,7 @@ const form2 = useForm({
                              club:1,
                              nationality:'',
                              type:'',
-
+                             meeting:props.meeting.id
                             })
 
 
@@ -143,10 +143,12 @@ const  showForm=({formValues})=>Swal.fire({
                                                                         form2.nationality=document.getElementById('nationality').value,
                                                                         form2.post(route('guest.store'),{
                                                                                         preserveScroll: true,
-                                                                                        onSuccess: () => Swal.fire(
+                                                                                        onSuccess: () => {Swal.fire(
                                                                                                                 'Success!',
                                                                                                                 'Guest has been added.',
                                                                                                                 'success')
+                                                                                                                memberStore.fetchGuests()
+                                                                                        }
 
                                                                              }
                                                                            )
@@ -277,7 +279,7 @@ const  showForm=({formValues})=>Swal.fire({
                                             <InputText type="text" v-model="searchKey" placeholder="Search" />
                                        </span>
 
-                                      <Button class="ml-3" label="New" icon="pi pi-user" v-model=searchKey />
+                                      <Button class="ml-3" label="New" icon="pi pi-user" @click=showForm />
                                             </div>
 
                                         <ScrollPanel style="width: 100%; height: 200px" class="custombar1">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Guest,Contact};
+use App\Models\{Guest,Contact, Meeting, Score};
 use App\Http\Requests\StoreGuestRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateGuestRequest;
@@ -91,6 +91,30 @@ class GuestController extends Controller
                           'default'=>true
 
                          ]);
+       }
+
+       if ($request->has('meeting'))
+       {
+            /**
+             *  Schema::create('scores', function (Blueprint $table) {
+            $table->unique(['attendable_type','attendable_id','meeting_id'])->index();
+            $table->foreignIdFor(Meeting::class);
+            $table->morphs('attendable');
+            $table->boolean('present');
+            $table->float('time_score');
+        });
+             */
+
+           //register the guest for that meeting
+           Score::insert([
+                                'attendable_type'=>'App\Models\Guest',
+                                'attendable_id'=>$Guest->id,
+                                'meeting_id'=>$request->meeting,
+                                'present'=>true,
+                                'time_score'=>30
+           ]);
+
+           return redirect(Route('meeting.show',$request->meeting));
        }
         return redirect(Route('guest.index'));
     }

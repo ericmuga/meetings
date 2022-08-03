@@ -121,6 +121,8 @@ class MakeupRequestController extends Controller
      */
     public function destroy(MakeupRequest $makeupRequest)
     {
-        //
+      //  dd($makeupRequest);
+        $makeupRequest->delete();
+        return redirect(Route('makeup.index'));
     }
 }

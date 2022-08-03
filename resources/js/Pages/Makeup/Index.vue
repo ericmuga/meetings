@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
  import gsap from 'gsap';
 
  import SearchBox from '@/Components/SearchBox.vue'
+import Drop from '../../Components/Drop.vue';
 
 
 const form2 = useForm({
@@ -160,8 +161,12 @@ const  showForm=({formValues})=>Swal.fire({
                                                         <td class="px-6 py-4">
                                                             {{makeup.approval_date}}
                                                         </td>
-                                                        <td class="px-6 py-4">
-                                                            <Link :href="route('makeup.edit',makeup.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                        <td class="flex px-6 py-4">
+                                                            <div class="flex-col justify-center">
+                                                                <Link :href="route('makeup.edit',makeup.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                                <Drop :dropRoute="route('makeup.destroy',makeup.id)"/>
+                                                            </div>
+
                                                         </td>
                                                     </tr>
 

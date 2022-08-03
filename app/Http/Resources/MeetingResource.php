@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Score;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -56,8 +57,8 @@ class MeetingResource extends JsonResource
                   'club'=>$this->club()->first()->name,
                   'official_start_time'=>Carbon::parse($this->official_start_time)->toDateTimeString(),
                   'official_start_end'=>$this->official_start_end,
-                  'guests_count'=>$this->guests()->count(),
-                  'members_count'=>$this->members->count(),
+                  'guests_count'=>Score::where('attendable_type','App\Models\Guest')->where('meeting_id',$this->id)->count(),
+                  'members_count'=>Score::where('attendable_type','App\Models\Member')->where('meeting_id',$this->id)->count(),
                   'attended'=>$this->scores()->where('scores.present',true)->count(),
 
                   'icon'=>$icon,

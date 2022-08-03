@@ -99,6 +99,7 @@ class MeetingController extends Controller
 
     public function show(Meeting $meeting)
     {
+        // dd($meeting->scores()->count());
         return inertia('Meeting/Show',[
                                       'meeting'=>collect(MeetingResource::make($meeting))->merge($this->stats($meeting)),
 
@@ -143,20 +144,41 @@ class MeetingController extends Controller
 
     public function scores(Request $request)
     {
-        // dd($request->all());
+    //    dd($request->all());
+
         $meeting=Meeting::find($request->meeting);
-        $meeting->scores()->delete();
-        foreach ($request->attended as $member)
+          $meeting->scores()->delete();
+
+         foreach ($request->attended as $member)
         {
-            Score::create(['meeting_id'=>$request->meeting,
+            Score::where('meeting_id',$request->meeting)
+                 ->where('attendable_type','App\Models\Member')
+                 ->where('attendable_id',$member)
+                 ->delete();
+            Score::insert(['meeting_id'=>$request->meeting,
                            'attendable_type'=>'App\Models\Member',
                            'attendable_id'=>$member,
                            'present'=>true,
                            'time_score'=>Carbon::parse($meeting->official_start_time)->diffInMinutes(Carbon::parse($meeting->official_start_time)),
+                          ]);
+        }
+
+
+        foreach ($request->guestsAttended as $guest)
+        {
+            Score::where('meeting_id',$request->meeting)
+                 ->where('attendable_type','App\Models\Guest')
+                 ->where('attendable_id',$guest)
+                 ->delete();
+
+            Score::insert(['meeting_id'=>$request->meeting,
+                           'attendable_type'=>'App\Models\Guest',
+                           'attendable_id'=>$guest,
+                           'present'=>true,
+                           'time_score'=>Carbon::parse($meeting->official_start_time)->diffInMinutes(Carbon::parse($meeting->official_start_time)),
                         ]);
         }
-        // $meeting->members()->detach();
-        // $meeting->members()->attach($request->attended);
+
         return back();
     }
 }

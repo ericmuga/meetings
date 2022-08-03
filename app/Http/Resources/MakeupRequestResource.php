@@ -20,7 +20,7 @@ class MakeupRequestResource extends JsonResource
                    'description'=>$this->description,
                    'details'=>$this->details,
                    'category'=>$this->category,
-                   'member'=>$this->member->name,
+                   'member'=>$this->member?->name,
                    'approver'=>$this->approver,
                    'approval_date'=>$this->approval_date,
 
