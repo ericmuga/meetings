@@ -240,6 +240,7 @@ class ZoomController extends Controller
                         else $rule=GradingRule::firstWhere('name','Zoom');
 
                         $d=ZoomController::getInstanceDetails($instance);
+                        dd(Carbon::parse('2022-07-01')->toDateTimeString());
                         if(!Meeting::where('uuid',$d->uuid)->exists())
                           if(($d->participants_count>=$rule->minimum_members)
                                 && ($d->duration>=$rule->minimum_minutes)
