@@ -95,7 +95,9 @@ const  showForm=({formValues})=>Swal.fire({
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
         </div>
-
+        <div class="p-2 m-3 text-center">
+                <Button label="Makeup request"  class="text-center" @click="showForm"/>
+        </div>
         <form @submit.prevent="submit">
             <div>
                 <BreezeLabel for="email" value="Email" />
@@ -124,8 +126,6 @@ const  showForm=({formValues})=>Swal.fire({
                 </BreezeButton>
             </div>
         </form>
-        <div class="p-2 m-3">
-                <Button label="Makeup request" icon="pi pi-plus" class="mr-2" @click="showForm"/>
-        </div>
+
     </BreezeGuestLayout>
 </template>
