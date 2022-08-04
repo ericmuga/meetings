@@ -88,8 +88,16 @@ class MeetingController extends Controller
         //meetings attended by the member
         return [
                 //  'members_count'=>$meeting->members()->count(),
-                 'members'=>$meeting->members()->get()->pluck('id')->toArray(),
-                 'guests'=>$meeting->guests()->get()->pluck('id')->toArray(),
+                 'members'=>Score::where('attendable_type','App\Models\Member')
+                                ->where('meeting_id',$meeting->id)
+                                ->select('attendable_id')
+                                ->get()->pluck('attendable_id')
+                                ->toArray(),
+                 'guests'=>Score::where('attendable_type','App\Models\Guest')
+                                ->where('meeting_id',$meeting->id)
+                                ->select('attendable_id')
+                                ->get()->pluck('attendable_id')
+                                ->toArray(),
                  'MemberList'=>Member::orderBy('name')->get(),
                  'GuestList'=>Guest::all('id','name'),
                  'memberSelect'=>GuestController::buildMemberSelect(),
