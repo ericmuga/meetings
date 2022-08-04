@@ -70,7 +70,7 @@ onMounted(() => {
 
                          })
 
-
+const memberSelect= props.meeting.memberSelect
 
 const form2 = useForm({
                             name:'',
@@ -81,7 +81,8 @@ const form2 = useForm({
                              club:1,
                              nationality:'',
                              type:'',
-                             meeting:props.meeting.id
+                             meeting:props.meeting.id,
+                             member_id:'',
                             })
 
 
@@ -126,6 +127,10 @@ const  showForm=({formValues})=>Swal.fire({
                                                             '<option  value="f">Female</option>' +
                                                             '<option  value="m">Male</option>' +
                                                         '</select>'+
+                                                        '<br/><label style="margin-top:3px">Invited By</label>'+
+                                                        '<select id="member_id" name="member_id" placeholder="Invited By" class="swal2-input">'+
+                                                            memberSelect+
+                                                        '</select>'+
                                                         ' <select  id="type" name="type" type="text" class="swal2-input" required>' +
                                                             '<option  value="Rotarian">Rotarian</option>' +
                                                             '<option  value="Rotaractor">Rotaractor</option>' +
@@ -138,6 +143,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                                         form2.email=document.getElementById('email').value,
                                                                         form2.phone=document.getElementById('phone').value,
                                                                         form2.gender=document.getElementById('gender').value,
+                                                                        form2.member_id=document.getElementById('member_id').value,
                                                                         form2.field=document.getElementById('field').value,
                                                                         form2.type=document.getElementById('type').value,
                                                                         form2.nationality=document.getElementById('nationality').value,

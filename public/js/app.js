@@ -24305,6 +24305,7 @@ __webpack_require__.r(__webpack_exports__);
       memberStore.fetchGuests();
     }); // const filter=(obj,predicate)=>{_.filter(obj,predicate)}
 
+    var memberSelect = props.meeting.memberSelect;
     var form2 = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       name: '',
       field: '',
@@ -24314,7 +24315,8 @@ __webpack_require__.r(__webpack_exports__);
       club: 1,
       nationality: '',
       type: '',
-      meeting: props.meeting.id
+      meeting: props.meeting.id,
+      member_id: ''
     });
 
     var beforeEnter = function beforeEnter(el) {
@@ -24347,10 +24349,10 @@ __webpack_require__.r(__webpack_exports__);
       var formValues = _ref2.formValues;
       return sweetalert2__WEBPACK_IMPORTED_MODULE_16___default().fire({
         title: 'Create New guest',
-        html: '<input id="name" type="text"  placeholder="Name*" class="swal2-input">' + '<input id="email" type="email"  placeholder="email*" class="swal2-input" required>' + '<input id="phone" type="text"  placeholder="Phone No.*" class="swal2-input" required>' + '<input id="field" type="text"  placeholder="Field/Occupation" class="swal2-input" required>' + '<input id="nationality" type="text"  placeholder="Nationality" class="swal2-input" required>' + '<select  id="gender" name="" type="text"  placeholder="Gender" class="swal2-input" required>' + '<option  value="f">Female</option>' + '<option  value="m">Male</option>' + '</select>' + ' <select  id="type" name="type" type="text" class="swal2-input" required>' + '<option  value="Rotarian">Rotarian</option>' + '<option  value="Rotaractor">Rotaractor</option>' + '<option  value="None">None</option>' + '</select>',
+        html: '<input id="name" type="text"  placeholder="Name*" class="swal2-input">' + '<input id="email" type="email"  placeholder="email*" class="swal2-input" required>' + '<input id="phone" type="text"  placeholder="Phone No.*" class="swal2-input" required>' + '<input id="field" type="text"  placeholder="Field/Occupation" class="swal2-input" required>' + '<input id="nationality" type="text"  placeholder="Nationality" class="swal2-input" required>' + '<select  id="gender" name="" type="text"  placeholder="Gender" class="swal2-input" required>' + '<option  value="f">Female</option>' + '<option  value="m">Male</option>' + '</select>' + '<br/><label style="margin-top:3px">Invited By</label>' + '<select id="member_id" name="member_id" placeholder="Invited By" class="swal2-input">' + memberSelect + '</select>' + ' <select  id="type" name="type" type="text" class="swal2-input" required>' + '<option  value="Rotarian">Rotarian</option>' + '<option  value="Rotaractor">Rotaractor</option>' + '<option  value="None">None</option>' + '</select>',
         focusConfirm: false,
         preConfirm: function preConfirm() {
-          form2.name = document.getElementById('name').value, form2.email = document.getElementById('email').value, form2.phone = document.getElementById('phone').value, form2.gender = document.getElementById('gender').value, form2.field = document.getElementById('field').value, form2.type = document.getElementById('type').value, form2.nationality = document.getElementById('nationality').value, form2.post(route('guest.store'), {
+          form2.name = document.getElementById('name').value, form2.email = document.getElementById('email').value, form2.phone = document.getElementById('phone').value, form2.gender = document.getElementById('gender').value, form2.member_id = document.getElementById('member_id').value, form2.field = document.getElementById('field').value, form2.type = document.getElementById('type').value, form2.nationality = document.getElementById('nationality').value, form2.post(route('guest.store'), {
             preserveScroll: true,
             onSuccess: function onSuccess() {
               sweetalert2__WEBPACK_IMPORTED_MODULE_16___default().fire('Success!', 'Guest has been added.', 'success');
@@ -24367,6 +24369,7 @@ __webpack_require__.r(__webpack_exports__);
       form: form,
       save: save,
       props: props,
+      memberSelect: memberSelect,
       form2: form2,
       beforeEnter: beforeEnter,
       enter: enter,

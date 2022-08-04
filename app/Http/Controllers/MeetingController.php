@@ -92,6 +92,7 @@ class MeetingController extends Controller
                  'guests'=>$meeting->guests()->get()->pluck('id')->toArray(),
                  'MemberList'=>Member::orderBy('name')->get(),
                  'GuestList'=>Guest::all('id','name'),
+                 'memberSelect'=>GuestController::buildMemberSelect(),
                  'requests'=>MakeupRequestResource::collection(MakeupRequest::whereNull('approver')->get()),
                ];
     }

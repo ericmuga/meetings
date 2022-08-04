@@ -7,7 +7,9 @@ use App\Http\Requests\StoreGuestRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateGuestRequest;
 use App\MyPaginator;
+use App\MemberHelper;
 use App\Http\Resources\GuestResource;
+use MemberHelper as GlobalMemberHelper;
 
 class GuestController extends Controller
 {
@@ -18,7 +20,7 @@ class GuestController extends Controller
      */
 
 
-    public function buildMemberSelect()
+    public static function buildMemberSelect()
     {
         $members='';
         foreach (Member::all('id','name') as $member)
@@ -35,7 +37,7 @@ class GuestController extends Controller
       return [
               'search'=>$request->input('search')?:null,
               'burl'=>base_path(),
-              'members'=>$this->buildMemberSelect(),
+              'members'=>GuestController::buildMemberSelect(),
               'guests'=>MyPaginator::paginate(GuestResource::collection(Guest::query()
                                                                                 ->when($request->input('search'),
                                                                                         fn($query,$search)=>($query->where('name','like','%'.$search.'%')
