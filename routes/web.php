@@ -13,7 +13,8 @@ use App\Http\Controllers\{AdminController,
                           GradingRuleController,
                           MakeupRequestController,
                           ZoomController,
-                         GuestController};
+                         GuestController,
+                        ClubController};
 use App\Http\Resources\MemberResource;
 use App\Models\Guest;
 use App\Models\MakeupRequest;
@@ -41,7 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
     Route::resource('guest', GuestController::class);
     Route::resource('meeting', MeetingController::class);
-
+    Route::resource('club', ClubController::class);
 
     Route::delete('grading/{id}',[GradingRuleController::class,'destroy'])->name('grading.destroy');
      Route::resource('grading', GradingRuleController::class);

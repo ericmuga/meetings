@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Guest,Contact, Meeting, Score,Member};
+use App\Models\{Guest,Contact, Meeting, Score,Member,Club};
 use App\Http\Requests\StoreGuestRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateGuestRequest;
@@ -30,6 +30,21 @@ class GuestController extends Controller
 
         return $members;
     }
+
+
+    public static function buildClubSelect()
+    {
+        $clubs='<option value=""></option>';
+        foreach (Club::all('id','name') as $club)
+        {
+            $clubs=$clubs.'<option value="'.$club->id.'">'.$club->name.'</option>';
+        }
+
+        return $clubs;
+    }
+
+
+
     public function list(Request $request )
     {
 
@@ -38,6 +53,7 @@ class GuestController extends Controller
               'search'=>$request->input('search')?:null,
               'burl'=>base_path(),
               'members'=>GuestController::buildMemberSelect(),
+              'clubs'=>GuestController::buildClubSelect(),
               'guests'=>MyPaginator::paginate(GuestResource::collection(Guest::query()
                                                                                 ->when($request->input('search'),
                                                                                         fn($query,$search)=>($query->where('name','like','%'.$search.'%')
@@ -84,7 +100,7 @@ class GuestController extends Controller
     public function store(StoreGuestRequest $request)
     {
         //
-       $Guest=Guest::create($request->only(['name','gender','field','type','nationality','member_id']));
+       $Guest=Guest::create($request->only(['name','gender','field','type','nationality','member_id','club_id']));
       //attach contacts
 
        Contact::create([
@@ -109,17 +125,7 @@ class GuestController extends Controller
 
        if ($request->has('meeting'))
        {
-            /**
-             *  Schema::create('scores', function (Blueprint $table) {
-            $table->unique(['attendable_type','attendable_id','meeting_id'])->index();
-            $table->foreignIdFor(Meeting::class);
-            $table->morphs('attendable');
-            $table->boolean('present');
-            $table->float('time_score');
-        });
-             */
 
-           //register the guest for that meeting
            Score::insert([
                                 'attendable_type'=>'App\Models\Guest',
                                 'attendable_id'=>$Guest->id,

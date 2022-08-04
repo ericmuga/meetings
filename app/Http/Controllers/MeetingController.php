@@ -93,6 +93,7 @@ class MeetingController extends Controller
                  'MemberList'=>Member::orderBy('name')->get(),
                  'GuestList'=>Guest::all('id','name'),
                  'memberSelect'=>GuestController::buildMemberSelect(),
+                 'clubSelect'=>GuestController::buildClubSelect(),
                  'requests'=>MakeupRequestResource::collection(MakeupRequest::whereNull('approver')->get()),
                ];
     }

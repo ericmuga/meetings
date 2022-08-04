@@ -78,7 +78,7 @@ const props=defineProps({
 
 
                                         <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
-                                            <img class="w-full max-h-48" src="/images/guest.png" alt="Member Gravatar" >
+                                            <img class="w-full max-h-48" src="/images/guest.png" alt="Guests Gravatar" >
                                             <div class="flex justify-center px-6 py-4">
                                                 <div class="mb-2 text-xl font-bold ">Guests</div>
                                             </div>
@@ -87,6 +87,21 @@ const props=defineProps({
                                                 </p>
                                             <div class="px-6 pt-4 pb-2 text-center">
                                                 <Link :href="route('guest.index')">
+                                                    <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
+                                                </Link>
+                                            </div>
+                                         </div>
+
+                                          <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
+                                            <img class="w-full max-h-48" src="/images/club.png" alt="Guests Gravatar" >
+                                            <div class="flex justify-center px-6 py-4">
+                                                <div class="mb-2 text-xl font-bold ">Clubs</div>
+                                            </div>
+                                              <p class="text-base text-center text-gray-700">
+                                                    {{clubs}}
+                                                </p>
+                                            <div class="px-6 pt-4 pb-2 text-center">
+                                                <Link :href="route('club.index')">
                                                     <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">Explore</span>
                                                 </Link>
                                             </div>

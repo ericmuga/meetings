@@ -71,6 +71,7 @@ onMounted(() => {
                          })
 
 const memberSelect= props.meeting.memberSelect
+const clubSelect= props.meeting.clubSelect
 
 const form2 = useForm({
                             name:'',
@@ -78,11 +79,12 @@ const form2 = useForm({
                             email:'',
                              phone:'',
                              gender:'',
-                             club:1,
+                            //  club:1,
                              nationality:'',
                              type:'',
                              meeting:props.meeting.id,
                              member_id:'',
+                             club_id,
                             })
 
 
@@ -131,10 +133,15 @@ const  showForm=({formValues})=>Swal.fire({
                                                         '<select id="member_id" name="member_id" placeholder="Invited By" class="swal2-input">'+
                                                             memberSelect+
                                                         '</select>'+
+
                                                         ' <select  id="type" name="type" type="text" class="swal2-input" required>' +
                                                             '<option  value="Rotarian">Rotarian</option>' +
                                                             '<option  value="Rotaractor">Rotaractor</option>' +
                                                             '<option  value="None">None</option>' +
+                                                        '</select>'+
+                                                        '<br/><label style="margin-top:3px">Club</label>'+
+                                                        '<select id="club_id" name="member_id" placeholder="Invited By" class="swal2-input">'+
+                                                            clubSelect+
                                                         '</select>'
                                                         ,
                                                    focusConfirm: false,
@@ -144,6 +151,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                                         form2.phone=document.getElementById('phone').value,
                                                                         form2.gender=document.getElementById('gender').value,
                                                                         form2.member_id=document.getElementById('member_id').value,
+                                                                        form2.club_id=document.getElementById('club_id').value,
                                                                         form2.field=document.getElementById('field').value,
                                                                         form2.type=document.getElementById('type').value,
                                                                         form2.nationality=document.getElementById('nationality').value,

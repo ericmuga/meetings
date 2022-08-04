@@ -29,5 +29,10 @@ class Guest extends Model
         return $this->belongsTo(Member::class);
     }
 
+    public function club()
+    {
+        return $this->belongsTo(Club::class);
+    }
+
     protected $guarded =['id'];
 }
