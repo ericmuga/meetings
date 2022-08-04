@@ -122,6 +122,18 @@ import guestCard from '@/Components/guestCard.vue'
                                         </Link>
                                     </AccordionTab>
 
+
+                                    <AccordionTab header="Inviter">
+                                         <table>
+
+                                             <tr>
+                                                    <td class="p-2">{{guest.data.inviter}}</td>
+
+                                            </tr>
+                                         </table>
+
+                                    </AccordionTab>
+
                                     <AccordionTab header="History">
 
                                     </AccordionTab>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Guest,Contact, Meeting, Score};
+use App\Models\{Guest,Contact, Meeting, Score,Member};
 use App\Http\Requests\StoreGuestRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateGuestRequest;
@@ -17,6 +17,17 @@ class GuestController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+    public function buildMemberSelect()
+    {
+        $members='';
+        foreach (Member::all('id','name') as $member)
+        {
+            $members=$members.'<option value="'.$member->id.'">'.$member->name.'</option>';
+        }
+
+        return $members;
+    }
     public function list(Request $request )
     {
 
@@ -24,6 +35,7 @@ class GuestController extends Controller
       return [
               'search'=>$request->input('search')?:null,
               'burl'=>base_path(),
+              'members'=>$this->buildMemberSelect(),
               'guests'=>MyPaginator::paginate(GuestResource::collection(Guest::query()
                                                                                 ->when($request->input('search'),
                                                                                         fn($query,$search)=>($query->where('name','like','%'.$search.'%')
@@ -70,7 +82,7 @@ class GuestController extends Controller
     public function store(StoreGuestRequest $request)
     {
         //
-       $Guest=Guest::create($request->only(['name','gender','field','type','nationality']));
+       $Guest=Guest::create($request->only(['name','gender','field','type','nationality','member_id']));
       //attach contacts
 
        Contact::create([
@@ -112,7 +124,7 @@ class GuestController extends Controller
                                 'meeting_id'=>$request->meeting,
                                 'present'=>true,
                                 'time_score'=>30
-           ]);
+                    ]);
 
            return redirect(Route('meeting.show',$request->meeting));
        }

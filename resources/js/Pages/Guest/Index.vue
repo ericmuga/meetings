@@ -10,25 +10,6 @@ import Swal from 'sweetalert2'
  import SearchBox from '@/Components/SearchBox.vue'
 import { onMounted } from '@vue/runtime-core';
 
-// onMounted(()=>{
-
-//     if(errors.length>=0)
-//     {     let t='';
-//           let e=`<div class="text-sm text-red">${t}</div>`;
-
-//                             for (const [key, value] of Object.entries(props.errors)) {
-//                             t+='<p class="mt-1">'+value+'</p>'
-//                             }
-
-
-//             Swal.fire(
-//                     'Error!',
-//                     t,
-//                     'danger')
-
-//      }
-// })
-
 const form = useForm({
                             guest_list: null,
                             })
@@ -45,6 +26,7 @@ const form2 = useForm({
                             email:'',
                              phone:'',
                              gender:'',
+                             member_id:'',
                              club:1,
                              nationality:'',
                              type:'',
@@ -56,9 +38,12 @@ const props=defineProps({
                              model:String,
                              search:String,
                              baseURL:String,
+                             members:String,
 
 
                             })
+
+const members= props.members
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
@@ -88,6 +73,10 @@ const  showForm=({formValues})=>Swal.fire({
                                                             '<option  value="f">Female</option>' +
                                                             '<option  value="m">Male</option>' +
                                                         '</select>'+
+                                                        '<br/><label style="margin-top:3px">Invited By</label>'+
+                                                        '<select id="member_id" name="member_id" placeholder="Invited By" class="swal2-input">'+
+                                                            members+
+                                                        '</select>'+
                                                         ' <select  id="type" name="type" type="text" class="swal2-input" required>' +
                                                             '<option  value="Rotarian">Rotarian</option>' +
                                                             '<option  value="Rotaractor">Rotaractor</option>' +
@@ -100,6 +89,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                                         form2.email=document.getElementById('email').value,
                                                                         form2.phone=document.getElementById('phone').value,
                                                                         form2.gender=document.getElementById('gender').value,
+                                                                        form2.member_id=document.getElementById('member_id').value,
                                                                         form2.field=document.getElementById('field').value,
                                                                         form2.type=document.getElementById('type').value,
                                                                         form2.nationality=document.getElementById('nationality').value,
@@ -139,31 +129,7 @@ const  showForm=({formValues})=>Swal.fire({
                     <template #start>
                         <!-- <Link :href="route('guest.create')"> -->
                           <Button label="New" icon="pi pi-plus" class="mr-2" @click="showForm"/>
-                        <!-- </Link> -->
 
-
-                        <!-- <Form @submit.prevent="uploadguests" class="flex flex-row ">
-                        <FileUpload mode="basic"
-                                name="demo[]"
-                                url="./upload.php"
-                                :maxFileSize="1000000"
-                                chooseLabel="Upload guests"
-                                @input="form.guest_list = $event.target.files[0]"
-                                data-tooltip-target="tooltip-default"
-                                class="mr-2 p-button-success "
-
-                                />
-                          <Button   icon="pi pi-upload" class="mx-2 p-button-rounded p-button-secondary"/>
-                        <Button v-if="form.guest_list"
-                               :disabled=form.progress
-                               type="submit"
-                               label="Upload" icon="pi pi-upload" class="p-button-primary" />
-                        <i class="mr-2 pi pi-bars p-toolbar-separator" />
-                        <SplitButton label="Save" icon="pi pi-check" :model="items" class="p-button-warning"></SplitButton>
-                            </Form>
-                         <a :href="route('guests.download')">
-                          <Button label="Download" icon="pi pi-download" class="mr-2 p-button-secondary" />
-                        </a> -->
 
 
                 </template>

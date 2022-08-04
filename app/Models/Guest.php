@@ -23,5 +23,11 @@ class Guest extends Model
        return optional($this->contacts()->when($type,fn($q,$type)=>($q->where('contact_type',$type)))->first())->contact;
     }
 
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
+
     protected $guarded =['id'];
 }
