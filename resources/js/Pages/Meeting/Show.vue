@@ -84,7 +84,7 @@ const form2 = useForm({
                              type:'',
                              meeting:props.meeting.id,
                              member_id:'',
-                             club_id,
+                             club_id:'',
                             })
 
 

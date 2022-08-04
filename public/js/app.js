@@ -24408,7 +24408,7 @@ __webpack_require__.r(__webpack_exports__);
       type: '',
       meeting: props.meeting.id,
       member_id: '',
-      club_id: club_id
+      club_id: ''
     });
 
     var beforeEnter = function beforeEnter(el) {
