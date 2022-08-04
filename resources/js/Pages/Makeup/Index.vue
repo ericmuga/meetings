@@ -16,15 +16,19 @@ const form2 = useForm({
                             description:'',
                             detail:'',
                             category:'',
+                            member_id:'',
                             })
 
 const props=defineProps({ makeups:Object,
                              model:String,
                              search:String,
                              baseURL:String,
+                             memberSelect:String,
 
 
                             })
+
+const memberSelect=props.memberSelect
 
 
 
@@ -32,11 +36,20 @@ const  showForm=({formValues})=>Swal.fire({
                                                     title: 'Create New makeup',
                                                     html:
                                                         '<input id="date" type="date"  placeholder="Date*" class="swal2-input">' +
+                                                        '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' +
+                                                            '<option  value="Committee Meeting">Committee Meeting</option>' +
+                                                            '<option  value="Club Visit">Club Visit</option>' +
+                                                            '<option  value="Projects">Projects</option>' +
+                                                            '<option  value="Social">Social</option>' +
+                                                            '<option  value="Training">Training</option>' +
+                                                            '<option  value="Board Meeting">Board Meeting</option>' +
+                                                            '<option  value="other">Other Activity</option>' +
+                                                        '</select>'+
                                                         '<input id="description" type="text"  placeholder="Description*" class="swal2-input" required>' +
                                                         '<textarea id="detail" rows="50" cols="20" class="swal2-input" placeholder="Details ..*"></textarea>' +
-                                                        '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' +
-                                                            '<option  value="meeting">Meeting</option>' +
-                                                            '<option  value="other">Other</option>' +
+                                                        '<br/><label>Member</label>'+
+                                                        '<select  id="member_id"  type="text"  placeholder="Category" class="swal2-input" required>' +
+                                                           memberSelect+
                                                         '</select>'
                                                         ,
                                                    focusConfirm: false,
@@ -45,6 +58,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                                         form2.description=document.getElementById('description').value,
                                                                         form2.detail=document.getElementById('detail').value,
                                                                         form2.category=document.getElementById('category').value,
+                                                                        form2.member_id=document.getElementById('member_id').value,
 
                                                                            form2.post(route('makeup.store'),{
                                                                                         preserveScroll: true,

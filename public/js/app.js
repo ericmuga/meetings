@@ -23033,6 +23033,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Label_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Label.vue */ "./resources/js/Components/Label.vue");
 /* harmony import */ var _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors.vue */ "./resources/js/Components/ValidationErrors.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -23044,11 +23047,13 @@ __webpack_require__.r(__webpack_exports__);
   __name: 'Login',
   props: {
     canResetPassword: Boolean,
-    status: String
+    status: String,
+    memberSelect: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var props = __props;
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.useForm)({
       email: '',
       password: '',
@@ -23063,9 +23068,39 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
+    var memberSelect = props.memberSelect;
+    var form2 = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.useForm)({
+      date: '',
+      description: '',
+      detail: '',
+      category: '',
+      member_id: ''
+    }); // const memberSelect=memberSelect
+
+    var showForm = function showForm(_ref2) {
+      var formValues = _ref2.formValues;
+      return sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
+        title: 'New Makeup Request',
+        html: '<input id="date" type="date"  placeholder="Date*" class="swal2-input">' + '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' + '<option  value="Committee Meeting">Committee Meeting</option>' + '<option  value="Club Visit">Club Visit</option>' + '<option  value="Projects">Projects</option>' + '<option  value="Social">Social</option>' + '<option  value="Training">Training</option>' + '<option  value="Board Meeting">Board Meeting</option>' + '<option  value="other">Other Activity</option>' + '</select>' + '<input id="description" type="text"  placeholder="Description*" class="swal2-input" required>' + '<textarea id="detail" rows="50" cols="20" class="swal2-input" placeholder="Details ..*"></textarea>' + '<br/><label>Member</label>' + '<select  id="member_id"  type="text"  placeholder="Category" class="swal2-input" required>' + memberSelect + '</select>',
+        focusConfirm: false,
+        preConfirm: function preConfirm() {
+          form2.date = document.getElementById('date').value, form2.description = document.getElementById('description').value, form2.detail = document.getElementById('detail').value, form2.category = document.getElementById('category').value, form2.member_id = document.getElementById('member_id').value, form2.post(route('makeup.store'), {
+            preserveScroll: true,
+            onSuccess: function onSuccess() {
+              return sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire('Success!', 'Makeup request has been added.', 'success');
+            }
+          });
+        }
+      });
+    };
+
     var __returned__ = {
+      props: props,
       form: form,
       submit: submit,
+      memberSelect: memberSelect,
+      form2: form2,
+      showForm: showForm,
       BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       BreezeCheckbox: _Components_Checkbox_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       BreezeGuestLayout: _Layouts_Guest_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -23074,7 +23109,8 @@ __webpack_require__.r(__webpack_exports__);
       BreezeValidationErrors: _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.Head,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.Link,
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.useForm
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.useForm,
+      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_7___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -24010,7 +24046,8 @@ __webpack_require__.r(__webpack_exports__);
     makeups: Object,
     model: String,
     search: String,
-    baseURL: String
+    baseURL: String,
+    memberSelect: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -24020,17 +24057,19 @@ __webpack_require__.r(__webpack_exports__);
       date: '',
       description: '',
       detail: '',
-      category: ''
+      category: '',
+      member_id: ''
     });
+    var memberSelect = props.memberSelect;
 
     var showForm = function showForm(_ref2) {
       var formValues = _ref2.formValues;
       return sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
         title: 'Create New makeup',
-        html: '<input id="date" type="date"  placeholder="Date*" class="swal2-input">' + '<input id="description" type="text"  placeholder="Description*" class="swal2-input" required>' + '<textarea id="detail" rows="50" cols="20" class="swal2-input" placeholder="Details ..*"></textarea>' + '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' + '<option  value="meeting">Meeting</option>' + '<option  value="other">Other</option>' + '</select>',
+        html: '<input id="date" type="date"  placeholder="Date*" class="swal2-input">' + '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' + '<option  value="Committee Meeting">Committee Meeting</option>' + '<option  value="Club Visit">Club Visit</option>' + '<option  value="Projects">Projects</option>' + '<option  value="Social">Social</option>' + '<option  value="Training">Training</option>' + '<option  value="Board Meeting">Board Meeting</option>' + '<option  value="other">Other Activity</option>' + '</select>' + '<input id="description" type="text"  placeholder="Description*" class="swal2-input" required>' + '<textarea id="detail" rows="50" cols="20" class="swal2-input" placeholder="Details ..*"></textarea>' + '<br/><label>Member</label>' + '<select  id="member_id"  type="text"  placeholder="Category" class="swal2-input" required>' + memberSelect + '</select>',
         focusConfirm: false,
         preConfirm: function preConfirm() {
-          form2.date = document.getElementById('date').value, form2.description = document.getElementById('description').value, form2.detail = document.getElementById('detail').value, form2.category = document.getElementById('category').value, form2.post(route('makeup.store'), {
+          form2.date = document.getElementById('date').value, form2.description = document.getElementById('description').value, form2.detail = document.getElementById('detail').value, form2.category = document.getElementById('category').value, form2.member_id = document.getElementById('member_id').value, form2.post(route('makeup.store'), {
             preserveScroll: true,
             onSuccess: function onSuccess() {
               return sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire('Success!', 'Makeup request has been added.', 'success');
@@ -24043,6 +24082,7 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       form2: form2,
       props: props,
+      memberSelect: memberSelect,
       showForm: showForm,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
@@ -27191,7 +27231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "mb-4 font-medium text-sm text-green-600"
+  "class": "mb-4 text-sm font-medium text-green-600"
 };
 var _hoisted_2 = ["onSubmit"];
 var _hoisted_3 = {
@@ -27218,7 +27258,12 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Log in ");
 
+var _hoisted_10 = {
+  "class": "p-2 m-3"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["BreezeGuestLayout"], null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -27235,7 +27280,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
         id: "email",
         type: "email",
-        "class": "mt-1 block w-full",
+        "class": "block w-full mt-1",
         modelValue: $setup.form.email,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return $setup.form.email = $event;
@@ -27251,7 +27296,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
         id: "password",
         type: "password",
-        "class": "mt-1 block w-full",
+        "class": "block w-full mt-1",
         modelValue: $setup.form.password,
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return $setup.form.password = $event;
@@ -27271,7 +27316,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       , ["checked"]), _hoisted_6])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$props.canResetPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
         key: 0,
         href: _ctx.route('password.request'),
-        "class": "underline text-sm text-gray-600 hover:text-gray-900"
+        "class": "text-sm text-gray-600 underline hover:text-gray-900"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_8];
@@ -27297,7 +27342,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["class", "disabled"])])], 40
       /* PROPS, HYDRATE_EVENTS */
-      , _hoisted_2)];
+      , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+        label: "Makeup request",
+        icon: "pi pi-plus",
+        "class": "mr-2",
+        onClick: $setup.showForm
+      })])];
     }),
     _: 1
     /* STABLE */

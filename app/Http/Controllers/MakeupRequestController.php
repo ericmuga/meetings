@@ -27,7 +27,7 @@ class MakeupRequestController extends Controller
               'search'=>$request->input('search')?:null,
               'model'=>'makeup',
               'burl'=>base_path(),
-
+            'memberSelect'=>GuestController::buildMemberSelect(),
               'makeups'=>MyPaginator::paginate(MakeupRequestResource::collection(MakeupRequest::query()
                                                                                 ->when($request->input('search'),
                                                                                         fn($query,$search)=>($query->where('makeup_date','like','%'.$search.'%')
@@ -72,9 +72,9 @@ class MakeupRequestController extends Controller
             'makeup_date'=>$request->date,
             'details'=>$request->detail,
             'category'=>$request->category,
-            'member_id'=>$request->user()->authenticatable_id,
+            'member_id'=>$request->member_id,
 
-     ]);
+           ]);
 
       return back();
     }
