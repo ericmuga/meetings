@@ -22,7 +22,7 @@ class GuestController extends Controller
 
     public static function buildMemberSelect()
     {
-        $members='';
+        $members='<option value=""></option>';
         foreach (Member::all('id','name') as $member)
         {
             $members=$members.'<option value="'.$member->id.'">'.$member->name.'</option>';
