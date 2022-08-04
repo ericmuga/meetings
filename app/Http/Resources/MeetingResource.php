@@ -48,7 +48,7 @@ class MeetingResource extends JsonResource
         return [
                   'id'=>$this->id,
                   'type'=>$this->type,
-                  'date'=>Carbon::parse($this->date)->diffForHumans(),
+                  'date'=>Carbon::parse($this->date)->toDateString(),
                   'venue'=>$this->venue,
                   'topic'=>$this->topic,
                   'host'=>$this->host,

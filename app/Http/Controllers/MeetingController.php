@@ -67,7 +67,7 @@ class MeetingController extends Controller
      */
     public function store(StoreMeetingRequest $request)
     {
-
+        // dd($request->all());
         Meeting::create($request->all());
         return redirect(route('meeting.index'));
     }

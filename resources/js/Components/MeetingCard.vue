@@ -59,7 +59,7 @@
     </tbody>
     </table>
 </div>
-   <p class="py-4 font-semibold text-center">{{meeting.official_start_time}}</p>
+   <p class="py-4 font-semibold text-center">{{meeting.date}}</p>
    <div class="flex flex-row justify-center space-x-2">
        <Link
          :href="route('meeting.show',meeting.id)"
