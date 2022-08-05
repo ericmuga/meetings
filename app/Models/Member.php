@@ -33,4 +33,9 @@ class Member extends Model
         return $this->hasMany(MakeupRequest::class);
     }
 
+    public function guests()
+    {
+        return $this->hasMany(Guest::class);
+    }
+
 }

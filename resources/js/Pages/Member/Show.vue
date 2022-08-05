@@ -25,7 +25,7 @@ import MemberCard from '@/Components/MemberCard.vue'
  const props=defineProps({
                               member:Object,
                               meetings:Object,
-
+                              guests:Object,
                          })
 
  const beforeEnter=(el)=>{
@@ -185,7 +185,48 @@ import MemberCard from '@/Components/MemberCard.vue'
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
                                     </AccordionTab> -->
                                      <AccordionTab header="Guests invited">
-                                        <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p> -->
+                                       <div v-if="member.data.guests.length==0">
+                                           <p>No Guests were found</p>
+                                       </div>
+
+
+                                  <div class="relative overflow-x-auto" v-else>
+                                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+
+                                                <tr scope="col" class="px-6 py-3" >
+                                                   <th>Name</th>
+                                                   <th>Email</th>
+                                                   <th>Phone</th>
+                                                   <th>Field</th>
+                                                   <th>Type</th>
+                                                   <th>Gender</th>
+                                               </tr>
+                                            </thead>
+
+
+                                        <tr v-for="g in member.data.guests" :key="g.id">
+                                                <td class="px-6 py-4">
+                                                    <Link :href="route('guest.show',g.id)"
+                                                       class="px-3 py-1 text-indigo-800 underline"
+                                                        >{{g.name}}
+
+                                                    </Link>
+                                               </td>
+                                                <td class="px-6 py-4">{{g.email}}</td>
+                                                <td class="px-6 py-4">{{g.phone}}</td>
+                                                <td class="px-6 py-4">{{g.field}}</td>
+                                                <td class="px-6 py-4">{{g.type}}</td>
+                                                <td class="px-6 py-4">{{g.gender}}</td>
+
+                                         </tr>
+
+                                         </table>
+                                       </div>
+
+
+
                                     </AccordionTab>
                                       <AccordionTab header="Communications">
                                         <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p> -->

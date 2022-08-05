@@ -27,7 +27,8 @@ class MemberResource extends JsonResource
             'phone'=>$this->defaultContact('phone'),
             'email'=>$this->defaultContact('email'),
             'contacts'=>$this->contacts()->get(),
-            'makeuprequests'=>$this->makeuprequests()->get()
+            'makeuprequests'=>$this->makeuprequests()->get(),
+            'guests'=>$this->guests()->orderBy('name')->get()
             // 'email'=>Contact::where('contact_type','email')
             //                 ->where('contactable_type','App\Models\Member')
             //                 ->where('contactable_id',$this->id)->first()->contact
