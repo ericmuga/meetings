@@ -721,6 +721,14 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1216,6 +1224,10 @@ select {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 .pt-8 {
   padding-top: 2rem;

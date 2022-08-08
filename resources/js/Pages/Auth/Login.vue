@@ -48,8 +48,20 @@ const form2 = useForm({
 const  showForm=({formValues})=>Swal.fire({
                                                     title: 'New Makeup Request',
                                                     html:
-                                                        '<input id="date" type="date"  placeholder="Date*" class="swal2-input">' +
-                                                        '<select  id="category"  type="text"  placeholder="Category" class="swal2-input" required>' +
+                                                        '<br/><label>Name</label>'+
+                                                        '<br/>'+
+                                                        '<select  id="member_id"  type="text"  placeholder="Category" class="my-2 rounded-md" required>' +
+                                                           memberSelect+
+                                                        '</select>'+
+                                                        '<br/><label>Date</label>'+
+                                                        '<br/>'+
+                                                        '<input id="date" type="date"  placeholder="Date*" class="p-2 my-2 rounded-md">' +
+
+                                                        '<input id="description" type="text"  placeholder="Description*" class="my-4 rounded-md" required>' +
+
+                                                        '<select  id="category"  type="text"  placeholder="Category" class="my-2 rounded-md required>' +
+                                                            '<option  value=""></option>' +
+                                                            '<option  value=""></option>' +
                                                             '<option  value="Committee Meeting">Committee Meeting</option>' +
                                                             '<option  value="Club Visit">Club Visit</option>' +
                                                             '<option  value="Projects">Projects</option>' +
@@ -58,13 +70,10 @@ const  showForm=({formValues})=>Swal.fire({
                                                             '<option  value="Board Meeting">Board Meeting</option>' +
                                                             '<option  value="other">Other Activity</option>' +
                                                         '</select>'+
-                                                        '<input id="description" type="text"  placeholder="Description*" class="swal2-input" required>' +
-                                                        '<textarea id="detail" rows="50" cols="20" class="swal2-input" placeholder="Details ..*"></textarea>' +
-                                                        '<br/><label>Member</label>'+
-                                                        '<select  id="member_id"  type="text"  placeholder="Category" class="swal2-input" required>' +
-                                                           memberSelect+
-                                                        '</select>'
+
+                                                        '<textarea id="detail" rows="5" cols="25" class="p-3 rounded-md" placeholder="Details*"></textarea>'
                                                         ,
+
                                                    focusConfirm: false,
                                                     preConfirm: () => {
                                                                         form2.date=document.getElementById('date').value,
