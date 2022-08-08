@@ -71,7 +71,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                             '<option  value="other">Other Activity</option>' +
                                                         '</select>'+
 
-                                                        '<textarea id="detail" rows="5" cols="25" class="p-3 rounded-md" placeholder="Details*"></textarea>'
+                                                        '<textarea id="detail" rows="4" cols="25" class="p-3 rounded-md" placeholder="Details*"></textarea>'
                                                         ,
 
                                                    focusConfirm: false,
