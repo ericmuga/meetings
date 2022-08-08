@@ -18,6 +18,12 @@
                             <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
                        </Link>
 
+                       <Link
+                          :href="route('guest.edit',guest.id)"
+                       >
+                            <Button icon="pi pi-pencil" class="p-button-rounded p-button-secondary" />
+                       </Link>
+
                             <!-- <Button icon="pi pi-times" class="justify-end p-button-rounded p-button-danger"
                                     @click="dropMember(guest.id)"
                             /> -->

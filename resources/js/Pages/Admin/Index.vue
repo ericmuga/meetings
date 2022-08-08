@@ -62,7 +62,7 @@ const props=defineProps({
                                          </div>
 
                                          <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg">
-                                            <img class="w-full max-h-48" src="/images/member.jpg" alt="Member Gravatar" >
+                                            <img class="w-full max-h-48" src="/images/member.png" alt="Member Gravatar" >
                                             <div class="flex justify-center px-6 py-4">
                                                 <div class="mb-2 text-xl font-bold ">Members</div>
                                             </div>
@@ -78,7 +78,7 @@ const props=defineProps({
 
 
                                         <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
-                                            <img class="w-full max-h-48" src="/images/guest.png" alt="Guests Gravatar" >
+                                            <img class="w-full max-h-48" src="/images/guest.jpg" alt="Guests Gravatar" >
                                             <div class="flex justify-center px-6 py-4">
                                                 <div class="mb-2 text-xl font-bold ">Guests</div>
                                             </div>
@@ -93,7 +93,7 @@ const props=defineProps({
                                          </div>
 
                                           <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
-                                            <img class="w-full max-h-48" src="/images/club.png" alt="Guests Gravatar" >
+                                            <img class="w-full max-h-48" src="/images/clubs.jpg" alt="Guests Gravatar" >
                                             <div class="flex justify-center px-6 py-4">
                                                 <div class="mb-2 text-xl font-bold ">Clubs</div>
                                             </div>
@@ -123,7 +123,7 @@ const props=defineProps({
                                          </div>
 
                                          <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg ">
-                                            <img class="w-full max-h-48" src="/images/reports.jpg" alt="Member Gravatar" >
+                                            <img class="w-full max-h-48" src="/images/reports.png" alt="Reports Image" >
                                             <div class="flex justify-center px-6 py-4">
                                                 <div class="mb-2 text-xl font-bold ">Reports</div>
                                             </div>
