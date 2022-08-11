@@ -2,8 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Score;
+use App\Models\{Score,Meeting};
 use Carbon\Carbon;
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MeetingResource extends JsonResource
@@ -45,6 +46,30 @@ class MeetingResource extends JsonResource
                 break;
         }
 
+        $index=0;$prefix='';
+
+        if ($this->type<>'makeup')
+        {
+               $prefix='Meeting';
+                foreach(Meeting::where('type','<>','makeup')->orderBy('date')->get() as $meeting)
+                            {
+                                $index+=1;
+                                if ($meeting->id==$this->id) break;
+                            }
+        }
+
+        else{
+             $prefix='Makeup';
+            foreach(Meeting::where('type','=','makeup')->orderBy('date')->get() as $meeting)
+                    {
+                        $index+=1;
+                        if ($meeting->id==$this->id) break;
+                    }
+        }
+
+
+
+
         return [
                   'id'=>$this->id,
                   'type'=>$this->type,
@@ -60,7 +85,7 @@ class MeetingResource extends JsonResource
                   'guests_count'=>Score::where('attendable_type','App\Models\Guest')->where('meeting_id',$this->id)->count(),
                   'members_count'=>Score::where('attendable_type','App\Models\Member')->where('meeting_id',$this->id)->count(),
                   'attended'=>$this->scores()->where('scores.present',true)->count(),
-
+                  'index'=>$prefix.':'.$index,
                   'icon'=>$icon,
 
 

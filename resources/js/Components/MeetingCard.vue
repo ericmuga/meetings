@@ -7,7 +7,7 @@
     >
   </div>
   <div>
-    <h3 class="flex justify-center text-3xl font-semibold text-gray-800">#0000{{meeting.id}}</h3>
+    <h3 class="flex justify-center text-3xl font-semibold text-gray-800">{{meeting.index}}</h3>
     <!-- <p class=""></p> -->
     <p class="mt-2 text-gray-600">
 
