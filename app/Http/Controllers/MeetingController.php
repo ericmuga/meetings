@@ -12,6 +12,7 @@ use App\Models\{Meeting,Club,GradingRule,Member,Guest,Score,MakeupRequest};
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Str;
+use PhpOffice\PhpSpreadsheet\Calculation\TextData\Search;
 
 // $slug = Str::of('Laravel Framework')->slug('-');
 class MeetingController extends Controller
@@ -23,13 +24,17 @@ class MeetingController extends Controller
      */
     public function list(Request $request )
     {
-
+      $typeClause=[];
+      if ($request->has('search'))
+        foreach($request->search as $key=>$search)
+         $typeClause[$key]=$search['name'];
 
       return [
               'search'=>$request->input('search')?:null,
               'types'=>['zoom','physical','makeup'],
               'requests'=>MakeupRequest::all(),
               'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::where('gradable',true)
+                                                                                   ->when($request->has('search'),fn($q)=>$q->whereIn('type',$typeClause))
                                                                                    ->orderBy('date','desc')
                                                                                    ->get()
                                                                               ),$request->input('perPage')?:16,null,['path'=>url()->full()]

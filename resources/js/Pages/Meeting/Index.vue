@@ -6,9 +6,12 @@ import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import SearchBox from '@/Components/SearchBox.vue';
 
- import gsap from 'gsap';
+import gsap from 'gsap';
 import Swal from 'sweetalert2'
 import { onMounted } from '@vue/runtime-core';
+import { watch,ref, computed, toRefs } from "@vue/runtime-core";
+import  debounce  from "lodash/debounce";
+import {Inertia} from '@inertiajs/inertia'
 
 const form=useForm({
                     Start:'',
@@ -45,9 +48,9 @@ const props=defineProps({ meetings:Object,
                             })
 
 const meeting_types=[
-                        {name: 'zoom', code: 'zoom'},
-                        {name: 'physical', code: 'physical'},
-                        {name: 'makeup', code: 'makeup'},
+                        {name: 'zoom'},
+                        {name: 'physical'},
+                        {name: 'makeup'},
 
                     ]
 
@@ -68,6 +71,11 @@ const meeting_types=[
             })
         }
 
+  let searchKey=ref('')
+//   const getRoute=computed(()=>route(`${props.model}'.index'`))
+  watch(searchKey,debounce((value)=>{
+                                    Inertia.get(route('meeting.index'),{'search':value},{preserveState:true,replace:true})
+                                    },300));
 
 
 
@@ -94,7 +102,7 @@ const meeting_types=[
                     <template #end>
                         <span class="p-input-icon-left">
                             <div class="flex flex-row gap-2">
-                                <MultiSelect v-model="form.types" :options="meeting_types" optionLabel="name" class="flex justify-right" placeholder="Meeting Types"
+                                <MultiSelect v-model="searchKey" :options="meeting_types" optionLabel="name" class="flex justify-right" placeholder="Meeting Types"
 
                                 />
 

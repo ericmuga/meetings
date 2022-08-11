@@ -24358,10 +24358,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var primevue_toolbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/toolbar */ "./node_modules/primevue/toolbar/toolbar.esm.js");
 /* harmony import */ var _Components_SearchBox_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/SearchBox.vue */ "./resources/js/Components/SearchBox.vue");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
+/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
+/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
+/* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/debounce */ "./node_modules/lodash/debounce.js");
+/* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_debounce__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
+
+
 
 
 
@@ -24399,7 +24406,7 @@ __webpack_require__.r(__webpack_exports__);
           form.post(route('zoom.meetings'), {
             preserveScroll: true,
             onSuccess: function onSuccess() {
-              return Inertia.get(route('meeting.index'));
+              return _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.get(route('meeting.index'));
             }
           });
         }
@@ -24407,14 +24414,11 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var meeting_types = [{
-      name: 'zoom',
-      code: 'zoom'
+      name: 'zoom'
     }, {
-      name: 'physical',
-      code: 'physical'
+      name: 'physical'
     }, {
-      name: 'makeup',
-      code: 'makeup'
+      name: 'makeup'
     }];
 
     var beforeEnter = function beforeEnter(el) {
@@ -24425,7 +24429,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var enter = function enter(el) {
       // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_6__["default"].to(el, {
+      gsap__WEBPACK_IMPORTED_MODULE_8__["default"].to(el, {
         opacity: 1,
         x: 0,
         duration: 0.8 // onComplete:done
@@ -24433,6 +24437,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
+    var searchKey = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_9__.ref)(''); //   const getRoute=computed(()=>route(`${props.model}'.index'`))
+
+    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_10__.watch)(searchKey, lodash_debounce__WEBPACK_IMPORTED_MODULE_6___default()(function (value) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.get(route('meeting.index'), {
+        'search': value
+      }, {
+        preserveState: true,
+        replace: true
+      });
+    }, 300));
     var __returned__ = {
       form: form,
       showForm: showForm,
@@ -24440,15 +24454,22 @@ __webpack_require__.r(__webpack_exports__);
       meeting_types: meeting_types,
       beforeEnter: beforeEnter,
       enter: enter,
+      searchKey: searchKey,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       MeetingCard: _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head,
       Toolbar: primevue_toolbar__WEBPACK_IMPORTED_MODULE_3__["default"],
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm,
       SearchBox: _Components_SearchBox_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-      gsap: gsap__WEBPACK_IMPORTED_MODULE_6__["default"],
+      gsap: gsap__WEBPACK_IMPORTED_MODULE_8__["default"],
       Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()),
-      onMounted: _vue_runtime_core__WEBPACK_IMPORTED_MODULE_7__.onMounted
+      onMounted: _vue_runtime_core__WEBPACK_IMPORTED_MODULE_10__.onMounted,
+      watch: _vue_runtime_core__WEBPACK_IMPORTED_MODULE_10__.watch,
+      ref: _vue_runtime_core__WEBPACK_IMPORTED_MODULE_9__.ref,
+      computed: _vue_runtime_core__WEBPACK_IMPORTED_MODULE_10__.computed,
+      toRefs: _vue_runtime_core__WEBPACK_IMPORTED_MODULE_9__.toRefs,
+      debounce: (lodash_debounce__WEBPACK_IMPORTED_MODULE_6___default()),
+      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -30361,9 +30382,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         end: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MultiSelect, {
-            modelValue: $setup.form.types,
+            modelValue: $setup.searchKey,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-              return $setup.form.types = $event;
+              return $setup.searchKey = $event;
             }),
             options: $setup.meeting_types,
             optionLabel: "name",
