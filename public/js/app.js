@@ -23808,9 +23808,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _assets_countries_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/assets/countries.js */ "./resources/js/assets/countries.js");
 /* harmony import */ var _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/ValidationErrors.vue */ "./resources/js/Components/ValidationErrors.vue");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_8__);
+
 
 
 
@@ -23853,7 +23856,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var enter = function enter(el) {
       // console.log('starting to enter into the dom')
-      gsap__WEBPACK_IMPORTED_MODULE_8__["default"].to(el, {
+      gsap__WEBPACK_IMPORTED_MODULE_9__["default"].to(el, {
         opacity: 1,
         x: 0,
         duration: 0.8 // onComplete:done
@@ -23865,12 +23868,19 @@ __webpack_require__.r(__webpack_exports__);
       form.put(route('guest.update', props.guest.data.id), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          return Swal.fire('Success!', 'Details Updated Successfully.', 'success');
+          return sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire('Success!', 'Details Updated Successfully.', 'success');
         }
       });
     };
 
     var members = props.members;
+
+    var inviter = function inviter() {
+      return props.data.member_id ? lodash__WEBPACK_IMPORTED_MODULE_8___default().filter(members, {
+        id: props.guest.data.member_id
+      })[0].name : '';
+    };
+
     var __returned__ = {
       country: country,
       type: type,
@@ -23880,6 +23890,7 @@ __webpack_require__.r(__webpack_exports__);
       enter: enter,
       editguest: editguest,
       members: members,
+      inviter: inviter,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
       Toolbar: primevue_toolbar__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -23887,11 +23898,13 @@ __webpack_require__.r(__webpack_exports__);
       Card: primevue_card__WEBPACK_IMPORTED_MODULE_3__["default"],
       ref: vue__WEBPACK_IMPORTED_MODULE_4__.ref,
       reactive: vue__WEBPACK_IMPORTED_MODULE_4__.reactive,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_4__.onMounted,
       countries: _assets_countries_js__WEBPACK_IMPORTED_MODULE_5__.countries,
       types: _assets_countries_js__WEBPACK_IMPORTED_MODULE_5__.types,
       BreezeValidationErrors: _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-      gsap: gsap__WEBPACK_IMPORTED_MODULE_8__["default"],
-      swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_7___default())
+      gsap: gsap__WEBPACK_IMPORTED_MODULE_9__["default"],
+      Swal: (sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()),
+      _: (lodash__WEBPACK_IMPORTED_MODULE_8___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -29265,7 +29278,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 options: $setup.props.members,
                 optionLabel: "name",
                 optionValue: "id",
-                placeholder: "Inviter"
+                placeholder: $setup.inviter
               }, null, 8
               /* PROPS */
               , ["modelValue", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {

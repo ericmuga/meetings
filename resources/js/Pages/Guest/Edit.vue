@@ -4,11 +4,12 @@ import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Card from 'primevue/card';
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import{countries,types} from '@/assets/countries.js'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
+import _ from 'lodash'
 
  const country= ref(countries)
  const type=ref(types)
@@ -56,6 +57,8 @@ const props=defineProps({guest:Object,members:Object});
          }
 
 const members=props.members
+const inviter=()=>props.data.member_id?_.filter(members,{id:props.guest.data.member_id})[0].name:''
+
 </script>
 
 <template>
@@ -128,7 +131,7 @@ const members=props.members
                                                 :options="props.members"
                                                 optionLabel="name"
                                                 optionValue="id"
-                                                placeholder="Inviter"
+                                                :placeholder=inviter
                                                 />
 
                                     </div>

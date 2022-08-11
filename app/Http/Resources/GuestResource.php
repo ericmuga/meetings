@@ -32,6 +32,7 @@ class GuestResource extends JsonResource
             'id'=>$this->id,
          'name'=>$this->name,
         //  'member_no'=>$this->member_no,
+         'member_id'=>$this->member?->id,
          'nationality'=>$this->nationality,
          'field'=>$this->field,
          'gravatar'=>Gravatar::get($this->defaultContact('email')),
