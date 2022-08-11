@@ -57,7 +57,7 @@ const props=defineProps({guest:Object,members:Object});
          }
 
 const members=props.members
-const inviter=()=>!_.isNull(props.data.member_id)?_.filter(members,{id:props.guest.data.member_id})[0].name:''
+// const inviter=()=>!_.isNull(props.data.member_id)?_.filter(members,{id:props.guest.data.member_id})[0].name:'Inviter'
 
 </script>
 
@@ -131,7 +131,7 @@ const inviter=()=>!_.isNull(props.data.member_id)?_.filter(members,{id:props.gue
                                                 :options="props.members"
                                                 optionLabel="name"
                                                 optionValue="id"
-                                                :placeholder=inviter
+                                                :placeholder=props.guest.data.inviter
                                                 />
 
                                     </div>

@@ -23873,13 +23873,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
-    var members = props.members;
-
-    var inviter = function inviter() {
-      return !lodash__WEBPACK_IMPORTED_MODULE_8___default().isNull(props.data.member_id) ? lodash__WEBPACK_IMPORTED_MODULE_8___default().filter(members, {
-        id: props.guest.data.member_id
-      })[0].name : '';
-    };
+    var members = props.members; // const inviter=()=>!_.isNull(props.data.member_id)?_.filter(members,{id:props.guest.data.member_id})[0].name:'Inviter'
 
     var __returned__ = {
       country: country,
@@ -23890,7 +23884,6 @@ __webpack_require__.r(__webpack_exports__);
       enter: enter,
       editguest: editguest,
       members: members,
-      inviter: inviter,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
       Toolbar: primevue_toolbar__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -29278,10 +29271,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 options: $setup.props.members,
                 optionLabel: "name",
                 optionValue: "id",
-                placeholder: $setup.inviter
+                placeholder: $setup.props.guest.data.inviter
               }, null, 8
               /* PROPS */
-              , ["modelValue", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
+              , ["modelValue", "options", "placeholder"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
                 type: "text",
                 name: "phone-number",
                 id: "phone-number",
