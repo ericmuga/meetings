@@ -37,13 +37,13 @@ class MembersImport implements ToModel, WithHeadingRow
                           'contactable_id'=>$member->id,
                           'default'=>true
                         ]);
-                        Contact::create([
-                            'contact_type'=>'phone',
-                            'contact'=>$row['phone'],
-                            'contactable_type'=>'App\Models\Member',
-                            'contactable_id'=>$member->id,
-                            'default'=>true,
-                          ]);
+        Contact::create([
+            'contact_type'=>'phone',
+            'contact'=>$row['phone'],
+            'contactable_type'=>'App\Models\Member',
+            'contactable_id'=>$member->id,
+            'default'=>true,
+            ]);
 
     }
 }

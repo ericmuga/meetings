@@ -172,20 +172,40 @@ public function stats($guest)
      */
     public function edit(Guest $guest)
     {
-        //
+        //show the form to edit a Guest
+        // dd('here');
+        return inertia('Guest/Edit', ['guest'=>GuestResource::make($guest),'members'=>Member::all('name','id')]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateGuestRequest  $request
-     * @param  \App\Models\Guest  $guest
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateGuestRequest $request, Guest $guest)
     {
-        //
+        $guest->contacts()->delete();
+
+         Contact::create([
+                          'contact'=>$request->email,
+                          'contact_type'=>'email',
+                          'contactable_type'=>'App\Models\Guest',
+                          'contactable_id'=>$guest->id,
+                          'default'=>true
+
+                 ]);
+        if ($request->has('phone'))
+        {
+            Contact::create([
+                            'contact'=>$request->phone,
+                            'contact_type'=>'phone',
+                            'contactable_type'=>'App\Models\Guest',
+                            'contactable_id'=>$guest->id,
+                            'default'=>true
+
+                            ]);
+        }
+
+        $guest->update($request->all());
+        $request->session()->flash('flash.banner', 'Success!');
+        return redirect(Route('guest.show',$guest->id));
     }
+
 
     /**
      * Remove the specified resource from storage.

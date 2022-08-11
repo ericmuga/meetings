@@ -11,7 +11,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
  import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
-import guestCard from '@/Components/guestCard.vue'
+import guestCard from '@/Components/GuestCard.vue'
 
  const country= ref(countries)
 

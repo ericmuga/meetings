@@ -1,6 +1,6 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import guestCard from '@/Components/guestCard.vue'
+import guestCard from '@/Components/GuestCard.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'

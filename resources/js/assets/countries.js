@@ -1,4 +1,5 @@
- export const countries=[
+export const types =[{name:'Rotarian',code:'Rotarian'},{name:'Rotaractor',code:'Rotaractor'},{name:'None',code:'None'}];
+export const countries=[
     {name: 'Afghanistan', code: 'AF'},
     {name: 'Åland Islands', code: 'AX'},
     {name: 'Albania', code: 'AL'},

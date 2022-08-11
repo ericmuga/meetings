@@ -5,12 +5,13 @@ import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Card from 'primevue/card';
 import { ref, reactive } from 'vue';
-import{countries} from '@/assets/countries.js'
+import{countries,types} from '@/assets/countries.js'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
  import gsap from 'gsap';
 import swal from 'sweetalert2'
 
  const country= ref(countries)
+ const type=ref(types)
     const form = useForm({
                             name:props.guest.data.name,
                             field:props.guest.data.field,
@@ -18,13 +19,15 @@ import swal from 'sweetalert2'
                             email:props.guest.data.email,
                              phone:props.guest.data.phone,
                              gender:props.guest.data.gender,
-                             nationality:props.guest.data.nationality
+                             nationality:props.guest.data.nationality,
+                             type:props.guest.data.type,
+                            //  inviter:props.guest.data.inviter,
 
                             })
 
-const showSuccess=()=>{swal('Success',message,'success')};
+// const showSuccess=()=>{swal('Success',message,'success')};
 
-const props=defineProps({guest:Object});
+const props=defineProps({guest:Object,members:Object});
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
@@ -45,9 +48,14 @@ const props=defineProps({guest:Object});
  const editguest=()=>{
              form.put(route('guest.update',props.guest.data.id), {
                         preserveScroll: true,
-                        onSuccess: () =>showSuccess("Action Successful"),
+                        onSuccess: () =>Swal.fire(
+                                                'Success!',
+                                                'Details Updated Successfully.',
+                                                'success')
                         })
          }
+
+const members=props.members
 </script>
 
 <template>
@@ -114,18 +122,15 @@ const props=defineProps({guest:Object});
                                     </div>
 
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="member_id" class="block text-sm font-medium text-gray-700">Invited By
-                                            <span class="text-xs text-red-400">*</span>
-                                        </label>
-                                        <InputText
-                                                    type="text"
-                                                    name="member_id"
-                                                    id="member_id"
-                                                    autocomplete="member_id"
-                                                    required
-                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    v-model="form.member_id"
-                                            />
+                                        <label for="country" class="block text-sm font-medium text-gray-700">Invited By</label>
+                                        <Dropdown
+                                                v-model="form.member_id"
+                                                :options="props.members"
+                                                optionLabel="name"
+                                                optionValue="id"
+                                                placeholder="Inviter"
+                                                />
+
                                     </div>
 
                                     <div class="col-span-2 sm:col-span-1">
@@ -139,6 +144,18 @@ const props=defineProps({guest:Object});
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                     v-model="form.phone"
                                             />
+                                    </div>
+
+                                     <div class="col-span-2 sm:col-span-1">
+                                        <label for="country" class="block text-sm font-medium text-gray-700">Type</label>
+                                        <Dropdown
+                                                v-model="form.type"
+                                                :options="types"
+                                                optionLabel="name"
+                                                optionValue="code"
+                                                placeholder="Nationality"
+                                                />
+
                                     </div>
 
                                     <div class="col-span-2 sm:col-span-1">

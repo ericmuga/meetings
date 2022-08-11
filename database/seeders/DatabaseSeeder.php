@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
          foreach (Guest::all() as $guest) {
              Contact::factory(['contactable_type'=>'App\Models\Guest','contactable_id'=>$guest->id])->count(2);
          }
-*/
+        */
 
 
 

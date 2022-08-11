@@ -15,6 +15,18 @@ class GuestResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+        switch ($this->type ) {
+            case 'Rotarian':
+                $icon='rotary';
+                break;
+            case 'Rotaractor':
+                $icon='rotaractor';
+                break;
+
+            default:
+                $icon='none';
+                break;
+        }
 
         return [
             'id'=>$this->id,
@@ -27,6 +39,8 @@ class GuestResource extends JsonResource
          'email'=>$this->defaultContact('email'),
          'contacts'=>$this->contacts()->get(),
          'inviter'=>$this->member?->name,
+         'type'=>$this->type,
+         'icon'=>$icon,
          // 'email'=>Contact::where('contact_type','email')
          //                 ->where('contactable_type','App\Models\Member')
          //                 ->where('contactable_id',$this->id)->first()->contact
