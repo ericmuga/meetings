@@ -156,7 +156,7 @@ const members=props.members
                                                 :options="types"
                                                 optionLabel="name"
                                                 optionValue="code"
-                                                placeholder="Nationality"
+                                                :placeholder=props.guest.data.type
                                                 />
 
                                     </div>
@@ -168,7 +168,7 @@ const members=props.members
                                                 :options="countries"
                                                 optionLabel="name"
                                                 optionValue="code"
-                                                placeholder="Nationality"
+                                                :placeholder=props.guest.data.nationality
                                                 />
 
                                     </div>
@@ -192,7 +192,7 @@ const members=props.members
                                                 :options="[{name:'Male',code:'m'},{name:'Female',code:'f'}]"
                                                 optionLabel="name"
                                                 optionValue="code"
-                                                placeholder="Gender"
+                                                :placeholder=props.guest.data.gender
                                                 />
                                     </div>
 

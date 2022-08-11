@@ -29294,10 +29294,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 options: $setup.types,
                 optionLabel: "name",
                 optionValue: "code",
-                placeholder: "Nationality"
+                placeholder: $setup.props.guest.data.type
               }, null, 8
               /* PROPS */
-              , ["modelValue", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dropdown, {
+              , ["modelValue", "options", "placeholder"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dropdown, {
                 modelValue: $setup.form.nationality,
                 "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
                   return $setup.form.nationality = $event;
@@ -29305,10 +29305,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 options: $setup.countries,
                 optionLabel: "name",
                 optionValue: "code",
-                placeholder: "Nationality"
+                placeholder: $setup.props.guest.data.nationality
               }, null, 8
               /* PROPS */
-              , ["modelValue", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
+              , ["modelValue", "options", "placeholder"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
                 type: "text",
                 name: "field",
                 id: "field",
@@ -29334,10 +29334,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 }],
                 optionLabel: "name",
                 optionValue: "code",
-                placeholder: "Gender"
+                placeholder: $setup.props.guest.data.gender
               }, null, 8
               /* PROPS */
-              , ["modelValue"])]), _hoisted_23]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")], 32
+              , ["modelValue", "placeholder"])]), _hoisted_23]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")], 32
               /* HYDRATE_EVENTS */
               )];
             }),
