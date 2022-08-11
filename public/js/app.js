@@ -23876,7 +23876,7 @@ __webpack_require__.r(__webpack_exports__);
     var members = props.members;
 
     var inviter = function inviter() {
-      return props.data.member_id ? lodash__WEBPACK_IMPORTED_MODULE_8___default().filter(members, {
+      return !lodash__WEBPACK_IMPORTED_MODULE_8___default().isNull(props.data.member_id) ? lodash__WEBPACK_IMPORTED_MODULE_8___default().filter(members, {
         id: props.guest.data.member_id
       })[0].name : '';
     };

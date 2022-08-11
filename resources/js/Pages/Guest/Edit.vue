@@ -57,7 +57,7 @@ const props=defineProps({guest:Object,members:Object});
          }
 
 const members=props.members
-const inviter=()=>props.data.member_id?_.filter(members,{id:props.guest.data.member_id})[0].name:''
+const inviter=()=>!_.isNull(props.data.member_id)?_.filter(members,{id:props.guest.data.member_id})[0].name:''
 
 </script>
 
