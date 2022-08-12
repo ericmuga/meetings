@@ -26,12 +26,14 @@
     },
     "dependencies": {
         "@heroicons/vue": "^1.0.6",
+        "chart.js": "^3.9.1",
         "gsap": "^3.10.4",
         "pinia": "^2.0.14",
         "primeicons": "^5.0.0",
         "primevue": "^3.13.1",
         "sweetalert2": "^11.4.18",
         "url-loader": "^4.1.1",
+        "vue-chartjs": "^4.1.1",
         "vuejs-progress-bar": "^1.2.8",
         "ziggy-js": "^1.4.6"
     }

@@ -44,7 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('meeting', MeetingController::class);
     Route::resource('club', ClubController::class);
 
-    Route::delete('grading/{id}',[GradingRuleController::class,'destroy'])->name('grading.destroy');
+    // Route::delete('grading/{id}',[GradingRuleController::class,'destroy'])->name('grading.destroy');
      Route::resource('grading', GradingRuleController::class);
      // Route::resource('scores', ScoreController::class);
     Route::get('scores/{meeting}', [ScoreController::class,'index']);
