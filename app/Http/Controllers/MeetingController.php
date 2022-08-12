@@ -24,17 +24,13 @@ class MeetingController extends Controller
      */
     public function list(Request $request )
     {
-      $typeClause=[];
-      if ($request->has('search'))
-        foreach($request->search as $key=>$search)
-         $typeClause[$key]=$search['name'];
 
       return [
               'search'=>$request->input('search')?:null,
               'types'=>['zoom','physical','makeup'],
               'requests'=>MakeupRequest::all(),
               'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::where('gradable',true)
-                                                                                   ->when($request->has('search'),fn($q)=>$q->whereIn('type',$typeClause))
+                                                                                   ->when($request->has('search'),fn($q,$search)=>$q->whereIn('type',collect($request->search)->pluck('name')))
                                                                                    ->orderBy('date','desc')
                                                                                    ->get()
                                                                               ),$request->input('perPage')?:16,null,['path'=>url()->full()]
