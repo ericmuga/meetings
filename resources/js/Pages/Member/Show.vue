@@ -197,8 +197,8 @@ import MemberCard from '@/Components/MemberCard.vue'
 
                                                 <tr scope="col" class="px-6 py-3" >
                                                    <th>Name</th>
-                                                   <th>Email</th>
-                                                   <th>Phone</th>
+                                                   <!-- <th>Email</th> -->
+                                                   <!-- <th>Phone</th> -->
                                                    <th>Field</th>
                                                    <th>Type</th>
                                                    <th>Gender</th>
@@ -214,8 +214,8 @@ import MemberCard from '@/Components/MemberCard.vue'
 
                                                     </Link>
                                                </td>
-                                                <td class="px-6 py-4">{{g.email}}</td>
-                                                <td class="px-6 py-4">{{g.phone}}</td>
+                                                <!-- <td class="px-6 py-4">{{g.email}}</td> -->
+                                                <!-- <td class="px-6 py-4">{{g.phone}}</td> -->
                                                 <td class="px-6 py-4">{{g.field}}</td>
                                                 <td class="px-6 py-4">{{g.type}}</td>
                                                 <td class="px-6 py-4">{{g.gender}}</td>
