@@ -70,12 +70,18 @@ const meeting_types=[
                             // onComplete:done
             })
         }
+  const filters=ref({
+                            startDate:'',
+                            endDate:'',
+                            type:''
+                        })
 
-  let searchKey=ref('')
+//   let searchKey=ref('')
 //   const getRoute=computed(()=>route(`${props.model}'.index'`))
-  watch(searchKey,debounce((value)=>{
+  watch(filters,debounce((value)=>{
                                     Inertia.get(route('meeting.index'),{'search':value},{preserveState:true,replace:true})
-                                    },300));
+                                    },300),
+                                     { deep: true });
 
 
 
@@ -102,11 +108,22 @@ const meeting_types=[
                     <template #end>
                         <span class="p-input-icon-left">
                             <div class="flex flex-row gap-2">
-                                <MultiSelect v-model="searchKey" :options="meeting_types" optionLabel="name" class="flex justify-right" placeholder="Meeting Types"
+                                <MultiSelect v-model="filters.type" :options="meeting_types" optionLabel="name" class="flex justify-right" placeholder="Meeting Types"
 
                                 />
+                                 <div class="field">
+                                    <label for="date" class="mr-2">From</label>
+                                    <InputText id="date" type="date" v-model="filters.startDate" aria-describedby="username1-help" />
+                                    <!-- <small id="username1-help">Enter your username to reset your password.</small> -->
+                                </div>
 
-                                    <SearchBox class="flex justify-left" :model="`meeting.index`" />
+                                  <div class="field">
+                                    <label for="date" class="mr-2">To</label>
+                                    <InputText id="date" type="date"  v-model="filters.endDate" aria-describedby="username1-help" />
+                                    <!-- <small id="username1-help">Enter your username to reset your password.</small> -->
+                                </div>
+
+                                    <!-- <SearchBox class="flex justify-left" :model="`meeting.index`" /> -->
                             </div>
 
 

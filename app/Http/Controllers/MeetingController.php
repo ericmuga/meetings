@@ -24,13 +24,15 @@ class MeetingController extends Controller
      */
     public function list(Request $request )
     {
-
+        // dd($request->search);
       return [
               'search'=>$request->input('search')?:null,
               'types'=>['zoom','physical','makeup'],
               'requests'=>MakeupRequest::all(),
               'meetings'=>MyPaginator::paginate(MeetingResource::collection(Meeting::where('gradable',true)
-                                                                                   ->when($request->has('search'),fn($q,$search)=>$q->whereIn('type',collect($request->search)->pluck('name')))
+                                                                                   ->when($request->has('search')&&(array_key_exists('type',$request->search)),fn($q,$search)=>$q->whereIn('type',collect($request->search['type'])->pluck('name')))
+                                                                                   ->when($request->has('search')&&($request->search['startDate']),fn($q,$search)=>$q->where('date','>=',$request->search['startDate']))
+                                                                                   ->when($request->has('search')&&($request->search['endDate']),fn($q,$search)=>$q->where('date','<=',$request->search['endDate']))
                                                                                    ->orderBy('date','desc')
                                                                                    ->get()
                                                                               ),$request->input('perPage')?:16,null,['path'=>url()->full()]

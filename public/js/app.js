@@ -24437,16 +24437,23 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
-    var searchKey = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_9__.ref)(''); //   const getRoute=computed(()=>route(`${props.model}'.index'`))
+    var filters = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_9__.ref)({
+      startDate: '',
+      endDate: '',
+      type: ''
+    }); //   let searchKey=ref('')
+    //   const getRoute=computed(()=>route(`${props.model}'.index'`))
 
-    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_10__.watch)(searchKey, lodash_debounce__WEBPACK_IMPORTED_MODULE_6___default()(function (value) {
+    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_10__.watch)(filters, lodash_debounce__WEBPACK_IMPORTED_MODULE_6___default()(function (value) {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.get(route('meeting.index'), {
         'search': value
       }, {
         preserveState: true,
         replace: true
       });
-    }, 300));
+    }, 300), {
+      deep: true
+    });
     var __returned__ = {
       form: form,
       showForm: showForm,
@@ -24454,7 +24461,7 @@ __webpack_require__.r(__webpack_exports__);
       meeting_types: meeting_types,
       beforeEnter: beforeEnter,
       enter: enter,
-      searchKey: searchKey,
+      filters: filters,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       MeetingCard: _Components_MeetingCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head,
@@ -30321,26 +30328,48 @@ var _hoisted_5 = {
   "class": "flex flex-row gap-2"
 };
 var _hoisted_6 = {
+  "class": "field"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "date",
+  "class": "mr-2"
+}, "From", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = {
+  "class": "field"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "date",
+  "class": "mr-2"
+}, "To", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
   "class": "w-full text-center"
 };
-var _hoisted_7 = {
+var _hoisted_11 = {
   key: 0,
   "class": "p-3 m-3"
 };
-var _hoisted_8 = {
+var _hoisted_12 = {
   key: 1,
   "class": "p-3 mb-10"
 };
-var _hoisted_9 = {
+var _hoisted_13 = {
   "class": "grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4"
 };
-var _hoisted_10 = {
+var _hoisted_14 = {
   "class": "w-full mt-3 text-center"
 };
-var _hoisted_11 = {
+var _hoisted_15 = {
   key: 0
 };
-var _hoisted_12 = {
+var _hoisted_16 = {
   key: 1
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -30349,6 +30378,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   var _component_MultiSelect = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("MultiSelect");
+
+  var _component_InputText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputText");
 
   var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
 
@@ -30382,9 +30413,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         end: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MultiSelect, {
-            modelValue: $setup.searchKey,
+            modelValue: $setup.filters.type,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-              return $setup.searchKey = $event;
+              return $setup.filters.type = $event;
             }),
             options: $setup.meeting_types,
             optionLabel: "name",
@@ -30392,21 +30423,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             placeholder: "Meeting Types"
           }, null, 8
           /* PROPS */
-          , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchBox"], {
-            "class": "flex justify-left",
-            model: "meeting.index"
+          , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
+            id: "date",
+            type: "date",
+            modelValue: $setup.filters.startDate,
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+              return $setup.filters.startDate = $event;
+            }),
+            "aria-describedby": "username1-help"
           }, null, 8
           /* PROPS */
-          , ["model"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Button icon=\"pi pi-search\" class=\"mr-2\" />\n                        <Button icon=\"pi pi-calendar\" class=\"mr-2 p-button-success\" />\n                        <Button icon=\"pi pi-times\" class=\"p-button-danger\" /> ")];
+          , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <small id=\"username1-help\">Enter your username to reset your password.</small> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
+            id: "date",
+            type: "date",
+            modelValue: $setup.filters.endDate,
+            "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+              return $setup.filters.endDate = $event;
+            }),
+            "aria-describedby": "username1-help"
+          }, null, 8
+          /* PROPS */
+          , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <small id=\"username1-help\">Enter your username to reset your password.</small> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <SearchBox class=\"flex justify-left\" :model=\"`meeting.index`\" /> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Button icon=\"pi pi-search\" class=\"mr-2\" />\n                        <Button icon=\"pi pi-calendar\" class=\"mr-2 p-button-success\" />\n                        <Button icon=\"pi pi-times\" class=\"p-button-danger\" /> ")];
         }),
         _: 1
         /* STABLE */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
         links: $props.meetings.links
       }, null, 8
       /* PROPS */
-      , ["links"])]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meetings.data, function (meeting) {
+      , ["links"])]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meetings.data, function (meeting) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "col-span-1",
           key: meeting.id
@@ -30430,7 +30476,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         )]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [$props.meetings.data.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, " No meetings were found ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
         links: $props.meetings.links,
         prefix: _ctx.model
       }, null, 8
