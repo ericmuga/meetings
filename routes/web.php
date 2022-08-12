@@ -36,7 +36,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/',fn()=>redirect(route('login')));
-Route::resource('makeup', MakeupRequestController::class);
+Route::resource('makeups', MakeupRequestController::class);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('member', MemberController::class);
@@ -68,7 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/meetings/{meeting}/grade',[ZoomController::class,'gradeParticipants'])->name('zoom.grade');
     // Route::get('meeting/{meeting}/members',[MeetingController::class, 'members']));
 
-    Route::get('makeups',[MakeupRequestController::class, 'index'])->name('makeup.index');
+    // Route::get('makeups',[MakeupRequestController::class, 'index'])->name('makeup.index');
 
 
     Route::get('/setup', [SetupController::class,'index'])->name('setup.index');

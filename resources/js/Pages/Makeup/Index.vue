@@ -60,7 +60,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                                         form2.category=document.getElementById('category').value,
                                                                         form2.member_id=document.getElementById('member_id').value,
 
-                                                                           form2.post(route('makeup.store'),{
+                                                                           form2.post(route('makeups.store'),{
                                                                                         preserveScroll: true,
                                                                                         onSuccess: () => Swal.fire(
                                                                                                                 'Success!',
@@ -102,7 +102,7 @@ const  showForm=({formValues})=>Swal.fire({
                     <template #end>
                         <span class="p-input-icon-left">
                             <i class="pi pi-search" />
-                             <SearchBox :model="`makeup.index`" />
+                             <SearchBox :model="`makeups.index`" />
 
                         </span>
                         <!-- <Button icon="pi pi-search" class="mr-2" /> -->
@@ -177,8 +177,8 @@ const  showForm=({formValues})=>Swal.fire({
                                                         </td>
                                                         <td class="flex px-6 py-4">
                                                             <div class="flex-col justify-center">
-                                                                <Link :href="route('makeup.edit',makeup.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
-                                                                <Drop :dropRoute="route('makeup.destroy',makeup.id)"/>
+                                                                <Link :href="route('makeups.edit',makeup.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                                <Drop :dropRoute="route('makeups.destroy',makeup.id)"/>
                                                             </div>
 
                                                         </td>
