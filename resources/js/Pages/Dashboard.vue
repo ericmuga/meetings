@@ -45,7 +45,7 @@ const beforeEnter=(el)=>{
                                         <div class="px-6 pt-4 pb-2 text-center">
                                                 <Link :href="route('member.index')">
                                                   <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg">
-                                                    <img class="w-full max-h-48" src="/images/member.jpg" alt="Member Gravatar" >
+                                                    <img class="w-full max-h-48" src="/images/member.png" alt="Member Gravatar" >
                                                     <div class="flex justify-center px-6 py-4">
                                                         <div class="mb-2 text-xl font-bold ">Members</div>
                                                     </div>
@@ -60,7 +60,7 @@ const beforeEnter=(el)=>{
                                          <div class="px-6 pt-4 pb-2 text-center">
                                                 <Link :href="route('guest.index')">
                                                   <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg">
-                                                    <img class="w-full max-h-48" src="/images/guest.png" alt="Guest Gravatar" >
+                                                    <img class="w-full max-h-48" src="/images/guest.jpg" alt="Guest Gravatar" >
                                                     <div class="flex justify-center px-6 py-4">
                                                         <div class="mb-2 text-xl font-bold ">Guests</div>
                                                     </div>
@@ -91,7 +91,7 @@ const beforeEnter=(el)=>{
                                          <div class="px-6 pt-4 pb-2 text-center">
                                                 <Link :href="route('report.index')">
                                                   <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg">
-                                                    <img class="w-full max-h-48" src="/images/reports.jpg" alt="report Gravatar" >
+                                                    <img class="w-full max-h-48" src="/images/reports.png" alt="report Gravatar" >
                                                     <div class="flex justify-center px-6 py-4">
                                                         <div class="mb-2 text-xl font-bold ">Reports</div>
                                                     </div>
@@ -116,7 +116,7 @@ const beforeEnter=(el)=>{
                                                 </Link>
                                          </div>
 
-                                          <div class="px-6 pt-4 pb-2 text-center">
+                                          <!-- <div class="px-6 pt-4 pb-2 text-center">
                                                 <Link :href="route('makeup.index')">
                                                   <div class="max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg">
                                                     <img class="w-full max-h-48" src="/images/makeup.png" alt="admin Gravatar" >
@@ -124,11 +124,10 @@ const beforeEnter=(el)=>{
                                                         <div class="mb-2 text-xl font-bold ">Admin</div>
                                                     </div>
                                                     <p class="text-base text-center text-gray-700">
-                                                            <!-- {{admins}} -->
-                                                    </p>
+ </p>
                                                  </div>
                                                 </Link>
-                                         </div>
+                                         </div> -->
 
                                     </div>
                              </transition>

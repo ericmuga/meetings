@@ -28169,7 +28169,7 @@ var _hoisted_6 = {
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "w-full max-h-48",
-  src: "/images/member.jpg",
+  src: "/images/member.png",
   alt: "Member Gravatar"
 }, null, -1
 /* HOISTED */
@@ -28195,7 +28195,7 @@ var _hoisted_11 = {
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "w-full max-h-48",
-  src: "/images/guest.png",
+  src: "/images/guest.jpg",
   alt: "Guest Gravatar"
 }, null, -1
 /* HOISTED */
@@ -28247,7 +28247,7 @@ var _hoisted_21 = {
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "w-full max-h-48",
-  src: "/images/reports.jpg",
+  src: "/images/reports.png",
   alt: "report Gravatar"
 }, null, -1
 /* HOISTED */
@@ -28273,26 +28273,6 @@ var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "w-full max-h-48",
   src: "/images/admin.jpg",
-  alt: "admin Gravatar"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center px-6 py-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mb-2 text-xl font-bold"
-}, "Admin")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-base text-center text-gray-700"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{admins}} ")])], -1
-/* HOISTED */
-);
-
-var _hoisted_27 = {
-  "class": "px-6 pt-4 pb-2 text-center"
-};
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  "class": "w-full max-h-48",
-  src: "/images/makeup.png",
   alt: "admin Gravatar"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-center px-6 py-4"
@@ -28380,18 +28360,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-            href: _ctx.route('makeup.index')
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_28];
-            }),
-            _: 1
-            /* STABLE */
-
-          }, 8
-          /* PROPS */
-          , ["href"])])])];
+          , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"px-6 pt-4 pb-2 text-center\">\n                                                <Link :href=\"route('makeup.index')\">\n                                                  <div class=\"max-w-sm col-span-1 p-3 overflow-hidden rounded shadow-lg\">\n                                                    <img class=\"w-full max-h-48\" src=\"/images/makeup.png\" alt=\"admin Gravatar\" >\n                                                    <div class=\"flex justify-center px-6 py-4\">\n                                                        <div class=\"mb-2 text-xl font-bold \">Admin</div>\n                                                    </div>\n                                                    <p class=\"text-base text-center text-gray-700\">\n </p>\n                                                 </div>\n                                                </Link>\n                                         </div> ")])];
         }),
         _: 1
         /* STABLE */
