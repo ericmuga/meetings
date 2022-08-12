@@ -174,7 +174,7 @@ public function stats($guest)
     {
         //show the form to edit a Guest
         // dd('here');
-        return inertia('Guest/Edit', ['guest'=>GuestResource::make($guest),'members'=>Member::all('name','id')]);
+        return inertia('Guest/Edit', ['guest'=>GuestResource::make($guest),'members'=>Member::all('name','id'),'clubs'=>Club::all('name','id')]);
     }
 
     public function update(UpdateGuestRequest $request, Guest $guest)

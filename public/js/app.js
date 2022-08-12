@@ -23857,7 +23857,8 @@ __webpack_require__.r(__webpack_exports__);
   __name: 'Edit',
   props: {
     guest: Object,
-    members: Object
+    members: Object,
+    clubs: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -29291,13 +29292,14 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_17 = {
+  key: 0,
   "class": "col-span-2 sm:col-span-1"
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "country",
   "class": "block text-sm font-medium text-gray-700"
-}, "Nationality", -1
+}, "Club", -1
 /* HOISTED */
 );
 
@@ -29306,9 +29308,9 @@ var _hoisted_19 = {
 };
 
 var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "Field",
+  "for": "country",
   "class": "block text-sm font-medium text-gray-700"
-}, "Field", -1
+}, "Nationality", -1
 /* HOISTED */
 );
 
@@ -29319,11 +29321,22 @@ var _hoisted_21 = {
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "Field",
   "class": "block text-sm font-medium text-gray-700"
+}, "Field", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = {
+  "class": "col-span-2 sm:col-span-1"
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "Field",
+  "class": "block text-sm font-medium text-gray-700"
 }, "Gender", -1
 /* HOISTED */
 );
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-span-2 px-4 py-3 text-right sm:col-span-1 bg-gray-50 sm:px-6"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
@@ -29358,7 +29371,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
                 action: "#",
-                onSubmit: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+                onSubmit: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
                   return $setup.editguest();
                 }, ["prevent"]))
               }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\" sm:rounded-md bottom-1 border-slate-200\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"grid w-full px-4 py-5 bg-white shadow md:col-span-2 sm:col-span-1 sm:p-6\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
@@ -29421,9 +29434,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 placeholder: $setup.props.guest.data.type
               }, null, 8
               /* PROPS */
-              , ["modelValue", "options", "placeholder"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dropdown, {
-                modelValue: $setup.form.nationality,
+              , ["modelValue", "options", "placeholder"])]), $setup.form.type != 'None' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dropdown, {
+                modelValue: $setup.form.club_id,
                 "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+                  return $setup.form.club_id = $event;
+                }),
+                options: $setup.props.clubs,
+                optionLabel: "name",
+                optionValue: "id",
+                placeholder: $setup.props.guest.data.club
+              }, null, 8
+              /* PROPS */
+              , ["modelValue", "options", "placeholder"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dropdown, {
+                modelValue: $setup.form.nationality,
+                "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
                   return $setup.form.nationality = $event;
                 }),
                 options: $setup.countries,
@@ -29432,21 +29456,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 placeholder: $setup.props.guest.data.nationality
               }, null, 8
               /* PROPS */
-              , ["modelValue", "options", "placeholder"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
+              , ["modelValue", "options", "placeholder"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
                 type: "text",
                 name: "field",
                 id: "field",
                 autocomplete: "phone",
                 "class": "block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
                 modelValue: $setup.form.field,
-                "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+                "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
                   return $setup.form.field = $event;
                 })
               }, null, 8
               /* PROPS */
-              , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dropdown, {
+              , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dropdown, {
                 modelValue: $setup.form.gender,
-                "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+                "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
                   return $setup.form.gender = $event;
                 }),
                 options: [{
@@ -29461,7 +29485,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 placeholder: $setup.props.guest.data.gender
               }, null, 8
               /* PROPS */
-              , ["modelValue", "placeholder"])]), _hoisted_23]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")], 32
+              , ["modelValue", "placeholder"])]), _hoisted_25]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")], 32
               /* HYDRATE_EVENTS */
               )];
             }),

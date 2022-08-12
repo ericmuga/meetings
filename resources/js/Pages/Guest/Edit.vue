@@ -28,7 +28,7 @@ import _ from 'lodash'
 
 // const showSuccess=()=>{swal('Success',message,'success')};
 
-const props=defineProps({guest:Object,members:Object});
+const props=defineProps({guest:Object,members:Object,clubs:Object});
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
@@ -157,6 +157,18 @@ const members=props.members
                                                 optionLabel="name"
                                                 optionValue="code"
                                                 :placeholder=props.guest.data.type
+                                                />
+
+                                    </div>
+
+                                    <div class="col-span-2 sm:col-span-1" v-if="form.type!='None'">
+                                        <label for="country" class="block text-sm font-medium text-gray-700">Club</label>
+                                        <Dropdown
+                                                v-model="form.club_id"
+                                                :options="props.clubs"
+                                                optionLabel="name"
+                                                optionValue="id"
+                                                :placeholder=props.guest.data.club
                                                 />
 
                                     </div>
