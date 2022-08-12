@@ -39,6 +39,7 @@
     <tr class="bg-slate-300">
       <td class="text-left">Total</td>
       <td class="text-center">{{meeting.guests_count+meeting.members_count}}</td>
+
     </tr>
 
 
@@ -82,7 +83,35 @@
 import {ref,toRefs} from 'vue'
 import Drop from '@/Components/Drop.vue'
    const props= defineProps({meeting:Object})
+const value1 = ref(20);
 
+
+const options= {
+  text: {
+    color: '#FFFFFF',
+    shadowEnable: true,
+    shadowColor: '#000000',
+    fontSize: 14,
+    fontFamily: 'Helvetica',
+    dynamicPosition: false,
+    hideText: false
+  },
+  progress: {
+    color: '#2dbd2d',
+    backgroundColor: '#333333',
+    inverted: false
+  },
+  layout: {
+    height: 35,
+    width: 140,
+    verticalTextAlign: 61,
+    horizontalTextAlign: 43,
+    zeroOffset: 0,
+    strokeWidth: 30,
+    progressPadding: 0,
+    type: 'line'
+  }
+}
 </script>
 
 <style lang="scss" scoped>

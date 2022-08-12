@@ -32,6 +32,7 @@
         "primevue": "^3.13.1",
         "sweetalert2": "^11.4.18",
         "url-loader": "^4.1.1",
+        "vuejs-progress-bar": "^1.2.8",
         "ziggy-js": "^1.4.6"
     }
 }

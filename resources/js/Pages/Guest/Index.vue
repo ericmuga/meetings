@@ -7,6 +7,9 @@ import { useForm } from '@inertiajs/inertia-vue3'
 import Swal from 'sweetalert2'
  import gsap from 'gsap';
 
+import { watch,ref, computed, toRefs } from "@vue/runtime-core";
+import  debounce  from "lodash/debounce";
+import {Inertia} from '@inertiajs/inertia'
  import SearchBox from '@/Components/SearchBox.vue'
 import { onMounted } from '@vue/runtime-core';
 
@@ -19,6 +22,11 @@ const form = useForm({
    }
 
 
+const guest_types=[
+                        {name: 'Rotarian'},
+                        {name: 'Rotaractor'},
+                        {name: 'None'},
+]
 const form2 = useForm({
                             name:'',
                             field:'',
@@ -63,6 +71,11 @@ const clubs= props.clubs
                             // onComplete:done
             })
         }
+
+  const filters=ref({
+                            guest:'',
+                            type:''
+                        })
 
 const  showForm=({formValues})=>Swal.fire({
                                                     title: 'Create New guest',
@@ -115,6 +128,10 @@ const  showForm=({formValues})=>Swal.fire({
                                                     })
 
 
+  watch(filters,debounce((value)=>{
+                                    Inertia.get(route('guest.index'),{'search':value},{preserveState:true,replace:true})
+                                    },300),
+                                     { deep: true });
 </script>
 
 <template>
@@ -145,9 +162,16 @@ const  showForm=({formValues})=>Swal.fire({
 
                     <template #end>
                         <span class="p-input-icon-left">
-                            <i class="pi pi-search" />
-                             <SearchBox :model="`guest.index`" />
+                            <div class="flex flex-row gap-2">
+                                <MultiSelect v-model="filters.type" :options="guest_types" optionLabel="name" class="flex justify-right" placeholder="Guest Types"/>
+                            <!-- <i class="pi pi-search" /> -->
+                             <span class="p-input-icon-left">
+                                <i class="pi pi-search" />
 
+                                <InputText type="text" v-model="filters.guest" placeholder="Search" />
+                            </span>
+                             <!-- <SearchBox :model="`guest.index`" /> -->
+                          </div>
                         </span>
                         <!-- <Button icon="pi pi-search" class="mr-2" /> -->
                         <!-- <Button icon="pi pi-calendar" class="mr-2 p-button-success" /> -->

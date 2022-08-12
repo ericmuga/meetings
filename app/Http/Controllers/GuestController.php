@@ -48,17 +48,17 @@ class GuestController extends Controller
     public function list(Request $request )
     {
 
-
+        //  dd($request->all());
       return [
               'search'=>$request->input('search')?:null,
               'burl'=>base_path(),
               'members'=>GuestController::buildMemberSelect(),
               'clubs'=>GuestController::buildClubSelect(),
               'guests'=>MyPaginator::paginate(GuestResource::collection(Guest::query()
-                                                                                ->when($request->input('search'),
-                                                                                        fn($query,$search)=>($query->where('name','like','%'.$search.'%')
-                                                                                                                   ->orWhere('field','like','%'.$search.'%')
-                                                                                                                   ->orWhereHas('contacts',fn($q)=>$q->where('contact','like','%'.$search.'%'))
+                                                                        ->when($request->has('search')&&(array_key_exists('type',$request->search)),fn($q,$search)=>$q->whereIn('type',collect($request->search['type'])->pluck('name')))
+                                                                        ->when($request->has('search')&&($request->search['guest']),fn($query)=>($query->where('name','like','%'.$request->search['guest'].'%')
+                                                                        ->orWhere('field','like','%'.$request->search['guest'].'%')
+                                                                        ->orWhereHas('contacts',fn($q)=>$q->where('contact','like','%'.$request->search['guest'].'%'))
 
                                                                                                             )
                                                                                        )

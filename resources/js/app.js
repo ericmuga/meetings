@@ -28,10 +28,11 @@ import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
+// import ProgressBar from 'primevue/progressbar';
 // import Checkbox from 'primevue/checkbox';
 // import Layout from '@/Layouts/Admin'
 // import gsap from 'gsap';
-
+// import ProgressBar from 'vuejs-progress-bar'
 import route from "ziggy-js";
 import ToastService from 'primevue/toastservice';
 const pinia = createPinia()
@@ -52,6 +53,7 @@ createInertiaApp({
              .component("Link",Link)
             .use(PrimeVue)
             .use(pinia)
+            // .use(ProgressBar)
             // .use(InertiaProgress)
             // .use(ToastService)
             .use(gsap)
@@ -60,6 +62,7 @@ createInertiaApp({
             .component('Dropdown',Dropdown)
             .component('Pagination',Pagination)
             .component('SpacedRule',SpacedRule)
+            // .component('ProgressBar',ProgressBar)
 
             // .component('Breadcrumb',Breadcrumb)
             .component('Checkbox',Checkbox)
