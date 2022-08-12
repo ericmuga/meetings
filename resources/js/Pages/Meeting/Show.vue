@@ -20,6 +20,10 @@ import _ from 'lodash'
 import Swal from 'sweetalert2'
 import SearchBox from '@/Components/SearchBox.vue'
 import axios from 'axios'
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 
 
@@ -66,9 +70,52 @@ onMounted(() => {
                               meeting:Object,
                               attended:Object,
 
-                                                        //   meetings:Object,
+
+                                chartId: {
+                                type: String,
+                                default: 'bar-chart'
+                                },
+                                datasetIdKey: {
+                                type: String,
+                                default: 'label'
+                                },
+                                width: {
+                                type: Number,
+                                default: 400
+                                },
+                                height: {
+                                type: Number,
+                                default: 400
+                                },
+                                cssClasses: {
+                                default: '',
+                                type: String
+                                },
+                                styles: {
+                                type: Object,
+                                default: () => {}
+                                },
+                                plugins: {
+                                type: Object,
+                                default: () => {}
+                                }
+                                                   //   meetings:Object,
 
                          })
+
+const chartData= {
+        labels: [ 'Members', 'Guests' ],
+        datasets: [
+                      {
+                        data: [props.meeting.members.length, props.meeting.guests.length],
+                        backgroundColor: ['#41B883', '#E46651']
+                      }
+
+                 ]
+      }
+const chartOptions= {
+        responsive: true
+      }
 
 const memberSelect= props.meeting.memberSelect
 const clubSelect= props.meeting.clubSelect
@@ -192,7 +239,7 @@ const  showForm=({formValues})=>Swal.fire({
                         <div class="rounded-md shadow-md md:col-span-3 sm:col-span-1 shadow-slate-300">
 
                           <div class="w-full tracking-wide text-center text-white uppercase bg-teal-500 rounded-lg">
-                              meeting Stats
+                              Meeting Stats
                           </div>
                             <div class="flex flex-col w-full">
                                 <div class="justify-end">
@@ -387,8 +434,22 @@ const  showForm=({formValues})=>Swal.fire({
                             <TabPanel header="Approved Requests" v-if="meeting.type=='makeup'">
                                 Approved Requests
                             </TabPanel>
-                            <TabPanel header="Reports">
-                                Reports
+                            <TabPanel header="Reports" >
+                                <div class="max-w-xs max-h-xs" >
+
+
+                                  <Bar
+                                        :chart-options="chartOptions"
+                                        :chart-data="chartData"
+                                        :chart-id="chartId"
+                                        :dataset-id-key="datasetIdKey"
+                                        :plugins="plugins"
+                                        :css-classes="cssClasses"
+                                        :styles="styles"
+                                        :width="width"
+                                        :height="height"
+                                    />
+                                    </div>
                             </TabPanel>
 
 
