@@ -22,6 +22,7 @@ import _ from 'lodash'
                              gender:props.guest.data.gender,
                              nationality:props.guest.data.nationality,
                              type:props.guest.data.type,
+                             club_id:props.guest.data.club_id
                             //  inviter:props.guest.data.inviter,
 
                             })

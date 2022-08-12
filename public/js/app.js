@@ -23874,7 +23874,8 @@ __webpack_require__.r(__webpack_exports__);
       phone: props.guest.data.phone,
       gender: props.guest.data.gender,
       nationality: props.guest.data.nationality,
-      type: props.guest.data.type //  inviter:props.guest.data.inviter,
+      type: props.guest.data.type,
+      club_id: props.guest.data.club_id //  inviter:props.guest.data.inviter,
 
     }); // const showSuccess=()=>{swal('Success',message,'success')};
 

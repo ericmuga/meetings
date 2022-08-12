@@ -43,7 +43,8 @@ class GuestResource extends JsonResource
          'type'=>$this->type,
          'icon'=>$icon,
          'gender'=>$this->gender,
-         'club'=>$this->club?->name
+         'club'=>$this->club?->name,
+         'club_id'=>$this->club_id,
          // 'email'=>Contact::where('contact_type','email')
          //                 ->where('contactable_type','App\Models\Member')
          //                 ->where('contactable_id',$this->id)->first()->contact
