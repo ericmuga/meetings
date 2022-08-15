@@ -19,7 +19,7 @@
   <!-- <div class="flex justify-between"> -->
     <!-- <div class="tracking-wide text-white">Members</div> -->
     Members {{members}}: <LVProgressBar :value="Math.round(members/((total)>0?(total):1),0)*100" :showValue="true" color="#0abaf0" />
-    Guests {{guests}}: <LVProgressBar :value="Math.round(guests/((total)>0?(total):1),0)*100" :showValue="true" color="#f0a30a" />
+    Guests {{guests_count}}: <LVProgressBar :value="Math.round(guests_count/((total)>0?(total):1),0)*100" :showValue="true" color="#ebb734" />
 
 
    <div class="p-3 m-4 text-center text-white rounded-md bg-slate-700">Total :{{total}}</div>
@@ -79,7 +79,7 @@ import LVProgressBar from 'lightvue/progress-bar';
   const value1 = ref(20);
   const total =props.meeting.members_count+props.meeting.guests_count;
   const members =props.meeting.members_count;
-  const guests =props.meeting.guests_count;
+  const guest =props.meeting.guests_count;
 
 
 
