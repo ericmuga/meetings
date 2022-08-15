@@ -1,5 +1,6 @@
 <template>
     <div >
+
 <div class="max-w-md px-8 py-4 my-8 bg-white rounded-lg shadow-lg">
   <div class="flex justify-center -mt-16 md:justify-end">
     <img class="object-cover w-10 h-10 border-2 border-indigo-500 rounded-full"
@@ -14,33 +15,23 @@
     </p>
 
   </div>
+
+  <!-- <div class="flex justify-between"> -->
+    <!-- <div class="tracking-wide text-white">Members</div> -->
+    Members {{members}}: <LVProgressBar :value="Math.round(members/((total)>0?(total):1),0)*100" :showValue="true" color="#0abaf0" />
+    Guests {{guests}}: <LVProgressBar :value="Math.round(guests/((total)>0?(total):1),0)*100" :showValue="true" color="#f0a30a" />
+
+
+   <div class="p-3 m-4 text-center text-white rounded-md bg-slate-700">Total :{{total}}</div>
+
+<!-- </div> -->
 <div class="flex justify-center">
 
 
 <table class="pl-5 rounded-md table-auto">
 
   <tbody>
-    <tr>
-      <td class="text-left">Members</td>
-      <td class="text-center">{{meeting.members_count}}</td>
-    </tr>
-     <tr>
-      <td class="text-left">Guests</td>
-      <td class="text-center">{{meeting.guests_count}}</td>
-    </tr>
 
-    <tr>
-      <td class="text-left">Present</td>
-      <td class="text-center">{{meeting.attended}}</td>
-    </tr>
-    <tr class="py-3">
-
-    </tr>
-    <tr class="bg-slate-300">
-      <td class="text-left">Total</td>
-      <td class="text-center">{{meeting.guests_count+meeting.members_count}}</td>
-
-    </tr>
 
 
         <tr class="mt-5">
@@ -82,38 +73,19 @@
 <script setup>
 import {ref,toRefs} from 'vue'
 import Drop from '@/Components/Drop.vue'
+import LVProgressBar from 'lightvue/progress-bar';
+
    const props= defineProps({meeting:Object})
-const value1 = ref(20);
+  const value1 = ref(20);
+  const total =props.meeting.members_count+props.meeting.guests_count;
+  const members =props.meeting.members_count;
+  const guests =props.meeting.guests_count;
 
 
-const options= {
-  text: {
-    color: '#FFFFFF',
-    shadowEnable: true,
-    shadowColor: '#000000',
-    fontSize: 14,
-    fontFamily: 'Helvetica',
-    dynamicPosition: false,
-    hideText: false
-  },
-  progress: {
-    color: '#2dbd2d',
-    backgroundColor: '#333333',
-    inverted: false
-  },
-  layout: {
-    height: 35,
-    width: 140,
-    verticalTextAlign: 61,
-    horizontalTextAlign: 43,
-    zeroOffset: 0,
-    strokeWidth: 30,
-    progressPadding: 0,
-    type: 'line'
-  }
-}
+
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
 
 </style>

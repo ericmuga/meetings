@@ -130,7 +130,7 @@ const  showForm=({formValues})=>Swal.fire({
 
   watch(filters,debounce((value)=>{
                                     Inertia.get(route('guest.index'),{'search':value},{preserveState:true,replace:true})
-                                    },300),
+                                    },800),
                                      { deep: true });
 </script>
 

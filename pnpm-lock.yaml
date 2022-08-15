@@ -12,6 +12,7 @@ specifiers:
   chart.js: ^3.9.1
   gsap: ^3.10.4
   laravel-mix: ^6.0.49
+  lightvue: ^1.4.9
   lodash: ^4.17.21
   pinia: ^2.0.18
   postcss: ^8.4.16
@@ -30,6 +31,7 @@ dependencies:
   '@heroicons/vue': 1.0.6_vue@3.2.37
   chart.js: 3.9.1
   gsap: 3.10.4
+  lightvue: 1.4.9
   pinia: 2.0.18_vue@3.2.37
   primeicons: 5.0.0
   primevue: 3.15.0_pup2jerpb5yobt7sxmawn3p42u
@@ -3694,6 +3696,10 @@ packages:
       - utf-8-validate
       - webpack-bundle-analyzer
     dev: true
+
+  /lightvue/1.4.9:
+    resolution: {integrity: sha512-qCS0LG5ejWwyKI7283Xfiwq/q8SdtR/d96AQFnkrLWgZchauUOvnEChNnzhHsFaA+KGNvpDYUW48COknSzjdrg==}
+    dev: false
 
   /lilconfig/2.0.6:
     resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}

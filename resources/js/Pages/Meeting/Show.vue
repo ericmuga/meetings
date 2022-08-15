@@ -20,10 +20,11 @@ import _ from 'lodash'
 import Swal from 'sweetalert2'
 import SearchBox from '@/Components/SearchBox.vue'
 import axios from 'axios'
-import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js'
+import { Bar,Doughnut } from 'vue-chartjs'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale,ArcElement, LinearScale} from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,ArcElement)
 
 
 
@@ -72,33 +73,33 @@ onMounted(() => {
 
 
                                 chartId: {
-                                type: String,
-                                default: 'bar-chart'
-                                },
+                                            type: String,
+                                            default: 'bar-chart'
+                                            },
                                 datasetIdKey: {
-                                type: String,
-                                default: 'label'
-                                },
+                                            type: String,
+                                            default: 'label'
+                                            },
                                 width: {
-                                type: Number,
-                                default: 400
-                                },
+                                            type: Number,
+                                            default: 200
+                                            },
                                 height: {
-                                type: Number,
-                                default: 400
-                                },
+                                            type: Number,
+                                            default: 200
+                                            },
                                 cssClasses: {
-                                default: '',
-                                type: String
-                                },
+                                            default: '',
+                                            type: String
+                                            },
                                 styles: {
-                                type: Object,
-                                default: () => {}
-                                },
+                                            type: Object,
+                                            default: () => {}
+                                            },
                                 plugins: {
-                                type: Object,
-                                default: () => {}
-                                }
+                                            type: Object,
+                                            default: () => {}
+                                            }
                                                    //   meetings:Object,
 
                          })
@@ -117,8 +118,31 @@ const chartOptions= {
         responsive: true
       }
 
+
+
+const chartData2 = {
+      labels: _.keys(props.meeting.guestAttended),
+      datasets: [
+        {
+          backgroundColor: ['#41B883', '#E46651', '#00D8FF'],
+          data: [(_.has(props.meeting.guestAttended,'Rotarian'))?props.meeting.guestAttended.Rotarian.length:0,
+                   _.has(props.meeting.guestAttended,'Rotaractor')?props.meeting.guestAttended.Rotaractor.length:0,
+                  _.has(props.meeting.guestAttended,'None')?props.meeting.guestAttended.None.length:0
+                ]
+        }
+      ]
+    }
+
+    const chartOptions2 = {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+
 const memberSelect= props.meeting.memberSelect
 const clubSelect= props.meeting.clubSelect
+
+const width=props.width.value
+const height=props.height.value
 
 const form2 = useForm({
                             name:'',
@@ -435,7 +459,8 @@ const  showForm=({formValues})=>Swal.fire({
                                 Approved Requests
                             </TabPanel>
                             <TabPanel header="Reports" >
-                                <div class="max-w-xs max-h-xs" >
+                                <!-- {{Others}} -->
+                                <div class="grid max-w-md grid-cols-2 gap-3 max-h-xs"  >
 
 
                                   <Bar
@@ -448,8 +473,23 @@ const  showForm=({formValues})=>Swal.fire({
                                         :styles="styles"
                                         :width="width"
                                         :height="height"
+                                        class="col-span-1"
                                     />
-                                    </div>
+
+
+                                      <Doughnut
+                                        :chart-options="chartOptions"
+                                        :chart-data="chartData2"
+                                        chart-id="doughnut-chart"
+                                        :dataset-id-key="datasetIdKey"
+                                        :plugins="plugins"
+                                        :css-classes="cssClasses"
+                                        :styles="styles"
+                                        width="400"
+                                        height="400"
+                                        class="col-span-1"
+
+                                      />  </div>
                             </TabPanel>
 
 

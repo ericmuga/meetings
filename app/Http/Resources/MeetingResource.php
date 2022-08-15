@@ -87,6 +87,8 @@ class MeetingResource extends JsonResource
                   'attended'=>$this->scores()->where('scores.present',true)->count(),
                   'index'=>$prefix.':'.$index,
                   'icon'=>$icon,
+                  'guestAttended'=>$this->guests()->get()->groupBy('type'),
+
 
 
 

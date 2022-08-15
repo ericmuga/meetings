@@ -28,6 +28,10 @@ import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
+
+import LVProgressBar from 'lightvue/progress-bar';
+
+
 // import ProgressBar from 'primevue/progressbar';
 // import Checkbox from 'primevue/checkbox';
 // import Layout from '@/Layouts/Admin'
@@ -62,6 +66,7 @@ createInertiaApp({
             .component('Dropdown',Dropdown)
             .component('Pagination',Pagination)
             .component('SpacedRule',SpacedRule)
+            .component('LVProgressBar',LVProgressBar)
             // .component('ProgressBar',ProgressBar)
 
             // .component('Breadcrumb',Breadcrumb)
