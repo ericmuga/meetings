@@ -18,11 +18,18 @@
 
   <!-- <div class="flex justify-between"> -->
     <!-- <div class="tracking-wide text-white">Members</div> -->
-    Members {{members}}: <LVProgressBar :value="Math.round(members/((total)>0?(total):1),0)*100" :showValue="true" color="#0abaf0" />
-    Guests {{guests}}: <LVProgressBar :value="Math.round(guests/((total)>0?(total):1),0)*100" :showValue="true" color="#ebb734" />
+    Members {{members}}: <LVProgressBar :value="members/nonZero()" :showValue="true" color="#0abaf0" />
+    Guests {{guests}}: <LVProgressBar :value="guests/nonZero()" :showValue="true" color="#d69d0d" />
+        <div v-for="g in _.keys(meeting.guestAttended)" :key="g" class="ml-10" >
+                    {{g=='None'?'Other':g}}s: {{meeting.guestAttended[g].length}}
+            <LVProgressBar  :value="Math.round(meeting.guestAttended[g].length/guests*100,2)" :showValue="true" :color="resolveColor(g)"/>
+        </div>
 
 
-   <div class="p-3 m-4 text-center text-white rounded-md bg-slate-700">Total :{{total}}</div>
+
+
+
+   <div class="p-3 m-4 text-center text-white rounded-md bg-slate-600">Total :{{total}}</div>
 
 <!-- </div> -->
 <div class="flex justify-center">
@@ -74,12 +81,19 @@
 import {ref,toRefs} from 'vue'
 import Drop from '@/Components/Drop.vue'
 import LVProgressBar from 'lightvue/progress-bar';
+import _ from 'lodash'
 
    const props= defineProps({meeting:Object})
   const value1 = ref(20);
   const total =props.meeting.members_count+props.meeting.guests_count;
   const members =props.meeting.members_count;
   const guests =props.meeting.guests_count;
+  const nonZero=()=>(total==0)?100:total/100;
+  const resolveColor=function(g){
+                                if(g=='Rotarian') return '#a80327'
+                                if(g=='Rotaractor') return '#a80327'
+                                if(g=='None') return '#635f63'
+                            }
 
 
 

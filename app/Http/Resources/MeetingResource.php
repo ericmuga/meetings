@@ -6,6 +6,7 @@ use App\Models\{Score,Meeting};
 use Carbon\Carbon;
 use Doctrine\DBAL\Schema\Index;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 class MeetingResource extends JsonResource
 {
@@ -87,7 +88,13 @@ class MeetingResource extends JsonResource
                   'attended'=>$this->scores()->where('scores.present',true)->count(),
                   'index'=>$prefix.':'.$index,
                   'icon'=>$icon,
-                  'guestAttended'=>$this->guests()->get()->groupBy('type'),
+                  'guestAttended'=>DB::table('scores')
+                                     ->where('attendable_type','App\Models\Guest')
+                                     ->where('meeting_id',$this->id)
+                                     ->join('guests','guests.id','scores.attendable_id')
+                                     ->select('name','type')
+                                     ->get()
+                                     ->groupBy('type'),
 
 
 

@@ -62,8 +62,12 @@ class Meeting extends Model
             [Score::class],
             [null, 'attendable_type', 'id'],
             [null, 'attendable_type','attendable_id']
-        )->withIntermediate(Score::class,['time_score','present']);
+        )->withIntermediate(Score::class,['time_score','present','meeting_id']);
+
+
     }
+
+
 
     // public function icon()
     // {
