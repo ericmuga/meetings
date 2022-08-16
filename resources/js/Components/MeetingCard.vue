@@ -18,8 +18,8 @@
 
   <!-- <div class="flex justify-between"> -->
     <!-- <div class="tracking-wide text-white">Members</div> -->
-    Members {{members}}: <LVProgressBar :value="members/nonZero()" :showValue="true" color="#0abaf0" />
-    Guests {{guests}}: <LVProgressBar :value="guests/nonZero()" :showValue="true" color="#d69d0d" />
+    Members {{members}}: <LVProgressBar :value="Math.round(members/nonZero(),2)" :showValue="true" color="#0abaf0" />
+    Guests {{guests}}: <LVProgressBar :value="Math.round(guests/nonZero(),2)" :showValue="true" color="#d69d0d" />
         <div v-for="g in _.keys(meeting.guestAttended)" :key="g" class="ml-10" >
                     {{g=='None'?'Other':g}}s: {{meeting.guestAttended[g].length}}
             <LVProgressBar  :value="Math.round(meeting.guestAttended[g].length/guests*100,2)" :showValue="true" :color="resolveColor(g)"/>
