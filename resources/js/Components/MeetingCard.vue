@@ -91,7 +91,7 @@ import _ from 'lodash'
   const nonZero=()=>(total==0)?100:total/100;
   const resolveColor=function(g){
                                 if(g=='Rotarian') return '#a80327'
-                                if(g=='Rotaractor') return '#a80327'
+                                if(g=='Rotaractor') return '#00d11f'
                                 if(g=='None') return '#635f63'
                             }
 
