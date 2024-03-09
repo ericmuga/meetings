@@ -16,14 +16,14 @@ class MemberResource extends JsonResource
     public function toArray($request)
     {
 
-
+       $v=filter_var($this->defaultContact('email'), FILTER_VALIDATE_EMAIL);
            return [
                'id'=>$this->id,
             'name'=>$this->name,
             'member_no'=>$this->member_no,
             'nationality'=>$this->nationality,
             'field'=>$this->field,
-            'gravatar'=>Gravatar::get($this->defaultContact('email')),
+            'gravatar'=>$v?Gravatar::get($this->defaultContact('email')):Gravatar::get('email@example.com'),
             'phone'=>$this->defaultContact('phone'),
             'email'=>$this->defaultContact('email'),
             'contacts'=>$this->contacts()->get(),
