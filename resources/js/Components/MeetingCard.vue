@@ -96,9 +96,9 @@ import _ from 'lodash'
     }
    })
   const value1 = ref(20);
-  const total =props.meeting.members_count+props.meeting.guests_count;
-  const members =props.meeting.members_count;
-  const guests =props.meeting.guests_count;
+  const total =m.value.members_count+m.value.guests_count;
+  const members =m.value.members_count;
+  const guests =m.value.guests_count;
   const nonZero=()=>(total==0)?100:total/100;
   const resolveColor=function(g){
                                 if(g=='Rotarian') return '#a80327'
