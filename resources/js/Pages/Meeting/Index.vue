@@ -13,6 +13,12 @@ import { watch,ref, computed, toRefs } from "@vue/runtime-core";
 import  debounce  from "lodash/debounce";
 import {Inertia} from '@inertiajs/inertia'
 
+const props=defineProps({ meetings:Object,
+                             search:String,
+                             types:Array,
+
+
+                            })
 const form=useForm({
                     Start:'',
                     end:'',
@@ -40,12 +46,6 @@ const  showForm=({formValues})=>Swal.fire({
 
 
 
-const props=defineProps({ meetings:Object,
-                             search:String,
-                             types:Array,
-
-
-                            })
 
 const meeting_types=[
                         {name: 'zoom'},
