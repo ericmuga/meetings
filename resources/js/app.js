@@ -66,7 +66,7 @@ createInertiaApp({
             .component('Dropdown',Dropdown)
             .component('Pagination',Pagination)
             .component('SpacedRule',SpacedRule)
-            .component('LVProgressBar',LVProgressBar)
+            // .component('LVProgressBar',LVProgressBar)
             // .component('ProgressBar',ProgressBar)
 
             // .component('Breadcrumb',Breadcrumb)
