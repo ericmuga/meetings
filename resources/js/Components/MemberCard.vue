@@ -6,7 +6,7 @@
             <div class="flex justify-end px-4 pt-4">
 
             </div>
-            <div class="flex flex-col items-center pb-5">
+            <div class="flex flex-col items-center pb-5" v-if="member.id>0">
                 <img class="w-24 h-24 mb-3 rounded-full shadow-lg" :src=member.gravatar alt="Bonnie image">
                 <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{member.name}}</h5>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{member.field}}</span>
