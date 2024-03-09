@@ -21,7 +21,7 @@
                        <Link
                           :href="route('guest.show',g.id)"
                        >
-                            <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
+                         <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
                        </Link>
 
                        <Link
