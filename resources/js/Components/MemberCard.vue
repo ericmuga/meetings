@@ -54,10 +54,10 @@ const m=ref({})
 onMounted(()=>{
     if (props.member.id>0)
     {
-     m=props.member
+     m.value=props.member
     }
     else
-    m=props.member.data
+    m.value=props.member.data
 })
 
 

@@ -59,10 +59,10 @@ const g =ref({});
 onMounted(()=>{
     if (props.guest.id>0)
     {
-     g=props.guest
+     g.value=props.guest
     }
     else
-    g=props.guest.data
+    g.value=props.guest.data
 })
 
 
