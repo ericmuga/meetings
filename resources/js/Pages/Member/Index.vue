@@ -168,7 +168,7 @@ const  showForm=({formValues})=>Swal.fire({
                                          @before-enter="beforeEnter"
                                         @enter="enter"
                                     >
-                                        <MemberCard :member=member />
+                                        <MemberCard :member=member.data />
                                 </transition>
                             </div>
 </div>
