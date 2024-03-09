@@ -101,6 +101,7 @@ class MeetingController extends Controller
                                 ->select('attendable_id')
                                 ->get()->pluck('attendable_id')
                                 ->toArray(),
+                  
                  'MemberList'=>Member::orderBy('name')->get(),
                  'GuestList'=>Guest::all('id','name'),
                  'memberSelect'=>GuestController::buildMemberSelect(),

@@ -50,7 +50,7 @@ const  showForm=({formValues})=>Swal.fire({
                                                     html:
                                                         '<br/><label>Name</label>'+
                                                         '<br/>'+
-                                                        '<select  id="member_id"  type="text"  placeholder="Category" class="my-2 rounded-md" required>' +
+                                                        '<select  id="member_id"  type="text"  placeholder="member" class="my-2 rounded-md" required>' +
                                                            memberSelect+
                                                         '</select>'+
                                                         '<br/><label>Date</label>'+

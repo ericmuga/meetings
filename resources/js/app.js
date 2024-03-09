@@ -29,7 +29,7 @@ import InputNumber from 'primevue/inputnumber';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 
-import LVProgressBar from 'lightvue/progress-bar';
+
 
 
 // import ProgressBar from 'primevue/progressbar';

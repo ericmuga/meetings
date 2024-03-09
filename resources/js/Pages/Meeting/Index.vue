@@ -108,9 +108,7 @@ const meeting_types=[
                     <template #end>
                         <span class="p-input-icon-left">
                             <div class="flex flex-row gap-2">
-                                <MultiSelect v-model="filters.type" :options="meeting_types" optionLabel="name" class="flex justify-right" placeholder="Meeting Types"
-
-                                />
+                                <MultiSelect v-model="filters.type" :options="meeting_types" optionLabel="name" class="flex justify-right" placeholder="Meeting Types"/>
                                  <div class="field">
                                     <label for="date" class="mr-2">From</label>
                                     <InputText id="date" type="date" v-model="filters.startDate" aria-describedby="username1-help" />
