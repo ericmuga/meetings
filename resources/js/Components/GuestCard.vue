@@ -50,12 +50,12 @@ import { useForm } from '@inertiajs/inertia-vue3'
 import Drop from '@/Components/Drop.vue'
 
 import Swal from 'sweetalert2'
-import { onMounted } from 'vue';
+import { onMounted,ref } from 'vue';
 const props= defineProps({
    guest:Object,
 
 });
-let g =ref({});
+const g =ref({});
 onMounted(()=>{
     if (props.guest.id>0)
     {

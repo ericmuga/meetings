@@ -44,13 +44,13 @@
 import { Inertia } from '@inertiajs/inertia';
 import { useForm } from '@inertiajs/inertia-vue3'
 import Drop from '@/Components/Drop.vue'
-
+import { onMounted,ref } from 'vue';
 import Swal from 'sweetalert2'
 const props= defineProps({
    member:Object,
 
 });
-
+const m=ref({})
 onMounted(()=>{
     if (props.member.id>0)
     {
