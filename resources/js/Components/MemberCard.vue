@@ -52,12 +52,12 @@ const props= defineProps({
 });
 
 onMounted(()=>{
-    if (props.guest.id>0)
+    if (props.member.id>0)
     {
-     m=props.guest
+     m=props.member
     }
     else
-    m=props.guest.data
+    m=props.member.data
 })
 
 
