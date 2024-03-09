@@ -60,14 +60,14 @@
 </div>
    <p class="py-4 font-semibold text-center">{{m.date}}</p>
    <div class="flex flex-row justify-center space-x-2">
-       <!-- <Link
+       <Link
          :href="route('meeting.show',m.id)"
-       > -->
+       >
         <Button icon="pi pi-bookmark" class="p-button-rounded p-button-primary p-button-outlined" />
 
        </Link>
         <Button icon="pi pi-pencil" class="p-button-rounded p-button-primary p-button-outlined" />
-        <!-- <Drop :dropRoute="route('meeting.destroy',m.id)" /> -->
+        <Drop :dropRoute="route('meeting.destroy',m.id)" />
 
    </div>
 
@@ -88,11 +88,11 @@ import _ from 'lodash'
    onMounted(()=>{
     if (meeting.id>0)
     {
-        m.value=meeting;
+        m.value=props.meeting;
     }
     else
     {
-        m.value=meeting.data
+        m.value=props.meeting.data
     }
    })
   const value1 = ref(20);
