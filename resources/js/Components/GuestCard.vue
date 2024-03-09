@@ -55,8 +55,12 @@ const props= defineProps({
    guest:Object,
 
 });
-const g =ref({});
+const g=ref({});
+
+
+
 onMounted(()=>{
+    console.log(props.guest)
     if (props.guest.id>0)
     {
      g.value=props.guest
