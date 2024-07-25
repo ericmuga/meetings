@@ -61,13 +61,13 @@
    <p class="py-4 font-semibold text-center">{{meeting.date}}</p>
    <div class="flex flex-row justify-center space-x-2">
        <Link
-         :href="route('meeting.show',1)"
+         :href="route('meeting.show',meeting.id)"
        >
         <Button icon="pi pi-bookmark" class="p-button-rounded p-button-primary p-button-outlined" />
 
        </Link>
         <Button icon="pi pi-pencil" class="p-button-rounded p-button-primary p-button-outlined" />
-        <Drop :dropRoute="route('meeting.destroy',1)" />
+        <Drop :dropRoute="route('meeting.destroy',meeting.id)" />
 
    </div>
 

@@ -29,44 +29,9 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
 
 
 let searchKey=ref('')
-//   watch(searchKey,_.debounce((value)=>
-//          {
-//             guests=memberStore.getFilteredGuests(value);
-
-//         },300));
-
 
 
 const memberStore=useMemberStore()
-
-const form=useForm({
-                        attended:props.meeting.members,
-                        guestsAttended:props.meeting.guests,
-                        meeting:props.meeting.id
-                    })
-
-    const save=()=>form.post(route('meeting.scores'),{
-                             preserveScroll: true,
-                            onSuccess:()=>Swal.fire(
-                                                        'Saved',
-                                                        'Attendance has been saved',
-                                                        'success'
-                                                    )
-                                                    })
-
-
-
-// const guests=[{id:1,name:'Kevin'},{id:2,name:'Millicent'}];
-
-// const filteredGuests= computed(()=>guests.filter(guest=>guests.name.includes(searchKey)));
-
-onMounted(() => {
-   memberStore.fetchMembers()
-   memberStore.fetchGuests()
-
-})
-
-// const filter=(obj,predicate)=>{_.filter(obj,predicate)}
  const props=defineProps({
                               meeting:Object,
                               attended:Object,
@@ -100,9 +65,37 @@ onMounted(() => {
                                             type: Object,
                                             default: () => {}
                                             }
-                                                   //   meetings:Object,
 
                          })
+
+const form=useForm({
+                        attended:props.meeting.members,
+                        guestsAttended:props.meeting.guests,
+                        meeting:props.meeting.id
+                    })
+
+    const save=()=>form.post(route('meeting.scores'),{
+                             preserveScroll: true,
+                            onSuccess:()=>Swal.fire(
+                                                        'Saved',
+                                                        'Attendance has been saved',
+                                                        'success'
+                                                    )
+                                                    })
+
+
+
+// const guests=[{id:1,name:'Kevin'},{id:2,name:'Millicent'}];
+
+// const filteredGuests= computed(()=>guests.filter(guest=>guests.name.includes(searchKey)));
+
+onMounted(() => {
+   memberStore.fetchMembers()
+   memberStore.fetchGuests()
+
+})
+
+// const filter=(obj,predicate)=>{_.filter(obj,predicate)}
 
 const chartData= {
         labels: [ 'Members', 'Guests' ],
@@ -242,7 +235,7 @@ const  showForm=({formValues})=>Swal.fire({
 </script>
 
 <template>
-    <Head title="Meetings" />
+    <Head title="Meeting" />
     <BreezeAuthenticatedLayout>
      <div class="py-6">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">

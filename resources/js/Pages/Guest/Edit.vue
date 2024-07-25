@@ -13,6 +13,7 @@ import _ from 'lodash'
 
  const country= ref(countries)
  const type=ref(types)
+ const props=defineProps({guest:Object,members:Object,clubs:Object});
     const form = useForm({
                             name:props.guest.data.name,
                             field:props.guest.data.field,
@@ -29,7 +30,7 @@ import _ from 'lodash'
 
 // const showSuccess=()=>{swal('Success',message,'success')};
 
-const props=defineProps({guest:Object,members:Object,clubs:Object});
+
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')

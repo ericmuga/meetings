@@ -11,6 +11,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import swal from 'sweetalert2'
 
  const country= ref(countries)
+ const props=defineProps({member:Object});
     const form = useForm({
                             name:props.member.data.name,
                             field:props.member.data.field,
@@ -24,7 +25,7 @@ import swal from 'sweetalert2'
 
 const showSuccess=()=>{swal('Success',message,'success')};
 
-const props=defineProps({member:Object});
+
 
  const beforeEnter=(el)=>{
             //    console.log('set the initial state')
