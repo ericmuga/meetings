@@ -7,25 +7,25 @@
 
             <div class="flex justify-center md:justify-end ">
                     <img class="object-cover w-10 h-10 border-2 border-indigo-500 rounded-full"
-                    :src="`/images/${g.icon}.png`"
+                    :src="`/images/${guest.icon}.png`"
                     >
                 </div>
 
             <div class="flex flex-col items-center pb-5">
-                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" :src=g.gravatar alt="Guest Image">
-                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{g.name}}</h5>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{g.field}}</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{g.type}}</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{g.member_no}}</span>
+                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" :src=guest.gravatar alt="Guest Image">
+                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{guest.name}}</h5>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{guest.field}}</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{guest.type}}</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{guest.member_no}}</span>
                 <div class="flex mt-4 space-x-3 lg:mt-6">
                        <Link
-                          :href="route('guest.show',g.id)"
+                          :href="route('guest.show',guest.id)"
                        >
                          <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
                        </Link>
 
                        <Link
-                          :href="route('guest.edit',g.id)"
+                          :href="route('guest.edit',guest.id)"
                        >
                             <Button icon="pi pi-pencil" class="p-button-rounded p-button-secondary" />
                        </Link>
@@ -33,7 +33,7 @@
                             <!-- <Button icon="pi pi-times" class="justify-end p-button-rounded p-button-danger"
                                     @click="dropMember(guest.id)"
                             /> -->
-                        <Drop :dropRoute="route('guest.destroy',g.id)" />
+                        <Drop :dropRoute="route('guest.destroy',guest.id)" />
 
 
             </div>
@@ -59,15 +59,15 @@ const g=ref({});
 
 
 
-onMounted(()=>{
-    console.log(props.guest)
-    if (props.guest.id>0)
-    {
-     g.value=props.guest
-    }
-    else
-    g.value=props.guest.data
-})
+// onMounted(()=>{
+//     console.log(props.guest)
+//     if (props.guest.id>0)
+//     {
+//      g.value=props.guest
+//     }
+//     else
+//     g.value=props.guest.data
+// })
 
 
 

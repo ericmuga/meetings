@@ -162,13 +162,14 @@ const  showForm=({formValues})=>Swal.fire({
                         </div>
                     <div class="grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4">
 
-                             <div class="col-span-1" v-for="member in members.data" :key="member.id">
+                             <div class="col-span-1" v-for="member in members.data" :key="id">
                                 <transition
                                         appear
                                          @before-enter="beforeEnter"
                                         @enter="enter"
                                     >
-                                        <MemberCard :member=member.data />
+                                        <MemberCard :member=member />
+                                         <!-- {{member.name }} -->
                                 </transition>
                             </div>
 </div>

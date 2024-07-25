@@ -144,13 +144,14 @@ const meeting_types=[
                         </div>
                     <div class="grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4">
 
-                             <div class="col-span-1" v-for="meeting in meetings.data" :key="meeting.id">
+                             <div class="col-span-1" v-for="meeting in meetings.data" :key="id">
                                 <transition
                                         appear
                                          @before-enter="beforeEnter"
                                         @enter="enter"
                                     >
-                                                                               <MeetingCard :meeting=meeting />
+
+                                    <MeetingCard :meeting=meeting />
                                 </transition>
                             </div>
                    </div>

@@ -1,6 +1,6 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import guestCard from '@/Components/GuestCard.vue'
+// import guestCard from '@/Components/GuestCard.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 import Toolbar from 'primevue/toolbar';
 import { useForm } from '@inertiajs/inertia-vue3'
@@ -12,6 +12,7 @@ import  debounce  from "lodash/debounce";
 import {Inertia} from '@inertiajs/inertia'
  import SearchBox from '@/Components/SearchBox.vue'
 import { onMounted } from '@vue/runtime-core';
+import GuestCard from '@/Components/GuestCard.vue';
 
 const form = useForm({
                             guest_list: null,
@@ -191,13 +192,13 @@ const  showForm=({formValues})=>Swal.fire({
                         </div>
                     <div class="grid justify-center gap-2 m-6 bg-white border-b border-gray-200 sm:grid-cols-1 md:grid-cols-4">
 
-                             <div class="col-span-1" v-for="guest in guests.data" :key="guest.id">
+                             <div class="col-span-1" v-for="guest in guests.data" :key="id">
                                 <transition
                                         appear
                                          @before-enter="beforeEnter"
                                         @enter="enter"
                                     >
-                                        <guestCard :guest=guest />
+                                        <GuestCard :guest=guest />
                                 </transition>
                             </div>
 </div>
