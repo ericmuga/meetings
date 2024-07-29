@@ -18,11 +18,11 @@
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{g.type}}</span>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{g.member_no}}</span>
                 <div class="flex mt-4 space-x-3 lg:mt-6">
-                       <Link
+                       <!-- <Link
                           :href="route('guest.show',g.id)"
                        >
                          <Button icon="pi pi-user" class="p-button-rounded p-button-info" />
-                       </Link>
+                       </Link> -->
 
                        <Link
                           :href="route('guest.edit',g.id)"
